@@ -1,0 +1,23 @@
+\babel@toc {english}{}\relax 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\contentsline {figure}{\numberline {0.1}{\ignorespaces Figure 1. The proposed convolutional neural network used for fNIRS task classification. Source: Wickramaratne and Mahmud [1].}}{8}{figure.caption.1}%
+\contentsline {figure}{\numberline {0.2}{\ignorespaces Figure 2. Receiver operating characteristic comparison for the three classes using test data from subject 16. Source: Wickramaratne and Mahmud [1].}}{9}{figure.caption.2}%
+\contentsline {figure}{\numberline {0.3}{\ignorespaces Figure 3. Proposed architecture incorporating CNN and LSTM layers for fNIRS workload classification. Source: Khan et al. [5].}}{10}{figure.caption.3}%
+\contentsline {figure}{\numberline {0.4}{\ignorespaces Figure 4. Common deep-learning architectures used in fNIRS studies: MLP, CNN, and LSTM. Source: Eastmond et al. [6].}}{12}{figure.caption.4}%
+\contentsline {figure}{\numberline {0.5}{\ignorespaces Figure 5. Extraction of samples for training neural networks from fNIRS data. Source: Eastmond et al. [6].}}{13}{figure.caption.5}%
+\contentsline {figure}{\numberline {0.6}{\ignorespaces Figure 6. Proposed framework for walking-task classification using fNIRS data. Source: Ma et al. [7].}}{13}{figure.caption.6}%
+\contentsline {figure}{\numberline {0.7}{\ignorespaces Figure 7. fNIRS sensor pad and forehead voxel locations used for data acquisition. Source: Ma et al. [7].}}{14}{figure.caption.7}%
+\contentsline {figure}{\numberline {0.8}{\ignorespaces Figure 8. Conceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement. Source: Sharmin et al. [8].}}{15}{figure.caption.8}%
+\contentsline {figure}{\numberline {0.9}{\ignorespaces Figure 9. Overview of the machine-learning pipeline for estimating cognitive effort from fNIRS data. Source: Sharmin et al. [8].}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {0.10}{\ignorespaces Figure 10. Standardized cognitive load and standardized performance used to represent cognitive-effort states. Source: Sharmin et al. [8].}}{16}{figure.caption.10}%
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 
+\ttl@tocsep 

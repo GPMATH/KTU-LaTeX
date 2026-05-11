@@ -1,0 +1,57 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Wickramaratne and Mahmud(2021)]{Wickramaratne2021}
+S.~D. Wickramaratne and M.~S. Mahmud.
+\newblock A deep learning based ternary task classification system using
+  gramian angular summation field in fnirs neuroimaging data, 2021.
+\newblock URL \url{https://arxiv.org/abs/2101.05891}.
+
+\bibitem[Khan et~al.(2024)]{Khan2024}
+Mehshan~Ahmed Khan et~al.
+\newblock Enhancing cognitive workload classification using integrated lstm
+  layers and cnns for fnirs data analysis, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.15901}.
+
+\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
+Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
+\newblock Deep learning in fnirs: A review, 2022.
+\newblock URL \url{https://arxiv.org/abs/2201.13371}.
+
+\bibitem[Ma et~al.(2021)Ma, Izzetoglu, Holtzer, and Jiao]{Ma2021}
+Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
+\newblock Deep learning based walking tasks classification in older adults
+  using fnirs, 2021.
+\newblock URL \url{https://arxiv.org/abs/2102.03987}.
+
+\bibitem[Sharmin et~al.(2025)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
+  Barmaki]{Sharmin2025}
+Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
+  Roghayeh~Leila Barmaki.
+\newblock Beyond cognitive load: Ai-based estimation of cognitive effort using
+  brain signals during digital tasks, 2025.
+\newblock URL \url{https://arxiv.org/abs/2507.13952}.
+
+\bibitem[Eslami et~al.(2020)Eslami, Raiker, and Saeed]{Eslami2020}
+Taban Eslami, Joseph~S. Raiker, and Fahad Saeed.
+\newblock Explainable and scalable machine-learning algorithms for detection of
+  autism spectrum disorder using fmri data, 2020.
+\newblock URL \url{https://arxiv.org/abs/2003.01541}.
+
+\bibitem[Peiris and Chen(2024)]{Peiris2024}
+Himashi Peiris and Zhaolin Chen.
+\newblock Bilateral hippocampi segmentation in low field mris using mutual
+  feature learning via dual-views, 2024.
+\newblock URL \url{https://arxiv.org/abs/2410.17502}.
+
+\bibitem[Castelo et~al.(2024)]{Castelo2024}
+Sonia Castelo et~al.
+\newblock Hubar: A visual analytics tool to explore human behaviour based on
+  fnirs in ar guidance systems, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.12260}.
+
+\end{thebibliography}
