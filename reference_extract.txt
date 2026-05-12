@@ -1,0 +1,1289 @@
+Kaunas University of Technology
+Faculty of Mechanical Engineering and Design
+
+Development of Interface Brain-computer for Controlling
+Mechatronic Device
+Bachelor’s Final Degree Project
+
+Gerson David Pinto Chica
+Project author
+
+Researcher Dr. Valdas Grigaliūnas
+Supervisor
+
+Kaunas, 2025
+
+Kaunas University of Technology
+Faculty of Mechanical Engineering and Design
+
+Development of Interface Brain-computer for Controlling
+Mechatronic Device
+Bachelor’s Final Degree Project
+Mechatronics (6121EX017)
+
+Gerson David Pinto Chica
+Project author
+Researcher Dr. Valdas Grigaliūnas
+Supervisor
+Researcher Dr. Linas Obcarskas
+Reviewer
+
+Kaunas, 2025
+
+Kaunas University of Technology
+Faculty of Mechanical Engineering and Design
+Gerson David Pinto Chica
+
+Development of Interface Brain-computer for Controlling
+Mechatronic Device
+Declaration of Academic Integrity
+
+I confirm the following:
+1. I have prepared the final degree project independently and honestly without any violations of the
+copyrights or other rights of others, following the provisions of the Law on Copyrights and Related
+Rights of the Republic of Lithuania, the Regulations on the Management and Transfer of Intellectual
+Property of Kaunas University of Technology (hereinafter – University) and the ethical requirements
+stipulated by the Code of Academic Ethics of the University;
+2. All the data and research results provided in the final degree project are correct and obtained
+legally; none of the parts of this project are plagiarised from any printed or electronic sources; all the
+quotations and references provided in the text of the final degree project are indicated in the list of
+references;
+3. I have not paid anyone any monetary funds for the final degree project or the parts thereof unless
+required by the law;
+4. I understand that in the case of any discovery of the fact of dishonesty or violation of any rights of
+others, the academic penalties will be imposed on me under the procedure applied at the University;
+I will be expelled from the University and my final degree project can be submitted to the Office of
+the Ombudsperson for Academic Ethics and Procedures in the examination of a possible violation of
+academic ethics.
+Gerson David Pinto Chica
+Confirmed electronically
+
+Kaunas University of Technology
+Faculty of Mechanical Engineering and Design
+Task of the Bachelor's final degree project
+Given to the student – Gerson David Pinto Chica
+1. Title of the project
+Development of Interface Brain-computer for Controlling Mechatronic Device
+(In English)
+
+Sąsajos tarp smegenų ir kompiuterio kūrimas mechatroniniam įrenginiui valdyti
+(In Lithuanian)
+
+2.
+
+Aim and tasks of the project
+
+Aim: to develop a brain-computer interface that acquires, processes, and utilizes neuroelectric
+signals to control a mechatronic device.
+Tasks:
+1. to design a printed circuit board that acquires neuroelectric signals;
+2. to design housing for electronics and elements for electrodes fixing;
+3. to program the brain signal processing system;
+4. to test the functionality of the system;
+5. to assess cost-effectiveness and create a project resource management plan.
+3. Main requirements and conditions
+The printed circuit board will be developed using Altium Designer and should be able to control a
+mechatronics device by means of developing its own user interface, learning model and further
+peripherals.
+4. Additional requirements and conditions for the project, report and appendices
+PCB drawings (Altium Designer), housing drawings (SolidWorks), system architecture details
+(ADS1299, ESP32c3-mini), and appendices with schematics, BOM, and test findings.
+Project author
+
+Gerson David Pinto Chica
+(Name, Surname)
+
+Supervisor
+
+Valdas Grigaliūnas
+(Name, Surname)
+
+Head of study
+field programs
+
+2025-03-03
+(Signature)
+
+2025-03-03
+(Signature)
+
+Regita Bendikienė
+(Name, Surname)
+
+(Date)
+
+(Date)
+
+2025-03-03
+(Signature)
+
+(Date)
+
+Gerson David Pinto Chica. Development of Interface Brain-computer for Controlling Mechatronic
+Device. Bachelor's Final Degree Project, supervisor researcher dr. Valdas Grigaliunas; Faculty of
+Mechanical Engineering and Design, Kaunas University of Technology.
+Study field and area (study field group): Production and Manufacturing Engineering (E10),
+Engineering Sciences (E).
+Keywords Brain-computer Interface; Data analytics and processing; Electronics; PCB Design.
+Kaunas, 2025. 51 p.
+Summary
+This work describes a brain-computer interface that maps and reads neural activity. This is achieved
+by using electrodes and electronics for signal acquisition and conditioning. The collected information
+is then transmitted to any mobile device or computer. Transferred data is processed, enabling
+advanced analysis and interpretation of neural signals. In this way, various devices and appliances
+can be controlled using brain signals, opening completely new possibilities in scientific research and
+for people with special needs in their daily lives.
+During this work, a PCB, including ADC and MCU with a corresponding protection circuit,
+adjustable amplification, was designed, manufactured, and assembled. A learning model was also
+developed in Python using Random Forest that can identify the signals and translate them into mental
+states such as eyes closed, eyes open, right-hand motor imagery and left-hand motor imagery and
+these mental states are then used to control a mechatronics device.
+There is also the exploration of life-changing possibilities for people with mobility disabilities and
+cognitive problems. Among other contributions of this work are BCI technologies that will be more
+adaptable for research, students, and developers. This work contributes to the accessibility of
+neurotechnologies; this will enable users from diverse backgrounds to explore new affordable
+technologies.
+
+5
+
+Gerson David Pinto Chica. Sąsajos tarp smegenų ir kompiuterio kūrimas mechatroniniam įrenginiui
+valdyti Bakalauro baigiamasis projektas, vadovas mokslo darbuotojas dr. Valdas Grigaliūnas; Kauno
+technologijos universitetas, Mechanikos inžinerijos ir dizaino fakultetas.
+Studijų kryptis ir sritis (studijų krypčių grupė): Gamybos inžinerija (E10), Inžinerijos mokslai (E).
+Reikšminiai žodžiai: smegenų ir kompiuterio sąsaja, duomenų analizė, duomenų apdorojimas,
+elektronika, PCB projektavimas.
+Kaunas, 2025. 51 p.
+Santrauka
+Šiame darbe aprašoma smegenų ir kompiuterio sąsaja, kuri atvaizduoja ir nuskaito neuronų
+aktyvumą. Tai pasiekiama panaudojant elektrodus ir elektroniką signalams gauti ir apdoroti. Surinkta
+informacija gali būti perduodama į mobilųjį įrenginį ar kompiuterį. Perduoti duomenys apdorojami,
+atliekant pažangią neuroninių signalų analizę ir interpretavimą. Tokiu būdu įvairius prietaisus ir
+įrenginius galima valdyti naudojant smegenų signalus, atveriant naujas galimybes moksliniuose
+tyrimuose ir kasdieniame gyvenime žmonėms su specialiaisiais poreikiais.
+Šio projekto metu buvo suprojektuota, pagaminta ir surinkta elektronikos spausdinto montažo
+plokštė, integruojant ADC ir MCU su atitinkama apsaugos grandine ir reguliuojamu stiprinimu. Taip
+pat buvo sukurtas mokymosi modelis Python kalba, naudojant „Random Forest“ modelį, kuris gali
+atpažinti smegenų signalus ir identifikuoti būsenas, tokias kaip užmerktos akys, atmerktos akys,
+dešinės bei kairės rankos motorikos vaizdiniai. Naudojant vaizdinius galima valdyti mechatronikos
+įrenginius.
+Taip pat nagrinėjamos žmonių su judėjimo negalia ir kognityvinėmis problemomis gyvenimą
+keičiančios galimybės. Aptariamos technologijos, kurias galės taikyti tyrėjai, studentai ir kūrėjai.
+Šis darbas prisidės prie neurotechnologijų panaudojimo prieinamumo ir leis įvairiems vartotojams
+išbandyti naujas įperkamas technologijas.
+
+6
+
+Table of Contents
+List of Figures .................................................................................................................................... 8
+List of Tables .................................................................................................................................... 10
+List of Abbreviations and Terms ................................................................................................... 11
+Introduction ..................................................................................................................................... 12
+1. Situation Analysis ...................................................................................................................... 13
+1.1. BCI System Architecture .......................................................................................................... 13
+1.2. Signal Acquisition .................................................................................................................... 13
+1.2.1. Non-Invasive BCIs ................................................................................................................ 14
+1.2.2. Invasive BCIs ........................................................................................................................ 15
+1.3. Signal Processing...................................................................................................................... 16
+1.3.1. Feature Extraction ................................................................................................................. 17
+1.3.2. Feature Classification ............................................................................................................ 17
+1.3.3. Feature Translation ................................................................................................................ 18
+1.4. Chapter Summary ..................................................................................................................... 18
+2. Methodology ............................................................................................................................... 19
+2.1. Engineering Process ................................................................................................................. 19
+2.1.1. Analog-to-Digital Converter (ADC) Selection ..................................................................... 19
+2.1.2. Microcontroller Unit (MCU) Selection ................................................................................. 24
+2.1.3. Electrode Selection ................................................................................................................ 25
+2.1.4. Electrode Holder Selection .................................................................................................... 25
+2.1.5. PCB Design: Technical Justification ..................................................................................... 26
+2.2. Chapter Summary ..................................................................................................................... 26
+3. Project Results and Solutions ................................................................................................... 27
+3.1. Design and Development ......................................................................................................... 27
+3.1.1. PCB Design Process .............................................................................................................. 27
+3.2. PCB Layout and Manufacturing ............................................................................................... 30
+3.3. PCB Housing ............................................................................................................................ 30
+3.3.1. Design of The Electrode Holder Band .................................................................................. 32
+3.4. Communication and Control Flow ........................................................................................... 33
+3.5. User Interface ........................................................................................................................... 35
+3.6. Signal Processing Implementation ........................................................................................... 36
+3.7. Machine Learning Model Development ................................................................................... 37
+3.7.1. Features Implemented for Model Analysis ........................................................................... 38
+3.7.2. Confidence Threshold ........................................................................................................... 39
+3.8. Device Control Implementation ............................................................................................... 40
+3.9. Chapter Summary ..................................................................................................................... 44
+4. Social, Economic, and Environmental Considerations .......................................................... 45
+4.1. Economic Analysis ................................................................................................................... 45
+4.2. Social Impact and Accessibility ............................................................................................... 46
+4.3. Chapter Summary ..................................................................................................................... 46
+Conclusions ...................................................................................................................................... 47
+List of References............................................................................................................................. 47
+Appendices ....................................................................................................................................... 51
+
+7
+
+List of Figures
+Fig. 1. Main elements of a brain-computer interface (BCI) system [3]. ........................................... 13
+Fig. 2. BCI sensor mounting types: invasive (IM), semi-invasive (ECoG), and noninvasive (MEG,
+EEG, fNIRS) [6]. ............................................................................................................................... 14
+Fig. 3. Electrodes: a – different types of electrodes used for non-invasive BCIs; b – a multi-channel
+EEG cap with electrodes placed according to the international 10-20 system [10, 11]. ................... 15
+Fig. 4. a – Experimental set up; b and c – Neural activity for specific letters in time domain; d – Visual
+output; e – each circle represents a trial per letter [6]. ...................................................................... 16
+Fig. 5. Process pipeline for EEG data extraction, classification and translation into mental states [12,
+13]. ..................................................................................................................................................... 16
+Fig. 6. A BCI combined with computer vision used to control a robotic arm [15]........................... 18
+Fig. 7. The architecture of flash ADC [19]. ...................................................................................... 20
+Fig. 8. The block diagram of Ramp converter [17, 19]. .................................................................... 20
+Fig. 9. SAR ADC conversion: a – block diagram of a SAR ADC); b – associated conversion
+waveform [20]. .................................................................................................................................. 21
+Fig. 10. The principle of a single slope ADC [22]. ........................................................................... 21
+Fig. 11. The principle of a dual slope ADC [21]. .............................................................................. 22
+Fig. 12. Sigma-delta ADC. It consists of a sigma-delta modulator, a digital filter and a decimator [23].
+........................................................................................................................................................... 22
+Fig. 13. Block diagram of the BCI. ................................................................................................... 27
+Fig. 14. Schematic of protection circuit for inputting biopotential. .................................................. 28
+Fig. 15. Schematic for ESP32c3-mini SPI communication with the ADC. ...................................... 28
+Fig. 16. Schematic for power supply for +2.5 V (AVDD). ............................................................... 29
+Fig. 17. Power supply for -2.5V AVSS ............................................................................................. 29
+Fig. 18. Schematics for power supply of 3.3V .................................................................................. 30
+Fig. 19. PCB design: a – Altium Designer 2D view, top layer; b – Altium Designer 3D view; c –
+manufactured and assembled PCB. ................................................................................................... 30
+Fig. 20. First iteration PCB housing: a – 3D model; a – 3D printed prototype................................. 31
+Fig. 21. Second iteration PCB housing 3D model. ........................................................................... 31
+Fig. 22. Housing: a – top view; b – side view. .................................................................................. 32
+Fig. 23. Stress analysis for the housing. ............................................................................................ 31
+Fig. 24. 3D view of the band ............................................................................................................. 32
+Fig. 25. Stress analysis for the band .................................................................................................. 32
+Fig. 26. Manufactured band prototype using TPU. ........................................................................... 33
+Fig. 27. Fully mounted BCI: a – front-left view; b – side view. ....................................................... 33
+Fig. 28. ESP32c3-mini a – dimensions b – pin out configuration. ................................................... 34
+Fig. 29. Example of communication code: a – sender with receiver MAC address; b – receiver on
+listening mode. .................................................................................................................................. 35
+Fig. 30. Code examples: a – libraries used for the user interface; b – raw data reading from ADC. 35
+Fig. 31. Main window of GUI for data conditioning ........................................................................ 36
+Fig. 32. Implementation of FFT digital filtering in the program ...................................................... 37
+Fig. 33. Confusion Matrix of the trained random forest model. ....................................................... 38
+Fig. 34. Importance of each feature channel and frequency due to classification decision. ............. 39
+Fig. 35. Electrode mapping for the brain [36]. .................................................................................. 39
+Fig. 36. Real time – confidence level for triggering a change in state .............................................. 40
+8
+
+Fig. 37. Eyes Closed control state – turn off device.......................................................................... 40
+Fig. 38. Eyes Open control state – turn on device. ............................................................................ 41
+Fig. 39. Left Hand movement state – move forward......................................................................... 41
+Fig. 40. Right hand movement state – turn right ............................................................................... 41
+Fig. 41. Safety mode-no operation. ................................................................................................... 42
+Fig. 42. Operational mode on. ........................................................................................................... 42
+Fig. 43. The motor rotated to the right. ............................................................................................. 43
+Fig. 44. The motor rotated to the right. ............................................................................................. 43
+
+9
+
+List of Tables
+Table 1. Summary of the discussed ADCs [17, 20, 21, 23, 24]........................................................ 22
+Table 2. Comparison between three main types of available electrodes in the market [31-33]. ...... 25
+Table 3. Bill of materials for all PCB components and materials used in 3D printing. ................... 45
+Table 4. Total labor cost estimate. .................................................................................................... 45
+
+10
+
+List of Abbreviations and Terms
+
+Abbreviations:
+BCI – Brain-Computer Interface
+EEG – Electroencephalography
+SPI – Serial Peripheral Interface
+LDA – Linear Discriminant Analysis
+HCI – Human-Computer Interface
+PCB – Printed Circuit Board
+ADC – Analog-to-Digital Converter
+MCU – Microcontroller Unit
+SNR – Signal-to-Noise Ratio
+SAR – Successive Approximation Register
+SMT – Surface-Mount Technology
+PGA – Programmable Gain Amplifier
+fNIRS – Functional Near-Infrared Spectroscopy
+fMRI – Functional Magnetic Resonance Imaging
+MEG – Magnetoencephalography
+ECoG – Electrocorticography
+SVM – Support Vector Machine
+CNN – Convolutional Neural Network
+FFT – Fast Fourier Transform
+BOM – Bill of Materials
+GUI – Graphical User Interface
+TPU – Thermoplastic Polyurethane
+WiFi – Wireless Fidelity
+RMS – Root Mean Square
+CSP – Common Spatial Patterns
+ERP – Event-Related Potential
+AVDD – Analog Voltage Drain Drain
+AVSS – Analog Voltage Source Source
+VFS – Full Scale Voltage
+CPOL – Clock Polarity
+CPHA – Clock Phase
+MAC – Media Access Control (address)
+IDE – Integrated Development Environment
+RBF – Radial Basis Function
+ML – Machine Learning
+IC – Integrated Circuit
+BPS – Bits Per Second
+SRB – Shared Reference Bias
+DSP – Digital Signal Processing
+SPS – Samples Per Second
+
+11
+
+Introduction
+For a long time, controlling objects with our mind was a popular idea limited to fantasy in science
+fiction and cartoons; today, thanks to the advancement of technology, that idea may become a reality.
+Brain-computer interfaces (BCIs) are systems that provide a direct connection between the brain and
+an external device. BCI technologies have emerged as a transformative area of research linking
+machine control with human cognition. BCI technology has immense applications in different fields.
+For example, in medicine, BCIs are used for amputees to facilitate their usage of prosthetics. They
+are also used to prevent muscle atrophy in rehabilitation of fully or partially paralytic patients. In the
+entertainment industry, BCIs are popular for video games, enhancing user experience. BCIs also
+facilitate the usage and development of robotics. This topic is relevant and necessary to be addressed
+due to the growing demand for solutions that require advanced human-machine interaction, with the
+main goals of improving the quality of life for individuals with motor disabilities or innovative
+technological advancement. BCI technology has undergone several stages of development on both
+hardware and software components from its initial stages of electroencephalography (EEG), a noninvasive neuroimaging technique that measures electrical activity in the brain using electrodes placed
+on the scalp, to the usage of high-precision analog-to-digital converters (ADCs), efficient
+communication protocols such as Serial Peripheral Interface (SPI) and WIFI, and the advancement
+of more intricate algorithms. The advancement of Artificial Intelligence (AI) and machine learning
+(ML) has accelerated software evolution. ML algorithms such as linear discriminant analysis (LDA),
+random forests and decision trees enable data processing from neural signals to recognize motor
+activity. Reinforcement learning improves the use of these algorithms, polishing signal processing
+and creating sharper interfaces. Current BCI systems are taking big steps in controlling devices.
+Nevertheless, there are challenges that need to be faced. Among them is the need for the development
+of better systems and low-cost solutions. Current BCIs are complicated, closed-sourced, and
+exclusive; this limits who can work on them and slows down the overall progress in the field.
+Additionally, testing such systems is a delicate topic because of the biological nature of the device.
+One encounters issues in signal processing, noise or interference. The solution would be to use highquality sensors; however, this leads to another challenge. Obtaining such high sensitivity sensors can
+be costly, and it can be hard to find such sensors available to regular consumers. Despite these
+challenges, research on BCIs must prevail as their benefits outweigh disadvantages.
+The main aim of this project is to develop a brain-computer interface that acquires, processes, and
+utilizes neuroelectric signals to control a mechatronic device.
+Tasks:
+1. to design a printed circuit board that acquires neuroelectric signals;
+2. to design housing for electronic and elements for electrodes fixing;
+3. to program the brain signal processing system;
+4. to test the functionality of the system;
+5. to assess cost-effectiveness and create a project resource management plan.
+
+12
+
+1. Situation Analysis
+Human-computer interfaces (HCIs) are systems including hardware and software that receive inputs
+from a human user and translate them into actions or applications via software. HCI refers to a broad
+spectrum of technologies; however, this section will focus on current or proposed HCIs governed by
+the user's cerebral activity [1].
+Brain-computer interface (BCI) is a developing technique within the field of neuroscience. BCI
+technology enables a direct interface between the brain and external equipment, bypassing the
+neuromuscular pathway. BCI not only serves the medical area and healthcare but also plays a part in
+several other domains of human existence, including entertainment, gaming, education, selfregulation, and marketing. Alongside its advantages, BCI also presents drawbacks that might be
+categorized as technological, neurological, and ethical. This review study examines the fundamental
+concepts of noninvasive brain-computer interfaces (BCI), brain signals, and their components [2].
+1.1. BCI System Architecture
+The BCI system consists of three essential components, each fulfilling distinct functions: signal
+acquisition, signal processing, and application (Fig. 1). These components are interlinked and
+function collaboratively to facilitate the transmission of neural impulses to the designated BCI
+application (e.g., robotic arm). In specific circumstances, control signals from the BCI application
+may be transmitted to the brain to elicit certain fundamental human functions, such as vision and
+hearing [2, 3].
+
+Fig. 1. Main elements of a brain-computer interface (BCI) system [3].
+
+During the initial stage of signal acquisition, brain activity is recorded with the help of sensorselectrodes that map the brain in different areas such as the scalp or implanted directly in the brain.
+The signal processing stage combines filtering, feature extraction, feature classification that are done
+specifically for the user final purpose, lastly there is the BCI application stage, this part inputs the
+user intentions, movements or thoughts and outputs commands for devices such as computer cursors,
+wheelchairs and robotic arms [4].
+1.2. Signal Acquisition
+This is the first element of the BCI system, which recognizes and quantifies brain impulses. This
+component is primarily responsible for receiving and registering signals produced by neural activity
+and transmitting these signals to the subsequent component of the BCI (preprocessing phase) for
+signal enhancement and electrical noise reduction [5]. Quantifying brain-generated oscillations is a
+fundamental aspect of any BCI-based technology. It denotes the voluntary brain responses elicited
+13
+
+by the user's current actions. Diverse techniques for signal acquisition have been examined. The BCI
+application and its primary user category determine the appropriate signal acquisition method and the
+phenomena to be measured. (Fig. 2) illustrates categories of brain acquisition techniques: invasive
+and non-invasive methods. Invasive technology involves the neurosurgical implantation of electrodes
+into the user's brain or on its surface, whereas non-invasive technologies utilize external sensors to
+assess brain activity.
+
+Fig. 2. BCI sensor mounting types: invasive (IM), semi-invasive (ECoG), and noninvasive (MEG, EEG,
+fNIRS) [6].
+
+1.2.1. Non-Invasive BCIs
+Non-invasive methods have effectively facilitated severely and partially paralyzed individuals by
+regaining fundamental communication abilities and operating neuroprocessing and wheelchairs.
+Despite the remarkable efficacy of non-invasive techniques in BCI applications, motor recovery has
+been constrained by the necessity for higher-resolution brain signals [2]. Invasive recording methods,
+such as electrocorticography and intracortical neuron recording, are employed to improve the quality
+of brain signals monitored via brain-computer interfaces (BCIs) [2]. Most researchers concur that the
+restoration of movement by prosthesis with numerous degrees of freedom can alone be accomplished
+through invasive methods. The enhancement of efficacy of non-invasive techniques is improbable in
+the near future. Thus, invasive techniques seem essential for precise control of neuroprocessing.
+Nonetheless, this matter remains ambiguous, and several perspectives contradict this hypothesis,
+including this study [2, 3, 7]. These recording technologies adhere to an approach that avoids the
+implantation of external elements into the subject's brain. Consequently, it circumvents the surgical
+interventions or permanent device implantation required by intrusive acquisition [8]. This recording
+method is the most used because of its portability and safety regards [9]. There are three main
+electrode-sensor types as shown in Fig. 3:
+1. Wet electrodes work by applying conductive gel to reduce skin-electrode impedance. This
+requires preparation to be used but results in high signal fidelity.
+2. Dry electrodes work without conductive gel; this is favorable for a quick setup, but on the other
+hand, signal quality is less than that of wet electrodes.
+3. Gold or Ag/AgCl-coated electrodes are the most widely used due to their biocompatibility; if used
+with gel, they behave as wet electrodes but with the advantage of reusability and durability [10].
+
+14
+
+a
+
+b
+
+Fig. 3. Electrodes: a – different types of electrodes used for non-invasive BCIs; b – a multi-channel EEG cap
+with electrodes placed according to the international 10-20 system [10, 11].
+
+Other non-invasive recording modalities are functional near-infrared spectroscopy (fNIRS),
+functional magnetic resonance imaging (fMRI), and magnetoencephalography (MEG), which
+measures hemodynamic or magnetic correlates of neural activity. These complement EEG but at a
+high cost or are stationary, which limits their use in BCI everyday applications [9, 10].
+1.2.2. Invasive BCIs
+Invasive brain-computer interfaces are more sensitive due to the involved surgical intervention by
+medical professionals to implant microelectrodes directly on or inside the cortex.
+Electrocorticography (ECoG) involves placing flexible grids on the pial surface; this method achieves
+high spatial resolution (millimeters) and higher signal-noise ratios than regular EEG. This method
+avoids the penetration of cortical tissue. Intracortical microelectrodes penetrate the cortex and record
+single units, which reduces noise at the cost of surgical risk, system longevity, and potential tissue
+response to external material.
+Extensive clinical iterations have shown that intracortical arrays are able to support multi-degree-offreedom robotic arm control and handwriting-to-text communication at high speeds [6]. But on the
+other hand, it requires neurosurgery, clinical oversights, and lifelong maintenance.
+Fig. 4 demonstrates an application of an invasive BCI where users performed several iterations
+drawing letters on a digital board. Fig. 4a shows the working mechanism for collecting the data; Figs.
+4b and 4c show the raw signals for specific letters that would later be translated into the drawing
+board; Fig. 4d and Fig. 4e describes the output from the board after several iterations and describes
+the number of iterations per letter [6].
+
+15
+
+Fig. 4. a – Experimental set up; b and c – Neural activity for specific letters in time domain; d – Visual
+output; e – each circle represents a trial per letter [6].
+
+1.3. Signal Processing
+Upon the acquisition of neural data as raw signals, these are transformed into control commands. As
+presented in Fig. 5. There is a process pipeline which consists of three stages: feature extraction,
+feature classification, and feature translation [12].
+
+Fig. 5. Process pipeline for EEG data extraction, classification and translation into mental states [12, 13].
+
+16
+
+1.3.1. Feature Extraction
+The initial stage of signal processing is referred to as “feature extraction”, which seeks to characterize
+EEG signals using a limited number of essential values known as features. Such features should
+encapsulate the information inherent in EEG signals pertinent to characterizing mental states while
+excluding noise and extraneous data. All extracted features are typically organized into a vector
+known as a feature vector. For instance, consider a Motor Imagery (MI)-based Brain-Computer
+Interface (BCI), which can identify imagined movements such as those of the left or right hand as
+shown in Fig. 5 [1, 7, 12, 13].
+Inside features for extraction include band power for specific ranges (alpha, beta and gamma bands);
+others are also called temporal features due to their event-related potentials (P300, N200) and spatial
+patterns for multiple electrodes [9]. The aim of these features is to reduce dimensions of the data
+while keeping its relevant information. Technologies such as common spatial patterns (CSP) and time
+analysis (short-time Fourier transform) are frequently used for the discriminative power of the
+features.
+Band Power Calculation, for a power, 𝑃 , in frequencies band [𝑓1, 𝑓2] for a given signal 𝑥(𝑡) is
+calculated as:
+𝑓2
+
+𝑃 = ∫𝑓1 |𝑋(𝑓)|2 𝑑𝑓,
+
+(1)
+
+where 𝑋(𝑓) is the Fourier transform of the signal 𝑥(𝑡) in time domain [7].
+One of the characteristics of Common Spatial Patterns (CSP) is its ability to maximize the variance
+for one class and minimize the others. It is denoted by projection, which is found as follows:
+𝐶1 𝑤 = 𝜆𝐶2 𝑤,
+(2)
+where C1 and C2 are covariance matrices for two classes [7, 13].
+1.3.2. Feature Classification
+When the data is extracted, the next step involves classification of the data. This process involves the
+presence of learning algorithms that assign the extracted data and get assigned specific mental states
+and commands. There are models such as Linear Discriminant Analysis (LDA) and Support Vector
+Machines (SVM). These are the two preferred models due to their simplicity. On the other hand,
+recent models such as Convolutional Neural Networks (CNNs) showcase better performance due to
+their learning complex patterns with data [14].
+Linear Discriminant Analysis (LDA) utilizes a projection feature vector 𝑥 onto a line that separates
+the two means of classes for maximizing relative variance:
+𝑦 = 𝑤 𝑇 𝑥 + 𝑏,
+
+(3)
+
+where 𝑤 and 𝑏 are costants to maximize class separability [12, 13].
+Support Vector Machine (SVM) finds the hyperplane which maximizes the margin for two classes,
+as shown below.
+1
+
+min( 𝑤, 𝑏) 2 ∥ 𝑤 2 𝑠𝑢𝑏𝑗𝑒𝑐𝑡 𝑡𝑜 𝑦𝑖 (𝑤 𝑇 𝑥𝑖 + 𝑏) ≥ 1,
+
+(4)
+
+where (𝒙𝒊, 𝒚𝒊) are feature vectors and class labels [10].
+
+17
+
+1.3.3. Feature Translation
+This is the final stage in signal processing, where the mental states from the previous classification
+stage are translated into output actionable operations for controlling external devices. This also means
+that the translation should ensure that the system is accurate and precise in terms of timing and
+intuition for the user. Different BCI applications add post-processing for smoothing and performing
+error correction. Others include adaptive filtering for better reliability and usage for control [12, 13].
+Discrete Command Mapping for a classifier output in terms of probability vector 𝑝:
+𝑝 = 𝑝1, 𝑝2, 𝑝3. . . . , 𝑝𝑛],
+
+(5)
+
+for n possible commands
+𝑐 ∗= 𝑎𝑟𝑔 𝑚𝑎𝑥𝑖 𝑝𝑖,
+
+(6)
+
+Where 𝑐 ∗is the best available command and hence ensure that the mapping system chooses the
+inmost probable user intention for control. For example, robotic arm control as presented in Fig. 6.
+
+Fig. 6. A BCI combined with computer vision used to control a robotic arm [15].
+
+1.4. Chapter Summary
+This chapter provided insightful information and foundational concepts about topics related to this
+work, including the types of brain-computer interfaces, invasive and non-invasive techniques,
+extraction and classification features that may be used to control external devices, such as a robotic
+arm.
+This chapter laid down the theoretical foundations and main solutions available stating clear
+differences between the main two solutions: non-invasive and invasive electrode sensors, highlighting
+their advantages, limitations and typical cases. Additionally, the chapter presented the data pipeline
+for a BCI system with a mathematical approach for feature extraction and classification. This
+demonstrated how raw input data is converted to commands for a variety of applications, such as
+assistive technology, robotics, and combined systems.
+
+18
+
+2. Methodology
+The main goal of this work was to develop a BCI that can acquire and process brain signals to control
+a mechatronics device. Such a system should be low-cost, modular and able to be adapted for further
+research and educational purposes. Some of the main requirements for such a system include high
+signal fidelity, real time processing and wireless data transmission to the PC-User interface.
+This chapter aims to provide theoretical and methodological bases for the proper development of BCI
+for controlling a mechatronic device. This is done by adhering to engineering standards, applying
+scientific methodologies, and addressing limitations with appropriate risk mitigation strategies.
+2.1. Engineering Process
+This work was done following a V-model engineering process [16]. This development process
+involves parallel development with validations of both software and hardware. It is divided into
+subsystems which in the case of a brain-computer interface would be signal acquisition, processing,
+classification, control, testing the design, testing and validating the learning models independently
+before they are integrated together. This minimizes the potential risk and narrows the debugging and
+troubleshooting processes.
+2.1.1. Analog-to-Digital Converter (ADC) Selection
+Analog-to-digital converters (ADCs) are essential elements in biomedical, communications, and
+signal processing systems that consume low power and have excellent conversion efficiency, serving
+to transform biopotential signals into digital signals for processing purposes. ADCs are devices that
+enable one-way conversion from analogue to digital signals domain. The implementation of ADCs
+is executed as either serial or parallel converters. Prior to translating a signal to the digital domain, an
+analog signal is initially transformed into discrete form via a sample and hold circuit. If the sample is
+simultaneously compared to several quantization levels and converted to the digital domain in one
+step, it is referred to as a parallel converter. If the system sequentially compares the sampled output
+to various quantization levels, it is referred to as a Serial Converter. An example of a parallel converter
+is the flash converter, while the serial converter includes single, dual slope, and successive
+approximation register (SAR) types [17].
+High Performance Converters are a specialized category of ADC distinguished by enhanced features,
+including sampling rates in the megahertz range and resolutions exceeding 16 bits [17].
+There are different types of ADC converters among which these were analyzed; Flash, Counter,
+Single Slope, Dual Slope, SAR, Sigma Delta, Pipelined, Interleaving.
+Flash analog-to-digital converters
+The fastest way to convert an analogue signal into a digital signal is flash ADC, or parallel ADCs.
+Though often limited to 8-bit resolution, flash ADCs are best for applications requiring great
+bandwidth since they consume more power than other ADC designs. As shown in (Fig. 7). When the
+analog input lies between VX4 and VX5, comparators X1 to X4 output 1s, while the other
+comparators yield 0s [8, 18].
+
+19
+
+Fig. 7. The architecture of flash ADC [19].
+
+Counter analog-to-digital converter
+A DAC, a digital counter, an AND gate, and a comparator make up this kind of ADC. Starting at
+zero, the digital counter every clock pulse increases the value of the digital counter by a step,
+transforms it to analogue form, and then compares it to the analogue input. The AND gate acts as a
+control signal. The digital counter's value rises to match the sampled input. The final value shows at
+the output [17-19].
+
+Fig. 8. The block diagram of Ramp converter [17, 19].
+
+Successive Approximation Register (SAR) analog-to-digital converter
+A SAR ADC takes an analogue input signal into a digital format using the ramp approach. What
+differs is that instead of using a digital counter starting at zero, the ADC uses a synthetic
+approximation register started counting from the most significant bit, as shown in (Fig. 9) [17-20].
+
+20
+
+a
+
+b
+Fig. 9. SAR ADC conversion: a – block diagram of a SAR ADC); b – associated conversion waveform [20].
+
+Integrating Type analog-to-digital converter
+For a single slope ADC it consists of an integrator, a comparator, and a counter; there are two kinds
+of integrating an analogue into digital converters: single and dual slope. For a dual slope ADC, the
+integration is performed for a defined duration; in this form of ADC, the input signal is sent to the
+integrator as indicated in (Fig. 10). Also in (Fig. 11) the sampled input voltage causes the integration
+value to change proportionally [17, 21, 22].
+
+Fig. 10. The principle of a single slope ADC [22].
+
+21
+
+Fig. 11. The principle of a dual slope ADC [21].
+
+Delta Sigma analog-to-digital converter
+Often employed in many data conversion applications, the sigma-delta ADC is favored because of its
+affordability, lower complexity, and better performance. Comprising a sigma-delta modulator, a
+digital filter, and a decimator, a sigma-delta ADC.
+As represented in Fig. 12. The differential amplifier generates a voltage differential between the
+analogue input signal and the output of the 1-bit DAC. Then signal is sent to the intergrator, the output
+of the integrator is then sent to the comparator/1-bit ADC circuit. The comparator produces an output
+of '1' if the integrator's output exceeds 0; if it is less than zero, the output is '0' [23].
+
+Fig. 12. Sigma-delta ADC. It consists of a sigma-delta modulator, a digital filter and a decimator [23].
+
+As presented in Table 1 the data summarizes the several types of ADC converters and their primary
+properties.
+Table 1. Summary of the discussed ADCs [17, 20, 21, 23, 24].
+Topology
+Parameter
+Sampling Rate
+(sps)
+Resolution
+(Bits)
+Power
+Consumption
+Latency
+
+Single Slope
+
+Dual Slope
+
+SAR
+
+Medium (1012)
+
+Low (1001000)
+Medium-High
+(12-18)
+
+Low (1001000)
+Medium-High
+(12-18)
+
+Medium (100k10M)
+Medium-High
+(12-18)
+
+Sigma
+Delta
+Low (10k1M)
+High (1624)
+
+Medium-High
+
+Low
+
+Low
+
+Low-Ultralow
+
+High
+
+Medium
+
+Low-Medium
+
+Low-Medium
+
+Low
+
+High
+
+Flash
+
+Counter
+
+High (1G10G)
+
+Low (1-1k)
+
+Low (6-8)
+High
+Low
+
+22
+
+Topology
+Parameter
+Area
+Accuracy
+Cost
+Conversion
+Time
+
+Flash
+
+Counter
+
+Single Slope
+
+Dual Slope
+
+SAR
+
+High
+Low
+High
+
+Low
+
+Low
+
+Medium
+
+Medium
+
+Sigma
+Delta
+Low
+
+Medium-High
+Low
+Amplitude
+dependent
+
+Variable
+Medium
+
+High
+Medium
+
+Medium-High
+Low-High
+
+High
+Low
+
+2^N
+
+2^(2N)
+
+Variable
+
+High
+
+1
+
+Justification for ADS1299 ADC Texas Instruments
+The ADS1299 ADC from Texas Instrument is among the strongest in the market due to its
+specialization in biopotential measurements, 24-bit, 8 channel, low-noise ADC [25]. It also has
+programmable gain, differential and simultaneous sampling, it communicates with the MCU via SPI
+communication, the quantization noise for the ADS1299 24-bit ADC is:
+𝑉
+
+𝑄 = 2𝐹𝑆
+24
+
+(71)
+
+where VFS is a full-scale input.
+This helps to ensure that the obtained quantization errors stay below an EEG signal amplitude (1100 µV), for this case the ADS1299 outperforms most of general ADCs with a referred noise of
+< 1 µV RMS. For ADS1299 with the input 1-100 µV:
+𝑁 = 24, 𝑉𝐹𝑆 = 5 𝑉 ( 𝑏𝑖𝑝𝑜𝑙𝑎𝑟 ± 2.5 𝑉)
+𝑉𝐹𝑆
+5
+𝑄 = 24 = 24 = 0.298 µ𝑉
+2
+2
+This theoretical resolution obtained is below the EEG amplitude which ensures that the error in
+quantization of the data is negligible.
+Input-referred Noise. The input-referred noise in an ADC is another critical parameter when
+working with biopotential signals, in the case of the ADS1299 it achieves an input referred noise less
+than 1uVRMS with a maximum programable gain of 24 and a data rate of 250 SPS [25], comparing
+this performance with a general purpose ADC such as MCP3208 with an input-referred noise ranging
+from 10-50uV RMS, this could cause swamping the EEG signal [25, 26].
+Signal-to-noise ratio (SNR) theoretical value for an ideal ADC, provided that
+𝑆𝑁𝑅𝐴𝐷𝐶 = 6.02𝑁 + 1.7𝐷𝑏,
+
+(8)
+
+at N=24
+𝑆𝑁𝑅𝐴𝐷𝐶 = 6.02 ∗ 24 + 1.76 = 146.24𝑑𝐵
+This theoretical SNR value is beyond the SNR of regular EEG signals; this proves that the ADC will
+not limit system performance
+Simultaneous Sampling and Number of Channels. The ADS1299 from Texas Instruments
+manages to sample simultaneously 8 channels, this is crucial for mapping brain activity, one of the
+requirements to avoid distortion between channels is the implementation of multiplexed sampling,
+this in another hand introduces timing skew and also reduces accuracy of readings regarding timedomain analyses for example event-related potentials (ERPs)
+
+23
+
+Programmable Gain Amplifiers (PGAs). The ADS1299 enables dynamic adjustment for the input
+gain (1,2,4,6,8,12,24) to properly work with a variety of range signals and electrode mapping at
+different places of the brain.
+2.1.2. Microcontroller Unit (MCU) Selection
+An MCU, also known as the central processing and communication hub, in this case for a BCI system,
+the selection process should balance characteristics such as computational power, communication
+type, power efficiency, wireless data transfer and of course an integration with biomedical sensors
+which in this case is the ADS1299.
+The following are possible MCUs to be used in this work:
+Arduino Uni (Atmega328P). This is a popular MCU for prototyping, unfortunately it is limited by
+8-bit architecture, no built-in wireless communication and low clock speed (16MHz) [27].
+STM32 series (F411RE). It is a well-known MCU with its own IDE, among its characteristics there
+is 32-bit ARM cortex-M MCUs that yields high performance with peripherals, it doesn’t have
+integrated WIFI [28].
+Raspberry Pi Pico (RP2040). This is a more complete solution for the MCU with dual-core, 32-bit,
+less power efficiency for a BCI that is designed to be powered with a battery [29].
+ESP32 (variety of models such as ESP32c3-mini). The ESP32c3-mini offers 32-bitm integrated
+Wi-Fi/Bluetooth, low power consumption and a large open-source community [30]
+Justification of MCU ESP32c3-mini.
+Architecture and Processing Power. From what was calculated above, the ADS1299 has 8 channels
+at 250 Hz then the thecnical characteristic for the MCU should be as follows
+𝐷𝑎𝑡𝑎 𝑅𝑎𝑡𝑒 = 8 𝑐ℎ𝑎𝑛𝑛𝑒𝑙𝑠 × 250 𝑠𝑝𝑠 × 3 𝑏𝑦𝑡𝑒𝑠/𝑠𝑎𝑚𝑝𝑙𝑒 = 6𝑘𝐵/𝑠
+The ESP32c3-mini with 32-but RISC-V core and 160 MHz overfits for the BCI application including
+real-time data, digital filtering and of course wireless communication with other devices such as a PC
+for post data processing and not overloading the processing unit, this outperforms other MCUs
+discussed above such as Atmega328P [26].
+Wireless Communication. The ESP32c3-mini has built-in Wi-Fi 4 (802.11n) and supports ESPNOW protocol, this protocol enables communication with low-latency, ESP to ESP communication
+with usual latencies <2ms. This feature is useful for sending real time data from the MCU to the PC
+for feedback and device control [30].
+If compared with other MCUs such as STM32 or RP2040, which both miss built-in wireless, and
+make the system complex by requiring external modules which consequently increase the power
+consumption and overall cost [28-30].
+Power efficiency. Since the BCI should be powered with a battery for portable solutions, it should
+have a low current consumption and, in this case, the ESP32c3-mini’s active current is of about
+80 mA when having ON Wi-Fi transmission, and when it is in a deep sleep state it consumes less
+24
+
+than 5 µA. In other hand other MCUs such as STM32F4 or RP2040 are more efficient in active ON
+mode but lack wireless built-ins which if added would rump up current consumption
+Calculations for energy per bit- Wi-Fi communication:
+𝐸𝑏𝑖𝑡 = 𝑃𝑎𝑐𝑡𝑖𝑣𝑒 /𝑅𝑑𝑎𝑡𝑎 ,
+
+(9)
+
+where 𝑃𝑎𝑐𝑡𝑖𝑣𝑒 is known as the active power, Rdata is the data rate, in the case of the ESP32c3 series,
+it has a high data rate which outputs a moderate power with low Ebit.
+Peripherals. ESP32c3-mini supports SPI communication since it is made for high-speed solutions,
+the ESP32c3-mini has SPI clocks rates up to 80 MHz, this is crucial for BCI applications.
+2.1.3. Electrode Selection
+Wet Ag/AgCl electrodes:
+These are considered outstanding solutions in the market with low impedance and high SNR,
+unfortunately for their functioning they require gel and constant maintenance, this makes them no
+suitable in the long term.
+Dry electrodes:
+These are used for rapid prototyping and often feel comfortable to wear compared to wet electrodes
+but there is a high disadvantage which is their high impedance and low signal quality.
+Gold-plated electrodes:
+These are always reusable, inert with the skin, reusable and can be used in wet or dry state, due to
+high conductance properties of gold, these electrodes have low impedance.
+For calculating the impedance (𝑍𝑒𝑠) the following model is used as:
+1
+
+𝑍𝑒𝑠 = 𝑅𝑠 + 𝑗𝑤𝐶𝑠,
+
+(10)
+
+where 𝑅𝑠 is resistance, 𝐶𝑠 is capacitance and hence the lower 𝑅𝑠 and the higher 𝐶𝑠 the less impedance
+the electrodes will have, hence better signal quality. For this reason gold plated electrodes were the
+best fit for this application from Table 2.
+Table 2. Comparison between three main types of available electrodes in the market [31-33].
+Type of electrode
+Wet Ag/AgCl
+Dry (rubber/polymer)
+Gold-Plated
+
+Impedance (Ω)
+5-20
+100-5000
+10-50
+
+Signal Quality
+Outstanding
+Moderate
+Outstanding
+
+Maintenance
+High
+Low
+Low
+
+Evaluation
+Outstanding
+Good
+Outstanding
+
+2.1.4. Electrode Holder Selection
+There are several options for holding the electrodes, these should be designed and manufactured,
+among the available options are :
+Rigid Plastic Headset/band. Using rigid plastic such as PLA makes the headset durable but not
+comfortable in a long term usage, also this would lead to not proper contact skin-electrode.
+
+25
+
+Elastic Textile Caps. These are made from usual textile materials, commonly used in sports, this is
+a good option for a EEG cap but mainly not provide precise electrode mapping and placement.
+A band made with Thermoplastic polyurethane (TPU) using additive manufacturing
+technology. This is a good option for this BCI project since TPU is flexible, biocompatible and can
+be utilized for users with different head shapes [31].
+2.1.5. PCB Design: Technical Justification
+There are various ways to design a PCB depending on the application; to simplify the design
+components, could be Through Holes Technology (THT) or Surface-Mount Technology (SMT).
+Through-Hole Components. This technology works by placing components through holes in the
+PCB and then solder is applied on the opposite side. This method has advantages such as rapid for
+prototyping and good mechanical strength, also it has drawbacks when it comes to sensitive
+biomedical devices.
+Surface-Mount Technology (SMT). This technology works by mounting components directly on
+the PCB’s surface layer, this removes the need for drilling of holes, there are other advantages for
+which this BCI will be SMT. Other advantages such as shorter signal pathways since SMT
+components are often shorter in their leads (1<mm) this minimizes parasitic inductance and
+capacitance. Lower noise crosstalk because shorter traces help to reduce EMI pickup and crosstalk
+between communication channels. This improves signal-to-noise ratio (SNR). Lightweight design –
+SMT improves the design by decreasing the PCB size which is crucial for a wearable and comfortable
+BCI. Better thermal performance. SMT components usually have a possibility of heat dissipation
+trough PCB itself [32].
+2.2. Chapter Summary
+This chapter described the methodological work and engineering decisions that are made in-order to
+develop a brain computer interface. This work was based on a V-model engineering process, this
+allows parallel iterations while developing both software and hardware subsystems while minimizing
+potential risks upon the final integration of the whole system.
+A main component selection process was done, this yielded the incorporation of ADS1299 ADC due
+to its high 24-bit resolution, low noise, common mode rejection and multi-channel sampling, this
+makes this IC crucial for biopotential measurements-signal acquisition, also the ESP32c3-mini
+microcontroller was selected due to its computational capabilities and ease integration with wireless
+communication.
+The electrodes and electrode holder selection also yielded the use of adaptable gold-plated electrodes
+while the electrode holder was decided to be made using additive manufacturing with TPU. The PCB
+was chosen to be surface-mount technology in-order to work with cleaner signals and a wearable
+layout.
+
+26
+
+3. Project Results and Solutions
+In this chapter, the outcomes of the project are discussed and it includes design development process,
+demonstration of working principle of a brain computer interface system while controlling a
+mechatronics device, this work also includes and reflects the iterative engineering process on both
+hardware and software side.
+3.1. Design and Development
+This BCI was developed through various iterations for both hardware and software, main components
+of this work include, all components in the custom made PCB that reads and amplifies biopotential
+signals, then the ESP32c3-mini that reads the raw signals from the ADC and then it is sent via ESPNOW protocol to another peer, using a python user interface, all live data could be visualize and post
+processed. This communication pipeline is shown in (Fig. 13). In the project the two lithium 2032
+batteries are used connect in series to safe space and prototyping time, but in the fut
+ure the plan is incorporate rechargeable LiPo battery.
+
+Fig. 13. Block diagram of the BCI.
+
+3.1.1. PCB Design Process
+The technical requirements for successfully mapping brain activity were:
+– 8 channels which consist of 2 differential inputs per channel;
+– a 24-bit ADC – ADS1299 [25];
+– a compact design that accommodates all the components and keeps a clean space for the
+communication between IC and microcontroller.
+Schematics
+The schematic design process began by constructing functional block diagram (Fig. 13) and selecting
+appropriate components. It was considered the possibility of SMT and THT components and was
+chosen mainly SMT since the PCB to save space – had to be compact and wearable. It was decided
+that the best option was SMT components, ranging from 0603 (resistors) to 1203 (capacitors), because
+it is better for manual soldering.
+27
+
+The first block is the data acquisition block; this consists of a cap with incorporated electrodes that
+easily connect to the PCB via cables.
+The second block was the protection circuit for data acquisition. This section consists of sixteen 5 kΩ
+resistors, each resistor belongs to an input, also it includes the same number 4.7 nF capacitors which
+are connected from the resistors to ground as observed in Fig. 14.
+
+Fig. 14. Schematic of protection circuit for inputting biopotential.
+
+The third block is the Analog to digital converter part, for this, an specialized ADC – ADS1299 was
+used, the reason for its choice was the 24-bit ADC capability which provides a very precise and
+accurate conversion and amplification of the obtained signal, it also has SPI pins allocated for
+communication with the microcontroller as well as a pin for Daisy-chain connection (connecting
+multiple ADS1299 ICs) in pin which is for future modularity. This ADC also includes decoupling
+pins called VCAPs and SRB1 which are used as a reference electrode and could potentially be used
+as reference versus all positive or all negative electrode inputs, another potential configuration is
+differential input channels.
+The fourth block is communication between the ADS1299 and the microcontroller ESP32c3-mini, as
+presented in Fig. 15. Here the allocated pins for communication were SPI_CLK, SPI_IN, SPI_OUT
+and SPI_CS.
+
+Fig. 15. Schematic for ESP32c3-mini SPI communication with the ADC.
+
+28
+
+Power supply that the ADS1299 requires in bipolar mode is from -2.5 V to +2.5 V. An input from
+3.5 to 8 V can be applied to the circuit. It goes through an inductor L1. The role of the inductor is to
+flatten the overcurrent, filter high frequency noise hence improving the quality of the supply. The
+voltage regulator TPS73225DBVT from input voltage (3.5… 8 V) steps down to +2.5 V then it
+goes through filtering using capacitors in parallel with ground and another inductor L3 separating
+digital from analog power supply, labeled as analog voltage AVDD as represente in Fig. 16 below.
+
+Fig. 16. Schematic for power supply for +2.5 V (AVDD).
+
+Simultaneously input voltage (3.5 V…8 V) is inverted using a TPS60403DBVR voltage inverter
+which outputs negative (-3.5V…-8V), it is then filtered using capacitors in parallel with ground and
+an inductor L2 for further being labelled as VCC_-5V, this is then stepped down to -2.5V using a
+TPS7325DBVR for further being labelled as AVSS Fig. 17.
+
+Fig. 17. Power supply for -2.5V AVSS
+
+Simultaneously input voltage (3.5 V…8 V) is stepped down to 3.3V using a TPS63633DBVR voltage
+converter, this is further filtered using capacitors in parallel with ground and an inductor L5 for further
+being labeled as 3.3V, this supplies the digital voltage for the ESP32c3-mini and the digital voltage
+inputs of the ADC ADS1299 as represented in Fig. 18.
+
+29
+
+Fig. 18. Schematics for power supply of 3.3V
+
+3.2. PCB Layout and Manufacturing
+For this project, the PCB was designed using Altium Design Professional software package. Special
+efforts were made to for proper separation of digital and analog grounds to have better signal to noise
+ratio. Also, short electrical traces were kept for signal transferring, avoiding ground loops. The
+dimension of the PCB is 67.5 x 40 mm (keeping in mind that it is dedicated for wearable device) the
+thickness of PCB 1,5 mm conductive copper layer 35 µm (no high current). The PCB incorporates
+the best in the market high-end 24 bits ADC used for bio-potential signals reading – ADS1299. Most
+of the components were SMT to save space and price of PCB as shown in Fig. 19.
+
+a
+
+b
+
+c
+
+Fig. 19. PCB design: a – Altium Designer 2D view, top layer; b – Altium Designer 3D view; c –
+manufactured and assembled PCB.
+
+3.3. PCB Housing
+The housing design of PCB should be compact, so a custom housing was made. The purpose of the
+housing is to protect the PCB and help to mount it on the headband. The design was done using
+SolidWorks, there were two iterations of this casing. The first iteration is presented in the Fig. 20 and
+the second in the Fig. 21.
+
+30
+
+a
+
+b
+
+Fig. 20. First iteration PCB housing: a – 3D model; a – 3D printed prototype.
+
+Fig. 21. Second iteration PCB housing 3D model.
+
+In Fig. 22. The yield strength for PET-G is calculated at 4·107 N/m2 and under 100 N distributed force
+the housing and specially the holding headers expirience a maximum stress of 2,65·106 N/m2 which
+is 15 times less than the yield strength, hence it is a safe design.
+
+Fig. 22. Stress analysis for the housing.
+
+All the engineering drawings of the housing (bottom, top parts) and PCB are found in annexes. The
+Assembled printed housing with the PCB inside is presented in Fig. 23.
+31
+
+a
+
+b
+
+Fig. 23. Housing: a – top view; b – side view.
+
+3.3.1. Design of The Electrode Holder Band
+A flexible band capable of holding 4 electrodes at a time was designed and manufactured using
+additive technologies with a design as shown in Fig. 24 and a manufuctured part in Fig. 26.
+
+Fig. 24. 3D view of the band
+
+Also, a stress simulation on the band was performed since it was subjected to bending with a force of
+50N, and from simulation the yield strength of 3·107 N/m2 >2,6106 N/m2 than the obtained stress as
+shown (Fig. 25), this means that the maximum obtained simulation stress was 11.5 times less than
+the yield strength hence it is a safe design.
+
+Fig. 25. Stress analysis for the band
+
+32
+
+Fig. 26. Manufactured band prototype using TPU.
+
+The final prototype of the BCI with all components assembles is as shown in Fig. 27.
+
+a
+
+b
+
+Fig. 27. Fully mounted BCI: a – front-left view; b – side view.
+
+3.4. Communication and Control Flow
+Data is collected live with low latency, the signals are first collected from the brain, then go through
+a protection circuit, then they pass through ADC (ADS1299), from there the signals become digital
+and are sent via SPI to a microcontroller which is then sent to a computer using ESPNOW protocol.
+To verify that the data is correctly sent and there is proper timing and synchronization, the first is
+needed to make sure that there are proper connections between the ADS1299 IC and the ESP32c3mini via SPI, the channels used for this communication were SPI_CLK, SPI_IN, SPI_OUT, SPI_CS.
+To ensure real time operations, the ESP32c3-mini sends data packages using ESP_NOW protocol
+together with a flagging system where data is packed and sent.
+ESP32c3 Programming and Development Environment. The programming of the ESP32c3-mini
+microcontroller was done using Arduino IDE, this IDE was convenient to use due to its user-friendly
+interface and vast online resources for debugging embedded systems, for this development various
+configurations were made to support the ESP32c3-mini architecture, in (Fig. 28) below the top view
+and pin-out configuration of the MCU is seen[30].
+
+33
+
+a
+
+b
+
+Fig. 28. ESP32c3-mini a – dimensions b – pin out configuration.
+
+To program an ESP32c3-mini with Arduino IDE it is required to install Espressif‘s ESP32 Arduino
+core at board manager. With this set up it is possible to access the hardware while still having the
+friendly Arduino interface.
+As part of the project dependencies, there were libraries that required for this project as the SPI.h
+library which allows communication between the microcontroller and the ADS1299; esp_now.h
+library which is responsible of ESP_NOW protocol, and ads1299_definitions.h (which was custom
+mad – involved setting the ADS1299 commands that are used to initialized communication with SPI
+commands, also it includes the ADS1299 registry data in hexa-decimal values.
+SPI Communication with ADS1299. The ADC ADS1299 communicates via SPI (Serial Peripheral
+interface). This communication involves the usage of correct timing commands and implementation
+of initialization sequences Clock polarity (CPOL) and clock phase (CPHA) were set to mode 1
+(CPOL=0, CPHA=1).
+ESP-NOW Protocol Implementation. ESP_NOW protocol was chosen as the main wireless
+communication protocol. The reason behind it is that it provides peer-to-peer (ESP32c3 to ESP32c3)
+communication with minimal overhead, lower latency (less than 2 ms) if compared to other
+communication protocols such as Wi-Fi (over 10 ms) while also maintaining up to 250 kbps of data
+rate, this is proper for the BCI application.
+ESPNOW communication protocol requires two or more ESP32 microcontrollers, a sender and a
+receiver, the sender must have the MAC address of the receiver, while the receiver is on listening
+mode as shown in Fig. 29.
+
+34
+
+a
+
+b
+
+Fig. 29. Example of communication code: a – sender with receiver MAC address; b – receiver on listening
+mode.
+
+3.5. User Interface
+For this BCI project, in one way to be innovative it was to program its own user interface, there were
+several requirements in mind that had to be checked in. It had to be able to provide real time
+visualization of the EEG signals from all the eight channels, second the software should also be able
+to have filtering options to proper give isolation for all bands that are needed for control (such as
+alpha, beta, theta and gamma), also it was necessary to display relevant live information that
+communicates the connection quality between the PC and PCB, battery level of the PCB, also there
+was a need for this program to be intuitive and user friendly for technical and non-technical users.
+This program was written in Python as shown in (Fig. 30), the main reason is that there are existing
+scientific computing libraries, the existing of modular architecture which enables separate data
+acquisition, signal processing and visualization. The Graphical User Interface (GUI) for data
+conditioning – filtering, setting frequency range, and time window for recording – is presented in Fig.
+31.
+
+a
+
+b
+
+Fig. 30. Code examples: a – libraries used for the user interface; b – raw data reading from ADC.
+
+35
+
+Fig. 31. Main window of GUI for data conditioning
+
+This program allows the viewing of multiple EEG data channels to ease the data analysis, the main
+view is a multi-channel time-domain display that shows up to eight channels at once, there is a vertical
+offset for proper viewing, options such as amplitude and time window are scalable to show different
+signals.
+Also, this program offers a frequency-domain tool with real time filtering, this is meant for users to
+select specific bands such as delta (1-4 Hz), theta (4-8 Hz), alpha (8-13 Hz), beta (13-30 Hz), gamma
+(30-100 Hz). This was done to isolate neuro oscillations.
+3.6. Signal Processing Implementation
+For this BCI the signal pipeline processing uses digital filtering which passes frequencies of particular
+bands (delta, theta, alpha, beta, gamma) in the EEG spectrum. This main filtering method uses Fast
+Fourier Transform (FFT). A fast Fourier transform (FFT) is an efficient approach for calculating the
+discrete Fourier transform (DFT) of an input vector. The FFT efficiently computes the DFT of an nelement vector in O (n log n) operations, whereas the FFT computed requires O (n²) operations. Fast
+Fourier Transforms (FFTs) are applicable to any vector length n and may accommodate real and
+multidimensional data. Parallel FFTs have been created since the emergence of parallel computing
+[36]. In this program (FFT) was implemented as shown in (Fig. 32).
+
+36
+
+Fig. 32. Implementation of FFT digital filtering in the program
+
+3.7. Machine Learning Model Development
+The purpose of developing a learning model was to differentiate with live data four distinguish mental
+states which are: Eyes open, Eyes closed, Right hand up, Left hand up. The reason why these four
+states were selected was because of the neurophysiological footprint and reliable use for controlling
+devices.
+for validating this learning model, the following data was generated using Python script and it consists
+of:
+− 1200 samples (300 samples per mental state);
+− 8 channels (ADC – converted to FFT);
+− 5 Frequency bands per channel.
+Random Forest classification algorithm was selected due to its good performance for high
+dimensional feature spaces, ability to handle nonlinear type of data, classification of data reaches high
+accuracy levels, its resist overfitting through ensemble learning. The training procedure for this
+Random Forest model occupied 80 percent of the data generated for training and 20 percent for
+validating the trained model. There were 100 decision trees in the ensemble, also a maximum of 10
+depth for each tree. With the Python generated data script, the model achieved 92 % accuracy which
+implies it is excellent along all four mental states.
+
+37
+
+Fig. 33. Confusion Matrix of the trained random forest model.
+
+As shown in Fig. 33. A confusion matrix was used to demonstrate the effectiveness of this Random
+Forest model, the elements that are diagonal represent the four mental states while the off diagonal
+show misclassifications, this model successfully performed with minimal confusion on right hand MI
+state.
+3.7.1. Features Implemented for Model Analysis
+Random Forest has a built feature that shows the contribution of each channel represented in Fig. 34.
+The plot shows that alpha waves which are measured from occipital channels (O1, O2) are the primary
+electrodes for measuring Eyes Open from Eyes Closed state, in another hand Beta waves (C3,C4) are
+the main electrodes used for motor imagery classification, this follows the neurophysiological
+understanding also called brain mapping as shown in Fig. 35 [33, 34].
+
+38
+
+Fig. 34. Importance of each feature channel and frequency due to classification decision.
+
+Fig. 35. Electrode mapping for the brain [33].
+
+3.7.2. Confidence Threshold
+To prevent false triggers a mechanism called confidence threshold was implemented as follows
+Classification probability only triggers if it is above 0.85 and hence register a state change, each state
+should be maintained for at least 1 second to confirm the change in state, also a hysteresis mechanism
+was implemented to avoid rapid state changing.
+
+39
+
+Fig. 36. Real time – confidence level for triggering a change in state
+
+In the Fig. 36. The graph on top measures the confidence detection vs time, the higher the values the
+higher the probability of the change in state, also the bottom panel demonstrate the true mental states
+– which are simulations for testing purposes, this implies the functionality of the model.
+3.8. Device Control Implementation
+For the discussion four mental states were set for specific control commands, this allows control of
+external devices such as: Eyes Closed – trigger 1 as shown in Fig. 37 – Turn off device; Eyes Open
+– trigger 2 as shown in Fig. 38 – Turn on device; Right Arm up – trigger 3 as shown in Fig. 39 –
+Turn right; Left Arm up- trigger 4 – as shown in Fig. 40 – Forward movement.
+
+Fig. 37. Eyes Closed control state – turn off device.
+
+40
+
+

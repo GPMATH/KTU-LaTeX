@@ -112,6 +112,7 @@
 	]{caption} 
 	
 % \captionsetup[figure]{name=Fig.} %If need to change from Figure to Fig. as in template example
+\captionsetup[figure]{name=Fig.,labelsep=period} % Match reference report style
 
 \captionsetup[table]{justification=raggedright} 
 \captionsetup[figure]{justification=centering} 
@@ -121,8 +122,6 @@
 
 % Section number in tables and figures
 \usepackage{chngcntr}
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
 
 % If charts and tables shouldn't be places before the section
 % \usepackage[section]{placeins}
@@ -165,13 +164,10 @@
 %\allsectionsfont{\titlecap}
 
 
-\usepackage{setspace}
-
 % Testing usebib if it's possible to cite the title
 %\usepackage{usebib}
 
 
-\usepackage{longtable} % For the table on multiple pages
 \usepackage{lscape} % To rotate the table
 
 % To remove justification from tables: https://tex.stackexchange.com/questions/66123/how-do-i-set-right-alignment-in-a-longtable-column-with-a-fixed-width:
@@ -192,9 +188,8 @@
 %textwidth in cm: \printinunitsof{cm}\prntlen{\textwidth} # Add somewhere in the document to print it
 
 
-\numberwithin{equation}{section} %Leave if equations should be numbered as section_number.equation_number, comment out otherwise
+% Keep equations globally numbered to match the reference report style.
 %For timeline chart
-\usepackage{tikz}
 \usetikzlibrary{decorations.pathreplacing,positioning, arrows.meta}
 
 % emoji support
@@ -203,15 +198,13 @@
 
 %\usepackage{changepage} % For the adjustwidth
 
-\usepackage{tabularx} % For tables not to go out of page margins
-
-
 \usepackage{lastpage} % To get the last page for the text input
 
 
 \usepackage{afterpage} % for the figures in appendix to appear after subsection
 
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 
 
@@ -220,7 +213,6 @@
 
 
 % Modify the format of the figure numbers in the list of figures
-\newpage
 \renewcommand{\cftfigpresnum}{\bfseries{Fig.~}} % put before the number
 \renewcommand{\cftfigaftersnum}{. }  % put after the number
 % Adjust spacing

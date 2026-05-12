@@ -4,13 +4,13 @@ The thesis topic sits in an attractive but risky research space. On one side, fN
 
 For that reason, this analysis uses careful language. The working direction is not that fNIRS will diagnose mental disease. A stronger and more defensible framing is that task-evoked fNIRS, combined with machine learning, may contribute to objective screening or risk estimation by detecting neurocognitive response patterns associated with mental-health or neurodevelopmental states.
 
-The existing references support this cautious position in pieces. Wickramaratne and Mahmud \cite{Wickramaratne2021} show that fNIRS task data can be transformed into image-like representations and classified using deep learning. Khan et al. \cite{Khan2024} show that hybrid CNN-LSTM models can exploit spatial and temporal information in workload data. Eastmond et al. \cite{Eastmond2022} review a wider body of deep learning work in fNIRS and identify both promise and recurring obstacles. Ma et al. \cite{Ma2021} demonstrate fNIRS-based classification of walking-related cognitive task states in older adults. Sharmin et al. \cite{Sharmin2025} connect fNIRS features with cognitive effort estimation.
+The existing references support this cautious position in pieces. Wickramaratne and Mahmud \cite{Wickramaratne2021} show that fNIRS task data can be transformed into image-like representations and classified using deep learning. Khan et al. \cite{Khan2024} show that hybrid CNN-LSTM models can exploit spatial and temporal information in workload data. Eastmond et al. \cite{Eastmond2022} review a wider body of deep learning work in fNIRS and identify both promise and recurring obstacles. Ma et al. \cite{Ma2021} demonstrate fNIRS-based classification of walking-related cognitive task states in older adults. Sharmin et al. \cite{Sharmin2026} connect fNIRS features with cognitive effort estimation.
 
 The remaining references are useful but indirect. Eslami et al. \cite{Eslami2020} address autism spectrum disorder with fMRI rather than fNIRS. Peiris and Chen \cite{Peiris2024} discuss low-field MRI segmentation. Castelo et al. \cite{Castelo2024} focus on fNIRS-supported behavior analysis in augmented-reality guidance systems.
 
 \section{fNIRS as a measurement approach: useful, but not self-explanatory}
 
-fNIRS measures changes in oxygenated and deoxygenated hemoglobin, usually interpreted as indirect evidence of cortical activation. This makes the technology appealing where fMRI is too restrictive, expensive, or sensitive to movement. The method also fits experimental designs in which participants must speak, move, learn, play, or interact with a task environment \cite{Castelo2024,Khan2024,Ma2021,Sharmin2025}.
+fNIRS measures changes in oxygenated and deoxygenated hemoglobin, usually interpreted as indirect evidence of cortical activation. This makes the technology appealing where fMRI is too restrictive, expensive, or sensitive to movement. The method also fits experimental designs in which participants must speak, move, learn, play, or interact with a task environment \cite{Castelo2024,Khan2024,Ma2021,Sharmin2026}.
 
 Yet the measurement is indirect. fNIRS does not read thoughts, emotions, or diagnoses. It records hemodynamic changes near the cortical surface, then researchers interpret those changes through tasks and models. Channel placement, task design, baseline correction, motion-artifact handling, feature extraction, and validation strategy all influence the final model.
 
@@ -22,7 +22,7 @@ Khan et al. \cite{Khan2024} move toward hybrid architectures. Their CNN-LSTM des
 
 The review by Eastmond et al. \cite{Eastmond2022} provides broad justification for deep learning in fNIRS, while also warning that complex models can hide methodological weaknesses when samples are small or noisy.
 
-Ma et al. \cite{Ma2021} classify walking-related cognitive states in older adults using fNIRS and deep learning, showing functional-state sensitivity in a clinically relevant population. Sharmin et al. \cite{Sharmin2025} extend this line by linking fNIRS signals with cognitive effort estimation, which is closer to clinically meaningful constructs than simple workload labels.
+Ma et al. \cite{Ma2021} classify walking-related cognitive states in older adults using fNIRS and deep learning, showing functional-state sensitivity in a clinically relevant population. Sharmin et al. \cite{Sharmin2026} extend this line by linking fNIRS signals with cognitive effort estimation, which is closer to clinically meaningful constructs than simple workload labels.
 
 \section{From task classification to mental-health screening}
 
@@ -50,7 +50,7 @@ The strongest ethical position is transparent reporting: what the model predicts
 
 \section{Evidence map of the existing references}
 
-The reference set forms a layered argument. Core technical fNIRS classification evidence comes from \cite{Wickramaratne2021,Khan2024,Ma2021,Sharmin2025}. Methodological context is reinforced by \cite{Eastmond2022}. Broader neuroimaging motivation appears in \cite{Eslami2020,Peiris2024}, and ecological multimodal direction is represented by \cite{Castelo2024}.
+The reference set forms a layered argument. Core technical fNIRS classification evidence comes from \cite{Wickramaratne2021,Khan2024,Ma2021,Sharmin2026}. Methodological context is reinforced by \cite{Eastmond2022}. Broader neuroimaging motivation appears in \cite{Eslami2020,Peiris2024}, and ecological multimodal direction is represented by \cite{Castelo2024}.
 
 This map also reveals an important gap: current references do not establish a fully clinically validated pipeline for psychiatric or neurodevelopmental disease prediction from fNIRS alone.
 

@@ -1,7 +1,6 @@
 \documentclass[12pt]{article}
 
 \usepackage{ktu_thesis_style}
-\usepackage{lipsum}  
 
 \begin{document}
 \input{variables.tex}
@@ -9,7 +8,7 @@
 \input{TitlePage}
 
 
-\setcounter{page}{2} %to include title page in page numbering counter
+\setcounter{page}{2} % count from title page; print from TOC
 \tableofcontents
 
 
@@ -28,10 +27,8 @@
 
 
 
-\clearpage % Start a new page
-\phantomsection % Create a phantom section for correct linking in the table of contents
-\addcontentsline{toc}{section}{Conclutions} %Add to the table of contents
-\input{chapters/conclutions.tex}
+\clearpage
+\input{chapters/conclusions.tex}
 
 
 
@@ -39,12 +36,6 @@
 \phantomsection 
 \addcontentsline{toc}{section}{References}
 \bibliography{dummy-bib} % And adding references itself
-
-\clearpage 
-\phantomsection 
-\addcontentsline{toc}{section}{Appendices}
-\section*{Appendices}
-\input{chapters/appendix.tex}
 
 % To know how many pages
 \clearpage

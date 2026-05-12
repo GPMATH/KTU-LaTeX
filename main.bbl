@@ -22,18 +22,24 @@ Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
 \newblock Deep learning in fnirs: A review, 2022.
 \newblock URL \url{https://arxiv.org/abs/2201.13371}.
 
-\bibitem[Ma et~al.(2021)Ma, Izzetoglu, Holtzer, and Jiao]{Ma2021}
+\bibitem[Ma et~al.(2023)Ma, Izzetoglu, Holtzer, and Jiao]{Ma2021}
 Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
 \newblock Deep learning based walking tasks classification in older adults
-  using fnirs, 2021.
+  using fnirs.
+\newblock \emph{IEEE Transactions on Neural Systems and Rehabilitation
+  Engineering}, 31:\penalty0 3437--3447, 2023.
+\newblock \doi{10.1109/TNSRE.2023.3306365}.
 \newblock URL \url{https://arxiv.org/abs/2102.03987}.
 
-\bibitem[Sharmin et~al.(2025)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
-  Barmaki]{Sharmin2025}
+\bibitem[Sharmin et~al.(2026)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
+  Barmaki]{Sharmin2026}
 Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
   Roghayeh~Leila Barmaki.
 \newblock Beyond cognitive load: Ai-based estimation of cognitive effort using
-  brain signals during digital tasks, 2025.
+  brain signals during digital tasks.
+\newblock \emph{Delaware Journal of Public Health}, 12\penalty0 (1):\penalty0
+  32--43, 2026.
+\newblock \doi{10.32481/djph.2026.03.08}.
 \newblock URL \url{https://arxiv.org/abs/2507.13952}.
 
 \bibitem[Eslami et~al.(2020)Eslami, Raiker, and Saeed]{Eslami2020}

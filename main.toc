@@ -1,9 +1,20 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{3}{Doc-Start}%
 \contentsline {section}{List of Tables}{4}{Doc-Start}%
-\contentsline {section}{Conclutions}{20}{section*.11}%
-\contentsline {section}{References}{21}{section*.12}%
-\contentsline {section}{Appendices}{22}{section*.13}%
-\contentsline {section}{\numberline {A}I am the first appendix}{23}{section.A}%
-\contentsline {subsection}{\numberline {A.1}Sub-appendix}{23}{subsection.A.1}%
-\contentsline {section}{\numberline {B}I am the second appendix}{24}{section.B}%
+\contentsline {section}{\numberline {1}Literature Review}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Scope of This Literature Analysis}{5}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Methodological Evidence From fNIRS Studies}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}GASF-Based Task-State Classification}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}CNN + LSTM Neural Network Model for fNIRS Workload Classification}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Methodological Considerations for Deep Learning in fNIRS}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Walking-Task Classification in Older Adults}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Cognitive-Effort Modeling Framework}{11}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Adjacent Neuroimaging Context}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}fMRI-Based Autism Classification Context}{14}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Ecological and Multimodal Assessment Context}{14}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Automated Neuroimaging Segmentation Context}{14}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Cross-Study Interpretation}{15}{section.4}%
+\contentsline {section}{\numberline {5}Methodological Implications}{16}{section.5}%
+\contentsline {section}{\numberline {6}Summary of Key References}{17}{section.6}%
+\contentsline {section}{\numberline {7}Conclusions}{18}{section.7}%
+\contentsline {section}{References}{19}{section*.11}%
