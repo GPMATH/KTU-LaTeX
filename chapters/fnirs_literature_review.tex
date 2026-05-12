@@ -16,7 +16,7 @@ Several references cover direct topics related to fNIRS classification and deep 
 
 \subsection{GASF-Based Task-State Classification}
 
-A study \cite{Wickramaratne2021} provides an example of how fNIRS time-series data can be represented as images and classified using convolutional neural networks. By using the Gramian Angular Summation Field representation instead of manually selecting temporal or spectral features, the model learns relevant structures from a transformed signal representation. This could be useful if feature-based models are compared with representation-learning approaches in future work.
+Provides an example of how fNIRS time-series data can be represented as images and classified using convolutional neural networks \cite{Wickramaratne2021}. By using the Gramian Angular Summation Field representation instead of manually selecting temporal or spectral features, the model learns relevant structures from a transformed signal representation. This could be useful if feature-based models are compared with representation-learning approaches in future work.
 
 This paper helps justify the use of image representations or CNNs as one possible modeling direction. However, it should be described as task classification, not disease diagnosis.
 
@@ -49,9 +49,9 @@ This paper helps justify the use of image representations or CNNs as one possibl
 
 \subsection{CNN + LSTM Neural Network Model for fNIRS Workload Classification}
 
-Reference \cite{Khan2024} provides one of the most relevant methodological directions. The proposed deep-learning architecture is consistent with the characteristics of fNIRS data. The signal is multidimensional because it varies across multiple channels and changes over time. Therefore, a CNN model can identify spatial dependencies between channel values, while an LSTM can account for temporal dependencies.
+ The proposed deep-learning architecture is consistent with the characteristics of fNIRS data. The signal is multidimensional because it varies across multiple channels and changes over time. Therefore, a CNN model can identify spatial dependencies between channel values, while an LSTM can account for temporal dependencies.
 
-Workload classification is different from disease diagnosis. Classification means that the algorithm distinguishes between different experimental conditions, and those conditions may reflect task complexity, cognitive load, effort, arousal, time constraints, or other factors. However, this does not necessarily indicate disorder-specific physiology.
+Workload classification is different from disease diagnosis. Classification means that the algorithm distinguishes between different experimental conditions, and those conditions may reflect task complexity, cognitive load, effort, arousal, time constraints, or other factors. However, this does not necessarily indicate disorder-specific physiology\cite{Khan2024}.
 
 \begin{figure}[h]
 \centering
@@ -87,7 +87,7 @@ H_t &= o_t * \tanh(C_t) \quad \text{(Hidden state)}
 
 \subsection{Methodological Considerations for Deep Learning in fNIRS}
 
-A key source \cite{Eastmond2022} is important because it provides a rationale for including deep-learning models in a literature review of fNIRS. Additionally, this work provides valuable insights into methodological issues associated with using deep-learning models on fNIRS data. Such issues include sample size, noisy labels, motion artifacts, overfitting, and insufficient clinical inference. Complex models can perform well by discovering shortcuts rather than meaningful physiological patterns.
+Is important because it provides a rationale for including deep-learning models in a literature review of fNIRS \cite{Eastmond2022}. Additionally, this work provides valuable insights into methodological issues associated with using deep-learning models on fNIRS data. Such issues include sample size, noisy labels, motion artifacts, overfitting, and insufficient clinical inference. Complex models can perform well by discovering shortcuts rather than meaningful physiological patterns.
 
 This citation is important because it highlights the necessity of interpreting deep-learning performance carefully. It also supports comparing deep models with less sophisticated models and clearly describing the validation process.
 
@@ -121,7 +121,7 @@ L &= -\sum_i y_i \log(\hat{y}_i) \quad \text{(Cross-entropy loss)} \\
 
 \subsection{Walking-Task Classification in Older Adults}
 
-Reference \cite{Ma2021} classifies walking task states in older adults using fNIRS. This is a relevant population because older adults may experience functional or cognitive decline. In addition, dual-task walking can reflect higher cognitive and motor demands. This makes the study closer to a real health-assessment context than a purely artificial laboratory task.
+Classifies walking task states in older adults using fNIRS. This is a relevant population because older adults may experience functional or cognitive decline. In addition, dual-task walking can reflect higher cognitive and motor demands. This makes the study closer to a real health-assessment context than a purely artificial laboratory task \cite{Ma2021}.
 
 However, the labels are still experimental task states rather than direct clinical diagnoses. Therefore, this paper can support the idea that fNIRS is useful for functional assessment, but it should not be presented as proof that fNIRS can diagnose a disorder.
 
@@ -155,7 +155,7 @@ L_i &= 2 \times T_i \quad \text{(Signal length representation)} \\
 
 \subsection{Cognitive-Effort Modeling Framework}
 
-Reference \cite{Sharmin2026} is important because it focuses on cognitive effort rather than only task categories. This is useful for the literature review because cognitive effort may provide a more careful bridge between fNIRS signals and mental-health-related assessment. A person may complete a task successfully but require a high amount of cognitive effort to do so. This difference may be relevant for understanding cognitive strain, fatigue, workload, or mental-health-related functioning.
+It focuses on cognitive effort rather than only task categories.Cognitive effort may provide a more careful bridge between fNIRS signals and mental-health-related assessment. A person may complete a task successfully but require a high amount of cognitive effort to do so. This difference may be relevant for understanding cognitive strain, fatigue, workload, or mental-health-related functioning \cite{Sharmin2026}.
 
 \begin{figure}[h]
 \centering
@@ -194,19 +194,19 @@ r &= \frac{\sum_i(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_i(x_i - \bar{x})^2 \
 
 \textit{Note: These equations connect behavioral performance and fNIRS-derived physiological response into one interpretable cognitive-effort framework. MAE and Pearson correlation can be used to compare actual and predicted cognitive-effort values.}
 
-\section{Adjacent Neuroimaging Context}
+\subsection{Adjacent Neuroimaging Context}
 
-\subsection{fMRI-Based Autism Classification Context}
+\subsubsection{fMRI-Based Autism Classification Context}
 
-Reference \cite{Eslami2020} focuses on the application of machine-learning techniques to fMRI and autism spectrum disorder. This is useful because it touches on a broader motivation: behavioral assessment can be subjective, time-consuming, and difficult to scale, which motivates the search for objective neural biomarkers. However, this is not evidence that fNIRS can detect autism. fMRI and fNIRS differ in spatial coverage, cost, equipment mobility, signal characteristics, and experimental design. A result found using fMRI cannot be directly generalized to fNIRS without further studies.
+Focuses on the application of machine-learning techniques to fMRI and autism spectrum disorder. This is useful because it touches on a broader motivation: behavioral assessment can be subjective, time-consuming, and difficult to scale, which motivates the search for objective neural biomarkers. However, this is not evidence that fNIRS can detect autism. fMRI and fNIRS differ in spatial coverage, cost, equipment mobility, signal characteristics, and experimental design. A result found using fMRI cannot be directly generalized to fNIRS without further studies \cite{Eslami2020}.
 
-\subsection{Ecological and Multimodal Assessment Context}
+\subsubsection{Ecological and Multimodal Assessment Context}
 
-Reference \cite{Castelo2024} uses fNIRS in the field of human behavior assessment through visual analytics and augmented reality assistance. It does not focus on clinical problems; nevertheless, it is useful because it shows that fNIRS can be used outside purely laboratory-based studies. It supports the idea that fNIRS can contribute to ecological and multimodal assessment, especially when combined with other sensor streams such as gaze and motion data.
+Uses fNIRS in the field of human behavior assessment through visual analytics and augmented reality assistance. It does not focus on clinical problems; nevertheless, it is useful because it shows that fNIRS can be used outside purely laboratory-based studies. It supports the idea that fNIRS can contribute to ecological and multimodal assessment, especially when combined with other sensor streams such as gaze and motion data \cite{Castelo2024}.
 
-\subsection{Automated Neuroimaging Segmentation Context}
+\subsubsection{Automated Neuroimaging Segmentation Context}
 
-Reference \cite{Peiris2024} describes the use of deep learning for segmentation of bilateral hippocampi using low-field MRI. At first, this may not seem directly relevant to fNIRS. It does not contribute to fNIRS signal classification, hemodynamic task analysis, or mental-health prediction based on wearable optical measurements. Its relevance is indirect. The motivation behind low-field MRI and fNIRS is partly related to accessibility: researchers and clinicians need tools that are cheaper, easier, and faster than expensive MRI or PET scanners. However, accessibility alone is not enough; the method must measure the correct variable and be valid for its intended purpose.
+Describes the use of deep learning for segmentation of bilateral hippocampi using low-field MRI. At first, this may not seem directly relevant to fNIRS. It does not contribute to fNIRS signal classification, hemodynamic task analysis, or mental-health prediction based on wearable optical measurements. Its relevance is indirect. The motivation behind low-field MRI and fNIRS is partly related to accessibility: researchers and clinicians need tools that are cheaper, easier, and faster than expensive MRI or PET scanners. However, accessibility alone is not enough; the method must measure the correct variable and be valid for its intended purpose \cite{Peiris2024}.
 
 This reference should be kept only if the literature review includes a short comparison with adjacent neuroimaging methods. Otherwise, it can be removed to keep the review more focused.
 
@@ -216,7 +216,7 @@ Overall, the reviewed sources support the methodological feasibility of studying
 
 There has been significant progress in classifying fNIRS signals. However, more work is needed before such methods can be used for clinical screening. This requires suitable datasets, clinically meaningful labels, participant-wise validation, external testing, and careful interpretation of model outputs.
 
-\section{Methodological Implications}
+\subsection{Methodological Implications}
 
 Traditional machine-learning models, such as logistic regression, support vector machines, random forests, and linear discriminant analysis, should remain baseline models for comparison. If a CNN, LSTM, or CNN+LSTM model performs better than simpler models, this improvement should be clearly compared against the baseline results. Otherwise, it is difficult to prove that the more complex model adds scientific or practical value.
 
@@ -224,6 +224,3 @@ The data-splitting scheme is very important. Randomly splitting time windows wit
 
 Model interpretability is also important. If the outcome variable is related to mental health, neurocognitive state, or a neuropsychiatric condition, the thesis should explain which channels, time windows, or features contributed to the prediction. Feature-importance measures, ablation studies, channel-importance analysis, or comparisons of HbO and HbR responses would increase the scientific value of the work.
 
-\section{Summary of Key References}
-
-\cite{Wickramaratne2021}, \cite{Khan2024}, \cite{Eastmond2022}, \cite{Ma2021}, and \cite{Sharmin2026} demonstrate that fNIRS combined with machine learning can classify task states and estimate cognitive effort, but the path from task classification to clinical mental-health screening requires careful validation, appropriate datasets, and transparent reporting of limitations.
