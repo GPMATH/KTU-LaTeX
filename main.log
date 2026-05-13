@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  14 MAY 2026 00:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  14 MAY 2026 00:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -894,161 +894,125 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 ] (chapters/fnirs_literature_review.tex [5
 
 ]
-<images/Count of usable images printed by the transfer-learning notebook after image cleansing.png, id=118, 570.933pt x 281.853pt>
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+<images/Count of usable images printed by the transfer-learning notebook after image cleansing.png, id=122, 570.933pt x 281.853pt>
 File: images/Count of usable images printed by the transfer-learning notebook after image cleansing.png Graphic file (type png)
 <use images/Count of usable images printed by the transfer-learning notebook after image cleansing.png>
-Package pdftex.def Info: images/Count of usable images printed by the transfer-learning notebook after image cleansing.png  used on input line 71.
+Package pdftex.def Info: images/Count of usable images printed by the transfer-learning notebook after image cleansing.png  used on input line 73.
 (pdftex.def)             Requested size: 459.51054pt x 226.85463pt.
  [6 <./images/Count of usable images printed by the transfer-learning notebook after image cleansing.png>]
-Overfull \hbox (3.00623pt too wide) in paragraph at lines 102--107
+Overfull \hbox (3.00623pt too wide) in paragraph at lines 104--109
 \T1/ptm/m/n/12 Model 1 ap-plied Mo-bileNetV2 for fea-ture ex-trac-tion with trans-fer learn-ing. Specif-i-cally, Mo-bileNetV2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
-[]|\T1/ptm/m/n/12 MobileNetV2; in-
+Underfull \hbox (badness 3690) in paragraph at lines 136--136
+[]|\T1/ptm/m/n/10.95 Number of epochs with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
-\T1/ptm/m/n/12 clude_top=False; Im-a-
- []
-
-
-Underfull \hbox (badness 2460) in paragraph at lines 124--125
-[]|\T1/ptm/m/n/12 Frozen dur-ing the main
- []
-
-
-Underfull \hbox (badness 2165) in paragraph at lines 131--131
-[]|\T1/ptm/m/n/12 Number of epochs with
- []
-
-
-Overfull \hbox (2.07112pt too wide) in paragraph at lines 136--142
+Overfull \hbox (2.07112pt too wide) in paragraph at lines 139--145
 []\T1/ptm/m/n/12 Additionally, the note-book pro-vides an op-tional fine-tuning stage where the top lay-ers of Mo-bileNetV2
  []
 
-<images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png, id=125, 859.2903pt x 281.853pt>
+<images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png, id=138, 859.2903pt x 281.853pt>
 File: images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png Graphic file (type png)
 <use images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png>
-Package pdftex.def Info: images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png  used on input line 145.
+Package pdftex.def Info: images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png  used on input line 148.
 (pdftex.def)             Requested size: 459.51054pt x 150.7232pt.
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
-[]|\T1/ptm/m/n/12 Conv2D, Batch-Nor-mal-
+Underfull \hbox (badness 1997) in paragraph at lines 180--180
+[]|\T1/ptm/m/n/10.95 Number of epochs com-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
-\T1/ptm/m/n/12 iza-tion, Max-Pool-ing2D,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 171--171
-[]|\T1/ptm/m/n/12 Training sta-tus of all
- []
-
-
-Underfull \hbox (badness 1024) in paragraph at lines 172--172
-[]|\T1/ptm/m/n/12 Number of epochs com-
- []
-
-[8 <./images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png>]
-<images/Training and validation accuracy and loss curves for Simple CNN model.png, id=136, 859.2903pt x 281.853pt>
+<images/Training and validation accuracy and loss curves for Simple CNN model.png, id=147, 859.2903pt x 281.853pt>
 File: images/Training and validation accuracy and loss curves for Simple CNN model.png Graphic file (type png)
 <use images/Training and validation accuracy and loss curves for Simple CNN model.png>
-Package pdftex.def Info: images/Training and validation accuracy and loss curves for Simple CNN model.png  used on input line 186.
+Package pdftex.def Info: images/Training and validation accuracy and loss curves for Simple CNN model.png  used on input line 191.
 (pdftex.def)             Requested size: 459.51054pt x 150.7232pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-[]|\T1/ptm/m/n/10.95 MobileNetV2
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 MobileNetV2 trans-fer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
-[]|\T1/ptm/m/n/10.95 Simple CNN
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 Total pa-ram-e-
  []
 
 
-Underfull \hbox (badness 3118) in paragraph at lines 208--208
-[]|\T1/ptm/m/n/10.95 Trainable pa-ram-e-
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 Trainable pa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-[]|\T1/ptm/m/n/10.95 MobileNetV2
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+\T1/ptm/m/n/10.95 ram-e-ters in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-\T1/ptm/m/n/10.95 fewer train-able
+Underfull \hbox (badness 1430) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 4,919.10 sec-onds / 81.99
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]| \T1/ptm/m/n/10.95 969 sec-onds /
+Underfull \hbox (badness 4303) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 Model size in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-[]|\T1/ptm/m/n/10.95 MobileNetV2
+Underfull \hbox (badness 4254) in paragraph at lines 219--219
+\T1/ptm/m/n/10.95 note-book sum-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
-[]|\T1/ptm/m/n/10.95 Simple CNN
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 Simple CNN smaller
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 210--211
-\T1/ptm/m/n/10.95 smaller file/model
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+[]|\T1/ptm/m/n/10.95 Training strat-
  []
 
-
-Overfull \hbox (203.20557pt too wide) in paragraph at lines 220--231
- [][] 
- []
-
-<images/Confusion matrix of MobileNetV2 on the test set.png, id=137, 409.7709pt x 354.123pt>
+<images/Confusion matrix of MobileNetV2 on the test set.png, id=148, 409.7709pt x 354.123pt>
 File: images/Confusion matrix of MobileNetV2 on the test set.png Graphic file (type png)
 <use images/Confusion matrix of MobileNetV2 on the test set.png>
-Package pdftex.def Info: images/Confusion matrix of MobileNetV2 on the test set.png  used on input line 235.
+Package pdftex.def Info: images/Confusion matrix of MobileNetV2 on the test set.png  used on input line 245.
 (pdftex.def)             Requested size: 314.40001pt x 271.71371pt.
-<images/Confusion matrix of Simple CNN on the test set.png, id=138, 409.7709pt x 354.123pt>
+<images/Confusion matrix of Simple CNN on the test set.png, id=149, 409.7709pt x 354.123pt>
 File: images/Confusion matrix of Simple CNN on the test set.png Graphic file (type png)
 <use images/Confusion matrix of Simple CNN on the test set.png>
-Package pdftex.def Info: images/Confusion matrix of Simple CNN on the test set.png  used on input line 241.
+Package pdftex.def Info: images/Confusion matrix of Simple CNN on the test set.png  used on input line 251.
 (pdftex.def)             Requested size: 314.40001pt x 271.71371pt.
-[9 <./images/Training and validation accuracy and loss curves for Simple CNN model.png>] [10 <./images/Confusion matrix of MobileNetV2 on the test set.png>]) [11 <./images/Confusion matrix of Simple CNN on the test set.png>] (chapters/conclusions.tex) [12] (main.bbl
-Underfull \hbox (badness 4120) in paragraph at lines 29--34
-[]\T1/ptm/m/n/12 scikit-learn.  clas-si-fi-ca-tion_report.  scikit-learn API doc-u-men-ta-tion, 2026.  URL
- []
-
-
+[8 <./images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png>] [9 <./images/Training and validation accuracy and loss curves for Simple CNN model.png>] [10 <./images/Confusion matrix of MobileNetV2 on the test set.png>] [11 <./images/Confusion matrix of Simple CNN on the test set.png>]) (chapters/conclusions.tex) [12] (main.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 29--34
-[]$\T1/cmtt/m/n/12 https : / / scikit-[]learn . org / stable / modules / generated / sklearn . metrics .
+\T1/cmtt/m/n/12 / / scikit-[]learn . org / stable / modules / generated / sklearn . metrics . classification _
  []
 
 
-Underfull \hbox (badness 6188) in paragraph at lines 43--50
+Underfull \hbox (badness 7888) in paragraph at lines 37--44
 []\T1/ptm/m/n/12 Mark San-dler, An-drew Howard, Men-g-long Zhu, An-drey Zh-mogi-nov, and Liang-
  []
 
 
-Underfull \hbox (badness 1810) in paragraph at lines 43--50
+Underfull \hbox (badness 2326) in paragraph at lines 37--44
 \T1/ptm/m/n/12 Chieh Chen.  Mo-bilenetv2: In-verted resid-u-als and lin-ear bot-tle-necks.  In \T1/ptm/m/it/12 Pro-ceed-
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 43--50
+Underfull \hbox (badness 3417) in paragraph at lines 37--44
 \T1/ptm/m/it/12 ings of the IEEE Con-fer-ence on Com-puter Vi-sion and Pat-tern Recog-ni-tion (CVPR)\T1/ptm/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 37--44
+\T1/ptm/m/n/12 2018.  URL []$\T1/cmtt/m/n/12 https : / / openaccess . thecvf . com / content _ cvpr _ 2018 / papers / Sandler _
  []
 
 ) [13
@@ -1064,17 +1028,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: ACD4958AC7A36F1C8D5A73167C11473C;1861.
  ) 
 Here is how much of TeX's memory you used:
- 36384 strings out of 467691
- 837927 string characters out of 5412084
- 1403485 words of memory out of 5000000
- 64789 multiletter control sequences out of 15000+600000
+ 36383 strings out of 467691
+ 837884 string characters out of 5412084
+ 1406486 words of memory out of 5000000
+ 64784 multiletter control sequences out of 15000+600000
  667200 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,11n,118p,826b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,118p,826b,684s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gpintochica\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (13 pages, 245586 bytes).
+Output written on main.pdf (13 pages, 245126 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
+ 275 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
  147 words of extra memory for PDF output out of 10000 (max. 10000000)
 
