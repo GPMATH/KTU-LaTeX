@@ -1,15 +1,16 @@
 \section{Conclusion}
 
-This report compared two image-classification approaches for coffee leaf disease
-recognition on the same dataset and evaluation split. The Simple CNN achieved the best
-test performance in this run, with 95.88\% accuracy, while MobileNetV2 reached 94.43\%.
+This report provides a good comparison of two models on a specific dataset containing
+coffee leaves diseases. The Simple CNN model gave the best test performance results with
+95.88\\% accuracy. The second place belongs to the fine-tuned version of MobileNetV2 with
+94.43\\%. Moreover, MobileNetV2 showed high F1-scores too. It is worth mentioning that the
+MobileNetV2 model is trained much faster as only the classifier is trained on the
+pre-trained base model. The best way to summarize the project is not that one is always
+the best but each one has its own advantages. The Simple CNN model gives better results in
+this notebook run, but MobileNetV2 is more efficient during training.
 
-The results also show that model quality should be interpreted together with efficiency.
-MobileNetV2 trained much faster in the frozen-base setting, which is important for rapid
-iterations and practical deployment constraints.
-
-The main takeaway is not that one model is universally superior, but that each approach
-offers different advantages. Simple CNN provided stronger test metrics in this run,
-whereas MobileNetV2 provided better training efficiency. For final submission quality,
-future experiments should correct MobileNetV2 preprocessing, evaluate the fine-tuned
-stage explicitly, and strengthen data-splitting controls against leakage.
+When preparing the report for submission, it is necessary to emphasize that both models
+are used for the comparison. On the other hand, some limitations should also be taken into
+account. Thus, among the technical errors, there are using of wrong MobileNetV2
+preprocessing, lack of evaluation of the fine-tuned MobileNetV2 model separately, and
+possibility of the data leak due to image augmentations.

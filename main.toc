@@ -9,6 +9,6 @@
 \contentsline {section}{\numberline {6}Model 2: Simple CNN}{7}{section.6}%
 \contentsline {section}{\numberline {7}Results}{8}{section.7}%
 \contentsline {section}{\numberline {8}Model Comparison and Discussion}{9}{section.8}%
-\contentsline {section}{\numberline {9}Limitations and Improvements}{10}{section.9}%
-\contentsline {section}{\numberline {10}Conclusion}{11}{section.10}%
-\contentsline {section}{References}{12}{section*.11}%
+\contentsline {section}{\numberline {9}Limitations and Improvements}{9}{section.9}%
+\contentsline {section}{\numberline {10}Conclusion}{10}{section.10}%
+\contentsline {section}{References}{11}{section*.6}%
