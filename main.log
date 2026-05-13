@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  13 MAY 2026 23:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  13 MAY 2026 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -233,9 +233,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
 \Hy@SectionHShift=\skip67
-)
-Package hyperref Info: Option `colorlinks' set `false' on input line 79.
- (C:\Users\gpintochica\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+) (C:\Users\gpintochica\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip68
 \enit@outerparindent=\dimen170
@@ -982,7 +980,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  36412 strings out of 467691
  838372 string characters out of 5412084
- 1407504 words of memory out of 5000000
+ 1407487 words of memory out of 5000000
  64805 multiletter control sequences out of 15000+600000
  668980 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
