@@ -5,10 +5,10 @@
 \contentsline {section}{\numberline {2}Introduction}{5}{section.2}%
 \contentsline {section}{\numberline {3}Dataset Description}{5}{section.3}%
 \contentsline {section}{\numberline {4}Preprocessing and Experimental Setup}{6}{section.4}%
-\contentsline {section}{\numberline {5}Model 1: MobileNetV2 Transfer Learning}{6}{section.5}%
-\contentsline {section}{\numberline {6}Model 2: Simple CNN}{7}{section.6}%
-\contentsline {section}{\numberline {7}Results}{8}{section.7}%
+\contentsline {section}{\numberline {5}Model 1: MobileNetV2 Transfer Learning}{7}{section.5}%
+\contentsline {section}{\numberline {6}Model 2: Simple CNN}{8}{section.6}%
+\contentsline {section}{\numberline {7}Results}{9}{section.7}%
 \contentsline {section}{\numberline {8}Model Comparison and Discussion}{9}{section.8}%
-\contentsline {section}{\numberline {9}Limitations and Improvements}{9}{section.9}%
-\contentsline {section}{\numberline {10}Conclusion}{10}{section.10}%
-\contentsline {section}{References}{11}{section*.6}%
+\contentsline {section}{\numberline {9}Limitations and Improvements}{11}{section.9}%
+\contentsline {section}{\numberline {10}Conclusion}{12}{section.10}%
+\contentsline {section}{References}{13}{section*.11}%

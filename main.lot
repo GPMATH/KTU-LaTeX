@@ -2,11 +2,16 @@
 \ttl@tocsep 
 \ttl@tocsep 
 \ttl@tocsep 
+\contentsline {table}{\numberline {1}{\ignorespaces Count of usable images printed by the transfer-learning notebook after image cleansing.}}{6}{table.caption.1}%
 \ttl@tocsep 
 \ttl@tocsep 
+\contentsline {table}{\numberline {3}{\ignorespaces Summary of the MobileNetV2 transfer learning model.}}{7}{table.caption.3}%
 \ttl@tocsep 
+\contentsline {table}{\numberline {4}{\ignorespaces Summary of the Simple CNN model.}}{8}{table.caption.5}%
 \ttl@tocsep 
+\contentsline {table}{\numberline {5}{\ignorespaces General comparison between both models based on the uploaded notebook outputs.}}{9}{table.caption.7}%
 \ttl@tocsep 
+\contentsline {table}{\numberline {6}{\ignorespaces Precision, recall, and F1-score per class in the notebooks' classification reports.}}{10}{table.caption.8}%
 \ttl@tocsep 
 \ttl@tocsep 
 \ttl@tocsep 
