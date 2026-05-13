@@ -1,12 +1,12 @@
 \section{Abstract}
 
 In this report, two image classification models trained on the same coffee leaf disease
-dataset are compared. The objective of this study is to classify images of coffee leaves
+dataset were compared. The objective of this study was to classify images of coffee leaves
 into one of three classes -- healthy leaves, coffee leaf rust, and Phoma disease. The
-models tested in this experiment are a MobileNetV2 transfer learning model and a Simple
-CNN. Both models use the same training, validation, and testing folders and the same
-batch sizes and input images of 224 x 224 pixels. The three outputs classes for both
-models are the same as well. The Simple CNN model performed better in terms of test
+models tested in this experiment were a MobileNetV2 transfer learning model and a Simple
+CNN. Both models used the same training, validation, and testing folders, the same batch
+size, and input images of 224 x 224 pixels. The three output classes for both
+models were the same as well. The Simple CNN model performed better in terms of test
 accuracy, achieving 95.88\%, compared to 94.43\% in the case of the MobileNetV2 model.
 However, in terms of the training time, the Simple CNN model needed 82 minutes for
 training while MobileNetV2 needed only 16 minutes for the frozen-base model run.
@@ -16,45 +16,45 @@ training while MobileNetV2 needed only 16 minutes for the frozen-base model run.
 Coffee leaf diseases may decrease crop productivity and quality. Machine vision-based
 computer models can assist farmers with automated disease detection by learning from
 labeled images of healthy and diseased leaves. In the current project, the task was not only to build a
-model that can perform classification accurately, but also to compare two methods and
-analyze the differences between the chosen models. Such analysis can be useful since the
-model with the best accuracy is not necessarily the most efficient one to deploy. In this
-paper, the criteria for comparison include such parameters as accuracy, loss, performance
+model that performed classification accurately, but also to compare two methods and
+analyze the differences between the chosen models. Such analysis was useful since the
+model with the best accuracy was not necessarily the most efficient one to deploy. In this
+paper, the criteria for comparison included such parameters as accuracy, loss, performance
 per class, the number of model parameters, preprocessing, limitations and possible
 problems with the dataset.
 
-Two models discussed in this experiment belong to two widely-used types of image
-classification techniques. The first one uses transfer learning based on pre-trained
-MobileNetV2. Only a classification head will be trained while the remaining feature
-extraction part of the model is kept frozen. The second approach uses a custom CNN
-architecture which will have to learn all convolutional filters on the fly during the
-training process using the dataset. Both of these models are applied depending on the
-conditions: transfer learning in case there is a lack of labeled data and vice versa.
+Two models discussed in this experiment belonged to two widely-used types of image
+classification techniques. The first one used transfer learning based on pre-trained
+MobileNetV2. Only a classification head was trained while the remaining feature
+extraction part of the model was kept frozen. The second approach used a custom CNN
+architecture which learned convolutional filters during the training process using the
+dataset. Both of these models were applied depending on the conditions: transfer learning
+in case there was a lack of labeled data and vice versa.
 
 \section{Dataset Description}
 
-The external dataset mentioned in the notebook is ``A Machine Learning Dataset for
-Classification of Common Coffee Leaf Diseases in Uganda.'' The dataset is posted on
+The external dataset used in this experiment was ``A Machine Learning Dataset for
+Classification of Common Coffee Leaf Diseases in Uganda.'' The dataset was posted on
 Mendeley Data with DOI: 10.17632/k36wnd6knb.1 \cite{Chelangat2025}. According to the source page, the
-dataset contains a set of labeled images of coffee leaf diseases collected under various
-lighting conditions on farms in Uganda. These images are classified into three classes:
-healthy leaves, leaf rust, and Phoma disease \cite{Chelangat2025}. Images are stored as JPEG files of
-256x256 pixels, whereas the notebooks load the images at 224x224 pixels prior to the
+dataset contained a set of labeled images of coffee leaf diseases collected under various
+lighting conditions on farms in Uganda. These images were classified into three classes:
+healthy leaves, leaf rust, and Phoma disease \cite{Chelangat2025}. Images were stored as JPEG files of
+256x256 pixels, whereas the experiment loaded the images at 224x224 pixels prior to the
 training \cite{Chelangat2025}.
 
-An important point about reproducibility of this dataset should be noted. According to
-the description, the Mendeley source provides 3,312 images, but the notebook discovered
-a slightly different number of local files before cleanup. The notebook then cleaned
-corrupted files and used 2,252 training images, 483 validation images, and 485 test
-images for the model training in total of 3,220 images. In this report, the external
-source is used for documenting the dataset origin, and model results are obtained with
-the exact numbers provided by the uploaded notebooks.
+An important point about reproducibility of this dataset was noted. According to
+the description, the Mendeley source provided 3,312 images, but the local dataset contained
+a slightly different number of files before cleanup. Corrupted files were then cleaned,
+and 2,252 training images, 483 validation images, and 485 test images were used
+for the model training in total of 3,220 images. In this report, the external
+source was used for documenting the dataset origin, and model results were obtained with
+the exact numbers provided by the experimental outputs.
 
 \begin{table}[ht]
 \centering
 \small
 \renewcommand{\arraystretch}{1.15}
-\caption{Count of usable images printed by the transfer-learning notebook after image cleansing.}
+\caption{Count of usable images after image cleansing.}
 \begin{tabular}{|l|r|r|r|r|}
 \hline
 Class & Training images & Validation images & Test images & Total usable images \\
@@ -71,10 +71,8 @@ Total & 2,252 & 483 & 485 & 3,220 \\
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{images/Count of usable images printed by the transfer-learning notebook after image cleansing.png}
-\caption{Count of images per class and split after image cleansing, as generated by the notebook.}
+\caption{Count of images per class and split after image cleansing.}
 \end{figure}
-
-
 
 \section{Preprocessing and Experimental Setup}
 
@@ -87,32 +85,32 @@ and test data were not augmented; they were only rescaled.
 Models were compiled with categorical cross-entropy as a loss function and Adam optimizer
 with the initial learning rate of 0.001. The early stopping strategy, reduce learning
 rate on plateau, and save best model were used during model training. As documented by
-Keras, EarlyStopping is a callback that stops model training when no improvement in the
-monitored quantity was observed. Similarly, ReduceLROnPlateau is a callback that
-decreases learning rate upon a lack of improvement during training \cite{KerasEarlyStopping,KerasReduceLROnPlateau}. Finally,
-the classification reports are generated with scikit-learn using its classification\_report
+Keras, EarlyStopping was a callback that stopped model training when no improvement in the
+monitored quantity was observed. Similarly, ReduceLROnPlateau was a callback that
+decreased learning rate upon a lack of improvement during training \cite{KerasEarlyStopping,KerasReduceLROnPlateau}. Finally,
+the classification reports were generated with scikit-learn using its classification\_report
 function \cite{ScikitClassificationReport}.
 
-One methodology error needs to be fixed in the future run. According to the MobileNetV2
-documentation in Keras, rescaling to [0..1] interval is not recommended. The
-documentation recommends using the MobileNetV2 preprocessing function to rescale inputs
+A methodology limitation was related to the MobileNetV2 preprocessing pipeline. According
+to the MobileNetV2 documentation in Keras, rescaling to [0..1] interval was not recommended. The
+documentation recommended using the MobileNetV2 preprocessing function to rescale inputs
 to [-1..1] interval. Even though the model achieved very good results, its preprocessing
-pipeline needs to be updated for a clean transfer-learning experiment.
+pipeline was not fully aligned with the recommended transfer-learning preprocessing method.
 
 \section{Model 1: MobileNetV2 Transfer Learning}
 
 Model 1 applied MobileNetV2 for feature extraction with transfer learning. Specifically,
 MobileNetV2 was proposed as an efficient mobile network with inverted residuals and
-linear bottlenecks \cite{Sandler2018}. Similarly, the Keras application guide mentions that MobileNetV2
-applies inverted residual blocks with bottlenecks and supports ImageNet pre-trained
+linear bottlenecks \cite{Sandler2018}. Similarly, the Keras application guide mentioned that MobileNetV2
+applied inverted residual blocks with bottlenecks and supported ImageNet pre-trained
 weights \cite{KerasMobileNet}.
 
-The notebook uploads the MobileNetV2 base with ImageNet weights, removes the original top
-classifier, and freezes the base. The new classification head contains global average
+The MobileNetV2 base was loaded with ImageNet weights, the original top
+classifier was removed, and the base was frozen. The new classification head contained global average
 pooling, a 0.3 rate dropout, and a dense softmax classifier with three output classes.
-Thus, the workflow matches the typical transfer learning pipeline as follows: load
-pre-trained base model, freeze base model, create and stack the new model on top, and
-then train the classifier on the target data \cite{KerasTransferLearning}.
+Thus, the workflow matched the typical transfer learning pipeline as follows: loading
+pre-trained base model, freezing the base model, creating and stacking the new model on top, and
+then training the classifier on the target data \cite{KerasTransferLearning}.
 
 \begin{table}[ht]
 \centering
@@ -136,12 +134,10 @@ Number of epochs with frozen base model & 20 epochs \\
 \end{tabularx}
 \end{table}
 
-Additionally, the notebook provides an optional fine-tuning stage where the top layers of
-MobileNetV2 are unfrozen and trained with a reduced learning rate. However, the results
-comparison table only includes the primary MobileNetV2 model evaluation score of 94.43\%
-test accuracy. Since the notebook does not include a separate final test evaluation
-result after the fine-tuning block, the following analysis does not treat the fine-tuned
-model as a separate third evaluation result.
+Additionally, an optional fine-tuning stage was included where the top layers of
+MobileNetV2 were unfrozen and trained with a reduced learning rate. The results
+comparison included the primary MobileNetV2 model evaluation score of 94.43\%
+test accuracy.
 
 \begin{figure}[ht]
 \centering
@@ -151,13 +147,13 @@ model as a separate third evaluation result.
 
 \section{Model 2: Simple CNN}
 
-Model 2 is a custom convolutional neural network trained from scratch. In contrast to
-Model 1, Model 2 does not use pre-trained ImageNet weights. The architecture consists of
+Model 2 was a custom convolutional neural network trained from scratch. In contrast to
+Model 1, Model 2 did not use pre-trained ImageNet weights. The architecture consisted of
 several convolutional blocks with Conv2D layers, batch normalization, max pooling, and
-dropout. The last classifier contains dense layers with three class softmax outputs.
-Therefore, this design enables Model 2 to extract features from the coffee leaf images
-directly. Still, the training time will be more extended compared to MobileNetV2 since
-all trainable filters need to be learned from scratch using the project dataset.
+dropout. The last classifier contained dense layers with three class softmax outputs.
+Therefore, this design enabled Model 2 to extract features from the coffee leaf images
+directly. Still, the training time was longer compared to MobileNetV2 since
+all trainable filters needed to be learned from scratch using the project dataset.
 
 \begin{table}[ht]
 \centering
@@ -180,10 +176,10 @@ Total training time & 4,919.10 seconds / 81.99 minutes \\
 \end{tabularx}
 \end{table}
 
-The training curves demonstrate gradual improvement and slightly unstable validation loss
-in the initial training epochs. It is natural for a CNN model trained from scratch due to
-randomly initialized network weights. Once the network learns useful visual filters from
-the input images, validation accuracy increases, and the model restores the best
+The training curves demonstrated gradual improvement and slightly unstable validation loss
+in the initial training epochs. This was expected for a CNN model trained from scratch due to
+randomly initialized network weights. Once the network learned useful visual filters from
+the input images, validation accuracy increased, and the model restored the best
 performance weights according to the callback settings.
 
 \begin{figure}[ht]
@@ -194,7 +190,7 @@ performance weights according to the callback settings.
 
 \section{Results}
 
-The same hold-out test set of 485 images was used for both models. This is an important
+The same hold-out test set of 485 images was used for both models. This was an important
 criterion for comparability since both models' performance was measured against the same
 image distribution and class labels. The Simple CNN model yielded the highest overall
 test accuracy and lowest test loss value in this run.
@@ -203,7 +199,7 @@ test accuracy and lowest test loss value in this run.
 \centering
 \small
 \renewcommand{\arraystretch}{1.15}
-\caption{General comparison between both models based on the uploaded notebook outputs.}
+\caption{General comparison between both models based on the experimental outputs.}
 \begin{tabularx}{\textwidth}{|p{25mm}|X|X|X|}
 \hline
 Metric & MobileNetV2 transfer learning & Simple CNN & Best result \\
@@ -214,7 +210,7 @@ Total parameters & 2,261,827 & 1,442,851 & Simple CNN smaller total model \\
 Trainable parameters in main run & 3,843 & 1,442,851 & MobileNetV2 fewer trainable parameters \\
 Training time & ~969 seconds / 16.15 minutes & 4,919.10 seconds / 81.99 minutes & MobileNetV2 faster training \\
 Model size in notebook summary & 8.63 MB & 5.50 MB & Simple CNN smaller file/model summary \\
-Training strategy & Transfer learning & From scratch & Depends on objective \\
+Training strategy & Transfer learning & From scratch & Depending on objective \\
 \hline
 \end{tabularx}
 \end{table}
@@ -224,7 +220,7 @@ Training strategy & Transfer learning & From scratch & Depends on objective \\
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.15}
-\caption{Precision, recall, and F1-score per class in the notebooks' classification reports.}
+\caption{Precision, recall, and F1-score per class in the classification reports.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|r|r|r|r|r|r|}
 \hline
@@ -255,20 +251,20 @@ Weighted average & 0.95 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
 \section{Model Comparison and Discussion}
 
 The Simple CNN yielded the highest numerical score in this run, achieving a test accuracy
-of 95.88\%, compared to 94.43\% by MobileNetV2. The gap between the two is 1.45
+of 95.88\%, compared to 94.43\% by MobileNetV2. The gap between the two was 1.45
 percentage points. Furthermore, the Simple CNN model also improved the recall value of
-the Phoma label from 0.87 to 0.92. This is an improvement of 0.05, which indicates that
-Simple CNN identified less false-negative Phoma instances than MobileNetV2. This is
-relevant since disease identification should aim to minimize false negatives.
+the Phoma label from 0.87 to 0.92. This was an improvement of 0.05, which indicated that
+Simple CNN identified fewer false-negative Phoma instances than MobileNetV2. This was
+relevant since disease identification aimed to minimize false negatives.
 
-However, one cannot conclude that Simple CNN is automatically the superior model. The
+However, Simple CNN was not automatically the superior model. The
 Simple CNN required approximately 82 minutes for training, compared to around 16 minutes
-for MobileNetV2. This is because only 3,843 parameters were trainable in the main run of
-MobileNetV2, compared to 1.44 million for the Simple CNN model. Training time is an
-important criterion when quick model testing is crucial, thus making MobileNetV2 more
+for MobileNetV2. This was because only 3,843 parameters were trainable in the main run of
+MobileNetV2, compared to 1.44 million for the Simple CNN model. Training time was an
+important criterion when quick model testing was crucial, thus making MobileNetV2 more
 efficient.
 
-The confusion matrix results revealed that both models can effectively classify healthy
+The confusion matrix results revealed that both models could effectively classify healthy
 leaves, as seen by their high values in the True Positive and True Negative cells.
 However, MobileNetV2 could identify all healthy test samples but classified 18 images
 labeled as Phoma into the leaf rust category. In contrast, the Simple CNN made mistakes
@@ -276,40 +272,39 @@ when identifying healthy samples but minimized Phoma-to-rust confusion by classi
 Phoma samples as leaf rust instead. Thus, Simple CNN seemed to better distinguish the two
 classes in this run.
 
-Finally, one must take care in interpreting the result since the dataset source mentioned
+Finally, care was needed in interpreting the result since the dataset source mentioned
 that augmentation techniques were utilized to improve sample diversity \cite{Chelangat2025}. Augmented
 versions of the same leaves might have been included in each split, leading to an
-overestimated measurement of accuracy. While the notebooks generated random train,
-validation, and test folders, there was no evidence that the data were split in a manner
-that ensures each sample group contains similar augmented variants.
+overestimated measurement of accuracy. While random training, validation, and test folders
+were generated, there was no evidence that the data were split in a manner
+that ensured each sample group contained similar augmented variants.
 
 \section{Limitations and Improvements}
 
-The requirement for the assignment is fulfilled since both models are trained and tested
-on the same dataset with coffee leaves. There are some suggestions that can be done to
-improve the scientific nature of the report:
+The requirement for the assignment was fulfilled since both models were trained and tested
+on the same dataset with coffee leaves. Some limitations affected the scientific nature of
+the report:
 
 \begin{enumerate}
-\item Apply the official MobileNetV2 preprocessing pipeline by replacing the current
-rescale = 1/255 with the preprocess\_input() function, then retrain and retest the model.
+\item The official MobileNetV2 preprocessing pipeline was not applied, since the current
+rescale = 1/255 was used instead of the preprocess\_input() function.
 
-\item Evaluate the fine-tuned MobileNetV2 model separately on the test set. Although the
-notebook demonstrates how to train the fine-tuning block of the MobileNetV2 model, there
-is no evaluation of its results.
+\item The fine-tuned MobileNetV2 model was not evaluated separately on the test set. Although the
+fine-tuning block of the MobileNetV2 model was included, there was no evaluation of its results.
 
-\item Run the code using several random seeds and report the average accuracy and average
-F1-score.
+\item The code was not run using several random seeds, so the average accuracy and average
+F1-score were not reported.
 
-\item Ensure that there is no data leakage when splitting the datasets into training,
-validation, and test sets. Augmented images or duplicates should not appear in other sets
+\item Possible data leakage was not fully excluded when splitting the datasets into training,
+validation, and test sets. Augmented images or duplicates could have appeared in other sets
 besides the test one.
 
-\item Evaluate the models on an additional dataset or use images that were collected
+\item The models were not evaluated on an additional dataset or with images collected
 during the project.
 
-\item Estimate the inference time per image and memory consumption on the targeted device.
-Training time alone cannot be the determinant for selecting a particular model.
+\item The inference time per image and memory consumption on the targeted device were not estimated.
+Training time alone could not be the determinant for selecting a particular model.
 
-\item Add an explanation technique such as Grad-CAM to ensure that the models learn
+\item An explanation technique such as Grad-CAM was not added to confirm that the models learned
 features from disease regions rather than background artifacts.
 \end{enumerate}
