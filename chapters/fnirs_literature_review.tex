@@ -1,226 +1,271 @@
-\section{Literature Review}
+\section{Abstract}
 
-This literature analysis concerns functional near-infrared spectroscopy (fNIRS) and machine learning as a medium for predicting neurocognitive and health-related issues. This is achieved by training models on fNIRS data collected from a population sample and by using different machine-learning techniques. The aim is to detect patterns that can be labeled as belonging to certain classes of participants or patients. The development of such models is meant to support clinical tools, provided that the data, labels, and clinical interpretation are properly justified.
+This report compares two image classification models trained on the same coffee leaf
+disease dataset. The objective is to classify images of coffee leaves into three
+classes: healthy leaves, coffee leaf rust, and Phoma disease. The models evaluated are
+MobileNetV2 transfer learning and a custom Simple CNN. Both models use the same
+training, validation, and testing folders, batch size, and input image size
+(224 \(\times\) 224).
 
-Different scientific articles have been analyzed. They cover fNIRS technology, machine-learning classification, deep-learning methods, an fMRI autism study, and MRI segmentation.
+The Simple CNN reached higher test accuracy (95.88\%) than MobileNetV2 (94.43\%).
+However, MobileNetV2 was substantially faster to train in the main frozen-base run
+(about 16 minutes), while the Simple CNN required about 82 minutes.
 
-\textbf{Keywords:} functional near-infrared spectroscopy; fNIRS; machine learning; deep learning; mental health; neurodevelopmental conditions; cognitive workload; screening; biomarker validation.
+\section{Introduction}
 
-\subsection{Scope of This Literature Analysis}
+Coffee leaf diseases can reduce crop productivity and quality. Computer-vision models
+can support automatic disease detection by learning from labeled images of diseased and
+healthy leaves. In this project, the goal is not only to train accurate classifiers,
+but also to compare two different approaches and analyze practical trade-offs.
 
-This literature analysis considers functional near-infrared spectroscopy and machine-learning algorithms as tools for conducting objective assessments of neurocognitive patterns that may be relevant to mental-health and neurodevelopmental screening. Up to this point, the scientific literature does not justify the stronger claim that fNIRS can diagnose psychiatric disorders. Instead, it supports a more careful hypothesis: fNIRS can track hemodynamic responses during a task, and machine-learning models can learn to differentiate between two or more task states or estimate their characteristics.
+The first model uses transfer learning with MobileNetV2, where only a lightweight
+classification head is trained and the pre-trained feature extractor remains frozen.
+The second model is a custom CNN trained from scratch, where all convolution filters are
+learned directly from the project data. This comparison is relevant because the best
+accuracy is not always the best deployment choice.
 
-Several references cover direct topics related to fNIRS classification and deep learning \cite{Wickramaratne2021,Khan2024,Eastmond2022,Ma2021,Sharmin2026}. Another group of papers relates to neuroimaging classification and automated analysis in adjacent domains, such as functional magnetic resonance imaging and low-field magnetic resonance imaging \cite{Eslami2020,Peiris2024}. Finally, one paper focuses on the role of fNIRS within visual analytics for augmented reality-guided human behavior \cite{Castelo2024}. These papers should not be analyzed as if they all provide the same type of evidence. Some support methodological choices, while others support broader arguments about objective neuroimaging assessment.
+\section{Dataset Description}
 
-\section{Methodological Evidence From fNIRS Studies}
+The dataset used in the notebooks is ``A Machine Learning Dataset for Classification of
+Common Coffee Leaf Diseases in Uganda'' published on Mendeley Data with
+DOI: 10.17632/k36wnd6knb.1 \cite{Chelangat2025}. The source describes labeled coffee
+leaf images collected under varied farm lighting conditions in Uganda, with three
+classes: healthy leaves, leaf rust, and Phoma disease \cite{Chelangat2025}.
 
-\subsection{GASF-Based Task-State Classification}
+The source indicates 3,312 images, while the notebook workflow detected a slightly
+different local file count before cleanup. After corrupted-image cleansing, the run used
+2,252 training images, 483 validation images, and 485 test images, totaling
+3,220 usable images.
 
-Provides an example of how fNIRS time-series data can be represented as images and classified using convolutional neural networks \cite{Wickramaratne2021}. By using the Gramian Angular Summation Field representation instead of manually selecting temporal or spectral features, the model learns relevant structures from a transformed signal representation. This could be useful if feature-based models are compared with representation-learning approaches in future work.
-
-This paper helps justify the use of image representations or CNNs as one possible modeling direction. However, it should be described as task classification, not disease diagnosis.
-
-\begin{equation}
-\text{Gramian Angular Summation Field representation:}
-\end{equation}
-
-\begin{align}
-\tilde{x}_i &= \frac{x_i - \min(X)}{\max(X) - \min(X)} \\
-\varphi_i &= \arccos(\tilde{x}_i) \\
-\text{GASF}_{ij} &= \cos(\varphi_i + \varphi_j) \\
-\text{GASF}_{ij} &= \tilde{x}_i\tilde{x}_j - \sqrt{1 - \tilde{x}_i^2}\sqrt{1 - \tilde{x}_j^2}
-\end{align}
-
-\textit{Note: These equations explain how the fNIRS time-series signal is transformed into an image representation before being classified by the CNN model.}
-
-\begin{figure}[h]
+\begin{table}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{images/The proposed convolutional networks.png}
-\caption{Proposed convolutional neural network used for fNIRS task classification [1].}
-\label{fig:wickramaratne_fig3}
+\caption{Count of usable images after image cleansing.}
+\label{tab:image-counts}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+Class & Training images & Validation images & Test images & Total usable images \\
+\hline
+Healthy leaves & 754 & 163 & 162 & 1,079 \\
+Leaf rust & 721 & 154 & 156 & 1,031 \\
+Phoma & 777 & 166 & 167 & 1,110 \\
+\hline
+Total & 2,252 & 483 & 485 & 3,220 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{images/Count of usable images printed by the transfer-learning notebook after image cleansing.png}
+\caption{Count of images per class and split after image cleansing, as generated by the notebook.}
+\label{fig:dataset-count-plot}
 \end{figure}
 
-\begin{figure}[h]
+\section{Preprocessing and Experimental Setup}
+
+Both models were trained with the same data split configuration. Images were loaded from
+folders, resized to 224 \(\times\) 224, batched with batch size 32, and encoded as
+categorical labels. The training set used augmentation (random rotation, width shift,
+height shift, horizontal flip, and zoom). Validation and test sets were rescaled only.
+
+Both models were compiled with categorical cross-entropy loss and Adam optimizer with an
+initial learning rate of 0.001. Training used EarlyStopping, ReduceLROnPlateau, and
+ModelCheckpoint callbacks. These callbacks are documented in Keras as strategies for
+automatic early termination and learning-rate reduction under plateau behavior
+\cite{KerasEarlyStopping,KerasReduceLROnPlateau}. Classification reports were generated
+with scikit-learn classification\_report \cite{ScikitClassificationReport}.
+
+One methodology issue should be corrected in a future run. Keras recommends MobileNetV2
+preprocessing through preprocess\_input (mapping to \([-1, 1]\)) rather than plain
+rescaling to \([0, 1]\) \cite{KerasMobileNet}. The achieved score is still high, but
+this preprocessing mismatch should be fixed for a cleaner transfer-learning experiment.
+
+\section{Model 1: MobileNetV2 Transfer Learning}
+
+Model 1 uses MobileNetV2 as a frozen feature extractor with a custom classifier head.
+MobileNetV2 is based on inverted residuals and linear bottlenecks \cite{Sandler2018},
+and Keras supports ImageNet pre-trained variants for transfer learning
+\cite{KerasMobileNet,KerasTransferLearning}.
+
+The notebook loads MobileNetV2 with include\_top=False and ImageNet weights, freezes the
+base model, and adds global average pooling, dropout (0.3), and a 3-class softmax
+classifier.
+
+\begin{table}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{images/The Comparison for Receiver Operater Characteristic for the three.png}
-\caption{Receiver operating characteristic comparison for the three classes using test data from subject 16 [1].}
-\label{fig:wickramaratne_fig4}
+\caption{Summary of the MobileNetV2 transfer learning model.}
+\label{tab:mobilenet-summary}
+\begin{tabularx}{\textwidth}{|p{65mm}|X|}
+\hline
+Component & Description \\
+\hline
+Base model & MobileNetV2; include\_top=False; ImageNet weights \\
+Training status of the base model & Frozen during the main training run \\
+Pooling layer & GlobalAveragePooling2D \\
+Dropout & 0.3 \\
+Classifier output layer & Dense layer with 3 softmax outputs \\
+Total parameters & 2,261,827 \\
+Trainable parameters & 3,843 \\
+Non-trainable parameters & 2,257,984 \\
+Number of epochs with frozen base model & 20 epochs \\
+\hline
+\end{tabularx}
+\end{table}
+
+The notebook also includes an optional fine-tuning stage where upper MobileNetV2 layers
+are unfrozen and retrained with a lower learning rate. Since no separate final test
+evaluation for that block is reported in the provided output summary, this report treats
+MobileNetV2 frozen-base results as the primary transfer-learning result.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png}
+\caption{Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.}
+\label{fig:mobilenet-curves}
 \end{figure}
 
-\subsection{CNN + LSTM Neural Network Model for fNIRS Workload Classification}
+\section{Model 2: Simple CNN}
 
- The proposed deep-learning architecture is consistent with the characteristics of fNIRS data. The signal is multidimensional because it varies across multiple channels and changes over time. Therefore, a CNN model can identify spatial dependencies between channel values, while an LSTM can account for temporal dependencies.
+Model 2 is a custom convolutional network trained from scratch without ImageNet
+pre-trained weights. The architecture includes Conv2D, BatchNormalization,
+MaxPooling2D, and Dropout blocks, followed by dense classification layers with a
+3-class softmax output.
 
-Workload classification is different from disease diagnosis. Classification means that the algorithm distinguishes between different experimental conditions, and those conditions may reflect task complexity, cognitive load, effort, arousal, time constraints, or other factors. However, this does not necessarily indicate disorder-specific physiology\cite{Khan2024}.
+Compared with transfer learning, this approach trains all model parameters on the project
+dataset, which increases training time but can improve adaptation to
+dataset-specific visual patterns.
 
-\begin{figure}[h]
+\begin{table}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png}
-\caption{Architecture proposal that integrates CNN and LSTM layers for fNIRS workload classification [5].}
-\label{fig:khan_fig1}
+\caption{Summary of the Simple CNN model.}
+\label{tab:simplecnn-summary}
+\begin{tabularx}{\textwidth}{|p{65mm}|X|}
+\hline
+Component & Description \\
+\hline
+Architecture type & Custom CNN trained from scratch \\
+Input image size & 224 \(\times\) 224 \(\times\) 3 \\
+Layers & Conv2D, BatchNormalization, MaxPooling2D, Dropout \\
+Classifier output layer & Dense layer with 3 softmax outputs \\
+Total number of parameters & 1,442,851 \\
+Training status of all model parameters & All model weights trained from coffee leaf data \\
+Number of epochs completed & 22 epochs \\
+Total training time & 4,919.10 seconds / 81.99 minutes \\
+\hline
+\end{tabularx}
+\end{table}
+
+The training curves demonstrate gradual improvement and slightly unstable validation loss
+in the initial training epochs. It is natural for a CNN model trained from scratch due
+to randomly initialised network weights. Once the network learns useful visual filters
+from the input images, validation accuracy increases, and the model restores the best
+performance weights according to the callback settings.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{images/Training and validation accuracy and loss curves for Simple CNN model.png}
+\caption{Training and validation accuracy and loss curves for the Simple CNN model.}
+\label{fig:simplecnn-curves}
 \end{figure}
 
-\begin{equation}
-\text{Convolution operation and related functions:}
-\end{equation}
+\section{Results}
 
-\begin{align}
-Y[i] &= f\left(\sum_{j=1}^{k} X[i + j - 1] \cdot W[j] + b\right) \\
-Y[i] &= \max(0, X[i]) \quad \text{(ReLU activation)} \\
-Y[i] &= \max(X[i \cdot p : (i+1) \cdot p]) \quad \text{(Max-pooling operation)}
-\end{align}
+Both models were evaluated on the same hold-out test set of 485 images. This ensures
+fair comparison under identical class distribution and label conditions. The Simple CNN
+model yielded the highest overall test accuracy and lowest test loss value in this run.
 
-\begin{equation}
-\text{LSTM equations:}
-\end{equation}
-
-\begin{align}
-i_t &= \sigma(U_i * X_t + V_i * H_{t-1} + Z_i \circ C_{t-1} + b_i) \quad \text{(Input gate)} \\
-f_t &= \sigma(U_f * X_t + V_f * H_{t-1} + Z_f \circ C_{t-1} + b_f) \quad \text{(Forget gate)} \\
-o_t &= \sigma(U_o * X_t + V_o * H_{t-1} + Z_o \circ C_{t-1} + b_o) \quad \text{(Output gate)} \\
-\tilde{C}_t &= \tanh(U_c * X_t + V_c * H_{t-1} + b_c) \quad \text{(Candidate cell state)} \\
-C_t &= f_t \circ C_{t-1} + i_t \circ \tilde{C}_t \quad \text{(Cell state)} \\
-H_t &= o_t * \tanh(C_t) \quad \text{(Hidden state)}
-\end{align}
-
-\textit{Note: The CNN part extracts spatial/local features from fNIRS signals, while the LSTM part models temporal dependencies in the signal.}
-
-\subsection{Methodological Considerations for Deep Learning in fNIRS}
-
-Is important because it provides a rationale for including deep-learning models in a literature review of fNIRS \cite{Eastmond2022}. Additionally, this work provides valuable insights into methodological issues associated with using deep-learning models on fNIRS data. Such issues include sample size, noisy labels, motion artifacts, overfitting, and insufficient clinical inference. Complex models can perform well by discovering shortcuts rather than meaningful physiological patterns.
-
-This citation is important because it highlights the necessity of interpreting deep-learning performance carefully. It also supports comparing deep models with less sophisticated models and clearly describing the validation process.
-
-\begin{figure}[h]
+\begin{table}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{images/shows MLP, CNN, and LSTM architectures..jpg}
-\caption{Some common architectures of deep-learning models used in fNIRS research: MLP, CNN, and LSTM [6].}
-\label{fig:eastmond_fig1}
+\caption{General comparison between both models from notebook outputs.}
+\label{tab:overall-comparison}
+\small
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\hline
+Metric & MobileNetV2 transfer learning & Simple CNN & Best result \\
+\hline
+Test accuracy & 94.43\% & 95.88\% & Simple CNN \\
+Test loss & 0.1630 & 0.1158 & Simple CNN \\
+Total parameters & 2,261,827 & 1,442,851 & Simple CNN smaller total \\
+Trainable parameters in main run & 3,843 & 1,442,851 & MobileNetV2 fewer trainable params \\
+Training time & {\textasciitilde}969\,s / 16.15\,min & 4,919\,s / 81.99\,min & MobileNetV2 faster training \\
+Model size & 8.63\,MB & 5.50\,MB & Simple CNN smaller \\
+Training strategy & Transfer learning & From scratch & Depends on objective \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Per-class precision, recall, and F1-score from notebook classification reports.}
+\label{tab:class-report}
+\small
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+Class & MNet precision & MNet recall & MNet F1 & CNN precision & CNN recall & CNN F1 \\
+\hline
+Healthy leaves & 0.95 & 1.00 & 0.97 & 0.99 & 0.98 & 0.98 \\
+Leaf rust & 0.89 & 0.97 & 0.93 & 0.91 & 0.98 & 0.94 \\
+Phoma & 1.00 & 0.87 & 0.93 & 0.98 & 0.92 & 0.95 \\
+Macro average & 0.95 & 0.95 & 0.94 & 0.96 & 0.96 & 0.96 \\
+Weighted average & 0.95 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.65\textwidth]{images/Confusion matrix of MobileNetV2 on the test set.png}
+\caption{Confusion matrix of MobileNetV2 on the test set.}
+\label{fig:mobilenet-cm}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{images/extraction of samples for training neural networks..jpg}
-\caption{Process of extracting samples from fNIRS data for the training of neural networks [6].}
-\label{fig:eastmond_fig2}
+\includegraphics[width=0.65\textwidth]{images/Confusion matrix of Simple CNN on the test set.png}
+\caption{Confusion matrix of Simple CNN on the test set.}
+\label{fig:simplecnn-cm}
 \end{figure}
 
-\begin{equation}
-\text{Activation functions and loss functions:}
-\end{equation}
+\section{Model Comparison and Discussion}
 
-\begin{align}
-\sigma(x) &= \frac{1}{1 + e^{-x}} \quad \text{(Sigmoid activation)} \\
-\text{softmax}(z_i) &= \frac{e^{z_i}}{\sum_j e^{z_j}} \quad \text{(Softmax activation)} \\
-\text{ReLU}(x) &= \max(0, x) \quad \text{(ReLU activation)} \\
-L &= -\sum_i y_i \log(\hat{y}_i) \quad \text{(Cross-entropy loss)} \\
-\text{MSE} &= \frac{1}{n}\sum_i(y_i - \hat{y}_i)^2 \quad \text{(Mean squared error)}
-\end{align}
+The Simple CNN produced the highest overall test accuracy in this run: 95.88\% versus
+94.43\% for MobileNetV2, a difference of 1.45 percentage points. It also improved Phoma
+recall from 0.87 to 0.92, reducing false negatives for that class.
 
-\textit{Note: These equations explain basic neural-network functions and losses commonly used in deep-learning models for fNIRS classification.}
+At the same time, MobileNetV2 remained much faster to train. This follows directly from
+the number of trainable parameters in the main run: 3,843 for MobileNetV2 versus
+1,442,851 for the Simple CNN. Therefore, model selection depends on deployment
+requirements, including acceptable training time and retraining frequency.
 
-\subsection{Walking-Task Classification in Older Adults}
+Both models effectively classified healthy leaves, as reflected in their high true
+positive and true negative values for that class. However, MobileNetV2 classified all
+healthy test samples correctly while misclassifying 18 images labelled as Phoma into the
+leaf rust category. In contrast, the Simple CNN made some mistakes on healthy samples
+but reduced the Phoma-to-rust confusion, misclassifying only 12 Phoma samples as leaf
+rust. Thus, the Simple CNN better distinguished the two disease classes in this run.
 
-Classifies walking task states in older adults using fNIRS. This is a relevant population because older adults may experience functional or cognitive decline. In addition, dual-task walking can reflect higher cognitive and motor demands. This makes the study closer to a real health-assessment context than a purely artificial laboratory task \cite{Ma2021}.
+Interpretation also requires caution. The dataset source notes use of augmentation for
+sample diversity \cite{Chelangat2025}. If similar augmented variants appear across split
+boundaries, reported accuracy may be optimistic due to leakage. Related plant-disease
+literature also emphasizes robust evaluation design and domain constraints
+\cite{Dhaka2021,CABI2026,RevistaCultivar2024}.
 
-However, the labels are still experimental task states rather than direct clinical diagnoses. Therefore, this paper can support the idea that fNIRS is useful for functional assessment, but it should not be presented as proof that fNIRS can diagnose a disorder.
+\section{Limitations and Improvements}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/proposed framework for walking-task classification using fNIRS..png}
-\caption{Proposed architecture for walking task classification based on fNIRS data [7].}
-\label{fig:ma_fig1}
-\end{figure}
+The assignment goal is fulfilled because both models were trained and tested on the same
+coffee leaf dataset. To improve scientific rigor, the following steps are recommended:
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/fNIRS sensor pad and forehead voxel locations.png}
-\caption{Placement of fNIRS sensor pads and forehead voxels for data collection [7].}
-\label{fig:ma_fig2}
-\end{figure}
-
-\begin{equation}
-\text{fNIRS data representation for classification:}
-\end{equation}
-
-\begin{align}
-\text{OI} &= \text{HbO}_2 - \text{Hb} \quad \text{(Oxygenation index)} \\
-\text{Input}_i &= 3 \times N_i \times L_i \quad \text{(Input image tensor)} \\
-N_i &\leq 16 \quad \text{(Number of voxel locations)} \\
-L_i &= 2 \times T_i \quad \text{(Signal length representation)} \\
-\text{Input} &= 3 \times 224 \times 224 \quad \text{(Final resized image input)}
-\end{align}
-
-\textit{Note: These equations show how fNIRS data can be formulated as a 3-channel image input for deep-learning-based walking-task classification.}
-
-\subsection{Cognitive-Effort Modeling Framework}
-
-It focuses on cognitive effort rather than only task categories.Cognitive effort may provide a more careful bridge between fNIRS signals and mental-health-related assessment. A person may complete a task successfully but require a high amount of cognitive effort to do so. This difference may be relevant for understanding cognitive strain, fatigue, workload, or mental-health-related functioning \cite{Sharmin2026}.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png}
-\caption{Diagrams that visualize concepts of RNE and RNA [8].}
-\label{fig:sharmin_fig1}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/overview of the machine-learning pipeline.png}
-\caption{Machine-learning pipeline for calculating cognitive effort from fNIRS data [8].}
-\label{fig:sharmin_fig4}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/standardized cognitive load and standardized performance across four quiz sessions.png}
-\caption{Cognitive load and cognitive performance as standardized scores that represent cognitive effort levels [8].}
-\label{fig:sharmin_fig5}
-\end{figure}
-
-\begin{equation}
-\text{Cognitive effort framework and evaluation metrics:}
-\end{equation}
-
-\begin{align}
-z &= \frac{x - \mu}{\sigma} \quad \text{(Z-score standardization)} \\
-P_z(s, i) &= \frac{P(s, i) - \mu(P_i)}{\sigma(P_i)} \quad \text{(Participant-specific standardized performance)} \\
-M_z(s, i) &= \frac{M(s, i) - \mu(M_i)}{\sigma(M_i)} \quad \text{(Participant-specific standardized cognitive load)} \\
-\text{RNE} &= \frac{P_z - M_z}{\sqrt{2}} \quad \text{(Relative Neural Efficiency)} \\
-\text{RNI} &= \frac{P_z + M_z}{\sqrt{2}} \quad \text{(Relative Neural Involvement)} \\
-\text{MAE} &= \frac{1}{n}\sum_i |y_i - \hat{y}_i| \quad \text{(Mean absolute error)} \\
-r &= \frac{\sum_i(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_i(x_i - \bar{x})^2 \sum_i(y_i - \bar{y})^2}} \quad \text{(Pearson correlation)}
-\end{align}
-
-\textit{Note: These equations connect behavioral performance and fNIRS-derived physiological response into one interpretable cognitive-effort framework. MAE and Pearson correlation can be used to compare actual and predicted cognitive-effort values.}
-
-\subsection{Adjacent Neuroimaging Context}
-
-\subsubsection{fMRI-Based Autism Classification Context}
-
-Focuses on the application of machine-learning techniques to fMRI and autism spectrum disorder. This is useful because it touches on a broader motivation: behavioral assessment can be subjective, time-consuming, and difficult to scale, which motivates the search for objective neural biomarkers. However, this is not evidence that fNIRS can detect autism. fMRI and fNIRS differ in spatial coverage, cost, equipment mobility, signal characteristics, and experimental design. A result found using fMRI cannot be directly generalized to fNIRS without further studies \cite{Eslami2020}.
-
-\subsubsection{Ecological and Multimodal Assessment Context}
-
-Uses fNIRS in the field of human behavior assessment through visual analytics and augmented reality assistance. It does not focus on clinical problems; nevertheless, it is useful because it shows that fNIRS can be used outside purely laboratory-based studies. It supports the idea that fNIRS can contribute to ecological and multimodal assessment, especially when combined with other sensor streams such as gaze and motion data \cite{Castelo2024}.
-
-\subsubsection{Automated Neuroimaging Segmentation Context}
-
-Describes the use of deep learning for segmentation of bilateral hippocampi using low-field MRI. At first, this may not seem directly relevant to fNIRS. It does not contribute to fNIRS signal classification, hemodynamic task analysis, or mental-health prediction based on wearable optical measurements. Its relevance is indirect. The motivation behind low-field MRI and fNIRS is partly related to accessibility: researchers and clinicians need tools that are cheaper, easier, and faster than expensive MRI or PET scanners. However, accessibility alone is not enough; the method must measure the correct variable and be valid for its intended purpose \cite{Peiris2024}.
-
-This reference should be kept only if the literature review includes a short comparison with adjacent neuroimaging methods. Otherwise, it can be removed to keep the review more focused.
-
-\section{Cross-Study Interpretation}
-
-Overall, the reviewed sources support the methodological feasibility of studying task states using fNIRS more strongly than they support diagnostic applications for mental-health assessment. Specifically, the literature supports the possibility of classifying task states, workloads, walking conditions, and cognitive-effort patterns from fNIRS data under controlled experimental conditions \cite{Wickramaratne2021,Khan2024,Eastmond2022,Ma2021,Sharmin2026}.
-
-There has been significant progress in classifying fNIRS signals. However, more work is needed before such methods can be used for clinical screening. This requires suitable datasets, clinically meaningful labels, participant-wise validation, external testing, and careful interpretation of model outputs.
-
-\subsection{Methodological Implications}
-
-Traditional machine-learning models, such as logistic regression, support vector machines, random forests, and linear discriminant analysis, should remain baseline models for comparison. If a CNN, LSTM, or CNN+LSTM model performs better than simpler models, this improvement should be clearly compared against the baseline results. Otherwise, it is difficult to prove that the more complex model adds scientific or practical value.
-
-The data-splitting scheme is very important. Randomly splitting time windows without considering which participant they came from may lead to an overoptimistic result. In that case, the model may learn participant-specific physiology or artifacts instead of generalizable task-related patterns. Participant-wise splitting is strongly recommended, especially if the thesis aims to make claims about generalization. At minimum, the splitting method should be stated clearly and unambiguously.
-
-Model interpretability is also important. If the outcome variable is related to mental health, neurocognitive state, or a neuropsychiatric condition, the thesis should explain which channels, time windows, or features contributed to the prediction. Feature-importance measures, ablation studies, channel-importance analysis, or comparisons of HbO and HbR responses would increase the scientific value of the work.
-
+\begin{enumerate}
+\item Apply official MobileNetV2 preprocessing with preprocess\_input instead of
+rescale=1/255 and rerun training and testing \cite{KerasMobileNet}.
+\item Evaluate the fine-tuned MobileNetV2 block separately on the test set and report
+its final metrics \cite{KerasTransferLearning}.
+\item Repeat experiments across multiple random seeds and report average accuracy and
+average F1-score.
+\item Strengthen split design to prevent leakage across train, validation, and test
+sets.
+\item Validate model robustness on an additional external coffee-leaf dataset.
+\item Measure inference latency and memory consumption on the target device.
+\item Add explainability analysis, for example Grad-CAM, to verify that models focus on
+disease regions rather than background artifacts.
+\end{enumerate}

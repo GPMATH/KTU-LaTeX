@@ -1,7 +1,15 @@
-\section{Conclusions}
+\section{Conclusion}
 
-This literature analysis supports a careful claim: fNIRS and machine learning are currently stronger for task-state and cognitive-effort modeling than for direct clinical diagnosis.
+This report compared two image-classification approaches for coffee leaf disease
+recognition on the same dataset and evaluation split. The Simple CNN achieved the best
+test performance in this run, with 95.88\% accuracy, while MobileNetV2 reached 94.43\%.
 
-The reviewed studies demonstrate methodological feasibility, but clinical screening requires stronger evidence through better labels, participant-wise validation, external testing, and transparent interpretation.
+The results also show that model quality should be interpreted together with efficiency.
+MobileNetV2 trained much faster in the frozen-base setting, which is important for rapid
+iterations and practical deployment constraints.
 
-Future thesis work should prioritize robust baselines, explicit validation strategy, and interpretability analysis so that any reported performance is scientifically and clinically meaningful.
+The main takeaway is not that one model is universally superior, but that each approach
+offers different advantages. Simple CNN provided stronger test metrics in this run,
+whereas MobileNetV2 provided better training efficiency. For final submission quality,
+future experiments should correct MobileNetV2 preprocessing, evaluate the fine-tuned
+stage explicitly, and strengthen data-splitting controls against leakage.

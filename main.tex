@@ -1,8 +1,10 @@
 \documentclass[12pt]{article}
 
 \usepackage{ktu_thesis_style}
+\renewcommand{\sectionbreak}{} % allow sections to flow without forced page breaks
 
 \begin{document}
+\raggedbottom
 \input{variables.tex}
 
 \input{TitlePage}
@@ -18,12 +20,11 @@
 \addcontentsline{toc}{section}{\listfigurename} % Adds "List of Figures" to the table of contents
 
 \clearpage
-\input{chapters/fnirs_literature_review.tex}
-
-
-
+\listoftables
+\addcontentsline{toc}{section}{\listtablename} % Adds "List of Tables" to the table of contents
 
 \clearpage
+\input{chapters/fnirs_literature_review.tex}
 \input{chapters/conclusions.tex}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  12 MAY 2026 03:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.4)  13 MAY 2026 23:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -748,7 +748,7 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 5.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 6.
  (C:\Users\gpintochica\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (C:\Users\gpintochica\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
@@ -757,24 +757,24 @@ File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
  (C:\Users\gpintochica\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count367
@@ -828,7 +828,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 5.
+Package hyperref Info: Link coloring OFF on input line 6.
 (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -843,7 +843,7 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 (variables.tex) (TitlePage.tex
-<images/ktu-ikona.pdf, id=74, 143.53625pt x 163.61125pt>
+<images/ktu-ikona.pdf, id=57, 143.53625pt x 163.61125pt>
 File: images/ktu-ikona.pdf Graphic file (type pdf)
 <use images/ktu-ikona.pdf>
 Package pdftex.def Info: images/ktu-ikona.pdf  used on input line 9.
@@ -881,114 +881,93 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [2] (main.lof
-Overfull \hbox (0.68161pt too wide) in paragraph at lines 7--7
- [][] [][]\T1/ptm/m/n/12 Some com-mon ar-chi-tec-tures of deep-learning mod-els used in fNIRS re-search: MLP, 
- []
-
-)
+ [2] (main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
  [3
 
-] (chapters/fnirs_literature_review.tex [4
+] (main.lot)
+\tf@lot=\write7
+\openout7 = `main.lot'.
 
+ [4
 
-]
-<images/The proposed convolutional networks.png, id=154, 826.287pt x 246.9225pt>
-File: images/The proposed convolutional networks.png Graphic file (type png)
-<use images/The proposed convolutional networks.png>
-Package pdftex.def Info: images/The proposed convolutional networks.png  used on input line 38.
-(pdftex.def)             Requested size: 386.95897pt x 115.63536pt.
-<images/The Comparison for Receiver Operater Characteristic for the three.png, id=156, 558.888pt x 353.52075pt>
-File: images/The Comparison for Receiver Operater Characteristic for the three.png Graphic file (type png)
-<use images/The Comparison for Receiver Operater Characteristic for the three.png>
-Package pdftex.def Info: images/The Comparison for Receiver Operater Characteristic for the three.png  used on input line 45.
-(pdftex.def)             Requested size: 386.95897pt x 244.77109pt.
+] (chapters/fnirs_literature_review.tex
+<images/Count of usable images printed by the transfer-learning notebook after image cleansing.png, id=115, 570.933pt x 281.853pt>
+File: images/Count of usable images printed by the transfer-learning notebook after image cleansing.png Graphic file (type png)
+<use images/Count of usable images printed by the transfer-learning notebook after image cleansing.png>
+Package pdftex.def Info: images/Count of usable images printed by the transfer-learning notebook after image cleansing.png  used on input line 59.
+(pdftex.def)             Requested size: 459.51054pt x 226.85463pt.
+ [5
 
+] [6 <./images/Count of usable images printed by the transfer-learning notebook after image cleansing.png>]
+<images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png, id=143, 859.2903pt x 281.853pt>
+File: images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png Graphic file (type png)
+<use images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png>
+Package pdftex.def Info: images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png  used on input line 122.
+(pdftex.def)             Requested size: 459.51054pt x 150.7232pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5
-
- <./images/The proposed convolutional networks.png>]
-<images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png, id=173, 874.467pt x 358.941pt>
-File: images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png Graphic file (type png)
-<use images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png>
-Package pdftex.def Info: images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png  used on input line 58.
-(pdftex.def)             Requested size: 386.95897pt x 158.83823pt.
- [6 <./images/The Comparison for Receiver Operater Characteristic for the three.png> <./images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png>]
-<images/shows MLP, CNN, and LSTM architectures..jpg, id=182, 190.0701pt x 217.7736pt>
-File: images/shows MLP, CNN, and LSTM architectures..jpg Graphic file (type jpg)
-<use images/shows MLP, CNN, and LSTM architectures..jpg>
-Package pdftex.def Info: images/shows MLP, CNN, and LSTM architectures..jpg  used on input line 96.
-(pdftex.def)             Requested size: 386.95897pt x 443.37498pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/extraction of samples for training neural networks..jpg, id=183, 189.5883pt x 103.3461pt>
-File: images/extraction of samples for training neural networks..jpg Graphic file (type jpg)
-<use images/extraction of samples for training neural networks..jpg>
-Package pdftex.def Info: images/extraction of samples for training neural networks..jpg  used on input line 103.
-(pdftex.def)             Requested size: 386.95897pt x 210.962pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7] [8 <./images/shows MLP, CNN, and LSTM architectures..jpg>]
-<images/proposed framework for walking-task classification using fNIRS..png, id=212, 873.2625pt x 323.40825pt>
-File: images/proposed framework for walking-task classification using fNIRS..png Graphic file (type png)
-<use images/proposed framework for walking-task classification using fNIRS..png>
-Package pdftex.def Info: images/proposed framework for walking-task classification using fNIRS..png  used on input line 130.
-(pdftex.def)             Requested size: 386.95897pt x 143.30676pt.
-<images/fNIRS sensor pad and forehead voxel locations.png, id=213, 510.10574pt x 371.58826pt>
-File: images/fNIRS sensor pad and forehead voxel locations.png Graphic file (type png)
-<use images/fNIRS sensor pad and forehead voxel locations.png>
-Package pdftex.def Info: images/fNIRS sensor pad and forehead voxel locations.png  used on input line 137.
-(pdftex.def)             Requested size: 386.95897pt x 281.88269pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9 <./images/extraction of samples for training neural networks..jpg> <./images/proposed framework for walking-task classification using fNIRS..png>]
-<images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png, id=221, 486.618pt x 251.7405pt>
-File: images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png Graphic file (type png)
-<use images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png>
-Package pdftex.def Info: images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png  used on input line 162.
-(pdftex.def)             Requested size: 386.95897pt x 200.19034pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/overview of the machine-learning pipeline.png, id=222, 838.332pt x 380.622pt>
-File: images/overview of the machine-learning pipeline.png Graphic file (type png)
-<use images/overview of the machine-learning pipeline.png>
-Package pdftex.def Info: images/overview of the machine-learning pipeline.png  used on input line 169.
-(pdftex.def)             Requested size: 386.95897pt x 175.68643pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/standardized cognitive load and standardized performance across four quiz sessions.png, id=223, 901.56825pt x 407.72325pt>
-File: images/standardized cognitive load and standardized performance across four quiz sessions.png Graphic file (type png)
-<use images/standardized cognitive load and standardized performance across four quiz sessions.png>
-Package pdftex.def Info: images/standardized cognitive load and standardized performance across four quiz sessions.png  used on input line 176.
-(pdftex.def)             Requested size: 386.95897pt x 174.99406pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10 <./images/fNIRS sensor pad and forehead voxel locations.png>] [11 <./images/onceptual plots illustrating Relative Neural Efficiency and Relative Neural Involvement.png> <./images/overview of the machine-learning pipeline.png>] [12 <./images/standardized cognitive load and standardized performance across four quiz sessions.png>] [13]) [14
-
-] (chapters/conclusions.tex) [15
-
-
-] (main.bbl
-Underfull \hbox (badness 1558) in paragraph at lines 36--44
-[]\T1/ptm/m/n/12 Shayla Sharmin, Mo-ham-mad Fahim Abrar, Gael Lucero-Palacios, Aditya Raik-war, and
+Overfull \hbox (3.35448pt too wide) in paragraph at lines 129--133
+\T1/ptm/m/n/12 Model 2 is a cus-tom con-vo-lu-tional net-work trained from scratch with-out Im-a-geNet pre-trained weights.
  []
 
-) [16
+<images/Training and validation accuracy and loss curves for Simple CNN model.png, id=144, 859.2903pt x 281.853pt>
+File: images/Training and validation accuracy and loss curves for Simple CNN model.png Graphic file (type png)
+<use images/Training and validation accuracy and loss curves for Simple CNN model.png>
+Package pdftex.def Info: images/Training and validation accuracy and loss curves for Simple CNN model.png  used on input line 166.
+(pdftex.def)             Requested size: 459.51054pt x 150.7232pt.
+[7 <./images/Training and validation accuracy and loss curves for MobileNetV2 with frozen base model.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\T1/ptm/m/n/10.95 MobileNetV2 trans-fer
+ []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\T1/ptm/m/n/10.95 MobileNetV2 fewer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\T1/ptm/m/n/10.95 MobileNetV2 faster
+ []
+
+<images/Confusion matrix of MobileNetV2 on the test set.png, id=151, 409.7709pt x 354.123pt>
+File: images/Confusion matrix of MobileNetV2 on the test set.png Graphic file (type png)
+<use images/Confusion matrix of MobileNetV2 on the test set.png>
+Package pdftex.def Info: images/Confusion matrix of MobileNetV2 on the test set.png  used on input line 217.
+(pdftex.def)             Requested size: 314.40001pt x 271.71371pt.
+<images/Confusion matrix of Simple CNN on the test set.png, id=152, 409.7709pt x 354.123pt>
+File: images/Confusion matrix of Simple CNN on the test set.png Graphic file (type png)
+<use images/Confusion matrix of Simple CNN on the test set.png>
+Package pdftex.def Info: images/Confusion matrix of Simple CNN on the test set.png  used on input line 224.
+(pdftex.def)             Requested size: 314.40001pt x 271.71371pt.
+[8 <./images/Training and validation accuracy and loss curves for Simple CNN model.png>] [9 <./images/Confusion matrix of MobileNetV2 on the test set.png>] [10 <./images/Confusion matrix of Simple CNN on the test set.png>]) (chapters/conclusions.tex) [11] (main.bbl
+Underfull \hbox (badness 4120) in paragraph at lines 29--34
+[]\T1/ptm/m/n/12 scikit-learn.  clas-si-fi-ca-tion_report.  scikit-learn API doc-u-men-ta-tion, 2026.  URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--34
+[]$\T1/cmtt/m/n/12 https : / / scikit-[]learn . org / stable / modules / generated / sklearn . metrics .
+ []
+
+
+Underfull \hbox (badness 6188) in paragraph at lines 43--50
+[]\T1/ptm/m/n/12 Mark San-dler, An-drew Howard, Men-g-long Zhu, An-drey Zh-mogi-nov, and Liang-
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 43--50
+\T1/ptm/m/n/12 Chieh Chen.  Mo-bilenetv2: In-verted resid-u-als and lin-ear bot-tle-necks.  In \T1/ptm/m/it/12 Pro-ceed-
+ []
+
+
+Underfull \hbox (badness 2547) in paragraph at lines 43--50
+\T1/ptm/m/it/12 ings of the IEEE Con-fer-ence on Com-puter Vi-sion and Pat-tern Recog-ni-tion (CVPR)\T1/ptm/m/n/12 ,
+ []
+
+) [12
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -998,20 +977,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DF154786B71751A6BE5367F28BD437D2;3929.
+(rerunfilecheck)             Checksum: ACD4958AC7A36F1C8D5A73167C11473C;1861.
  ) 
 Here is how much of TeX's memory you used:
- 36467 strings out of 467691
- 840583 string characters out of 5412084
- 1404503 words of memory out of 5000000
- 64813 multiletter control sequences out of 15000+600000
- 670774 words of font info for 99 fonts, out of 8000000 for 9000
+ 36412 strings out of 467691
+ 838372 string characters out of 5412084
+ 1407504 words of memory out of 5000000
+ 64805 multiletter control sequences out of 15000+600000
+ 668980 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,118p,829b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\gpintochica\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 1631311 bytes).
+ 99i,12n,118p,826b,684s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\gpintochica\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/gpintochica/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (12 pages, 270444 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 87 named destinations out of 1000 (max. 500000)
- 204 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 300 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 147 words of extra memory for PDF output out of 10000 (max. 10000000)
 

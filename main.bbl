@@ -1,63 +1,79 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Wickramaratne and Mahmud(2021)]{Wickramaratne2021}
-S.~D. Wickramaratne and M.~S. Mahmud.
-\newblock A deep learning based ternary task classification system using
-  gramian angular summation field in fnirs neuroimaging data, 2021.
-\newblock URL \url{https://arxiv.org/abs/2101.05891}.
+\bibitem[Chelangat et~al.(2025)Chelangat, Anirwoth, Mayanja, and
+  Sserwadda]{Chelangat2025}
+S.~Chelangat, R.~Anirwoth, K.~N. Mayanja, and A.~Sserwadda.
+\newblock A machine learning dataset for classification of common coffee leaf
+  diseases in uganda.
+\newblock Mendeley Data, Version 1, 2025.
+\newblock URL \url{https://data.mendeley.com/datasets/k36wnd6knb/1}.
 
-\bibitem[Khan et~al.(2024)]{Khan2024}
-Mehshan~Ahmed Khan et~al.
-\newblock Enhancing cognitive workload classification using integrated lstm
-  layers and cnns for fnirs data analysis, 2024.
-\newblock URL \url{https://arxiv.org/abs/2407.15901}.
+\bibitem[{Keras}(2026{\natexlab{a}})]{KerasEarlyStopping}
+{Keras}.
+\newblock Earlystopping.
+\newblock Keras Callbacks API documentation, 2026{\natexlab{a}}.
+\newblock URL \url{https://keras.io/api/callbacks/early_stopping/}.
 
-\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
-Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
-\newblock Deep learning in fnirs: A review, 2022.
-\newblock URL \url{https://arxiv.org/abs/2201.13371}.
+\bibitem[{Keras}(2026{\natexlab{b}})]{KerasReduceLROnPlateau}
+{Keras}.
+\newblock Reducelronplateau.
+\newblock Keras Callbacks API documentation, 2026{\natexlab{b}}.
+\newblock URL \url{https://keras.io/api/callbacks/reduce_lr_on_plateau/}.
 
-\bibitem[Ma et~al.(2023)Ma, Izzetoglu, Holtzer, and Jiao]{Ma2021}
-Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
-\newblock Deep learning based walking tasks classification in older adults
-  using fnirs.
-\newblock \emph{IEEE Transactions on Neural Systems and Rehabilitation
-  Engineering}, 31:\penalty0 3437--3447, 2023.
-\newblock \doi{10.1109/TNSRE.2023.3306365}.
-\newblock URL \url{https://arxiv.org/abs/2102.03987}.
+\bibitem[{scikit-learn}(2026)]{ScikitClassificationReport}
+{scikit-learn}.
+\newblock classification\_report.
+\newblock scikit-learn API documentation, 2026.
+\newblock URL
+  \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html}.
 
-\bibitem[Sharmin et~al.(2026)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
-  Barmaki]{Sharmin2026}
-Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
-  Roghayeh~Leila Barmaki.
-\newblock Beyond cognitive load: Ai-based estimation of cognitive effort using
-  brain signals during digital tasks.
-\newblock \emph{Delaware Journal of Public Health}, 12\penalty0 (1):\penalty0
-  32--43, 2026.
-\newblock \doi{10.32481/djph.2026.03.08}.
-\newblock URL \url{https://arxiv.org/abs/2507.13952}.
+\bibitem[{Keras}(2026{\natexlab{c}})]{KerasMobileNet}
+{Keras}.
+\newblock Mobilenet, mobilenetv2, and mobilenetv3.
+\newblock Keras Applications documentation, 2026{\natexlab{c}}.
+\newblock URL \url{https://keras.io/2/api/applications/mobilenet/}.
 
-\bibitem[Eslami et~al.(2020)Eslami, Raiker, and Saeed]{Eslami2020}
-Taban Eslami, Joseph~S. Raiker, and Fahad Saeed.
-\newblock Explainable and scalable machine-learning algorithms for detection of
-  autism spectrum disorder using fmri data, 2020.
-\newblock URL \url{https://arxiv.org/abs/2003.01541}.
+\bibitem[Sandler et~al.(2018)Sandler, Howard, Zhu, Zhmoginov, and
+  Chen]{Sandler2018}
+Mark Sandler, Andrew Howard, Menglong Zhu, Andrey Zhmoginov, and Liang-Chieh
+  Chen.
+\newblock Mobilenetv2: Inverted residuals and linear bottlenecks.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, 2018.
+\newblock URL \url{https://openaccess.thecvf.com/content_cvpr_2018/papers/
+  Sandler_MobileNetV2_Inverted_Residuals_CVPR_2018_paper.pdf}.
 
-\bibitem[Peiris and Chen(2024)]{Peiris2024}
-Himashi Peiris and Zhaolin Chen.
-\newblock Bilateral hippocampi segmentation in low field mris using mutual
-  feature learning via dual-views, 2024.
-\newblock URL \url{https://arxiv.org/abs/2410.17502}.
+\bibitem[{Keras}(2026{\natexlab{d}})]{KerasTransferLearning}
+{Keras}.
+\newblock Transfer learning and fine-tuning.
+\newblock Keras Guides, 2026{\natexlab{d}}.
+\newblock URL \url{https://keras.io/guides/transfer_learning/}.
 
-\bibitem[Castelo et~al.(2024)]{Castelo2024}
-Sonia Castelo et~al.
-\newblock Hubar: A visual analytics tool to explore human behaviour based on
-  fnirs in ar guidance systems, 2024.
-\newblock URL \url{https://arxiv.org/abs/2407.12260}.
+\bibitem[Dhaka et~al.(2021)]{Dhaka2021}
+V.~S. Dhaka et~al.
+\newblock A survey of deep convolutional neural networks applied for prediction
+  of plant leaf diseases.
+\newblock \emph{Sensors}, 21\penalty0 (14):\penalty0 4749, 2021.
+\newblock \doi{10.3390/s21144749}.
+\newblock URL \url{https://www.mdpi.com/1424-8220/21/14/4749}.
+
+\bibitem[{CABI Digital Library}(2026)]{CABI2026}
+{CABI Digital Library}.
+\newblock Hemileia vastatrix (coffee leaf rust).
+\newblock CABI Compendium, 2026.
+\newblock URL
+  \url{https://www.cabidigitallibrary.org/doi/full/10.1079/cabicompendium.26865}.
+
+\bibitem[{Revista Cultivar}(2024)]{RevistaCultivar2024}
+{Revista Cultivar}.
+\newblock Phoma spot or ascochyta spot of coffee.
+\newblock Article, 2024.
+\newblock URL
+  \url{https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee}.
 
 \end{thebibliography}
