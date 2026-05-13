@@ -1,79 +1,8 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{0}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Chelangat et~al.(2025)Chelangat, Anirwoth, Mayanja, and
-  Sserwadda]{Chelangat2025}
-S.~Chelangat, R.~Anirwoth, K.~N. Mayanja, and A.~Sserwadda.
-\newblock A machine learning dataset for classification of common coffee leaf
-  diseases in uganda.
-\newblock Mendeley Data, Version 1, 2025.
-\newblock URL \url{https://data.mendeley.com/datasets/k36wnd6knb/1}.
-
-\bibitem[{Keras}(2026{\natexlab{a}})]{KerasEarlyStopping}
-{Keras}.
-\newblock Earlystopping.
-\newblock Keras Callbacks API documentation, 2026{\natexlab{a}}.
-\newblock URL \url{https://keras.io/api/callbacks/early_stopping/}.
-
-\bibitem[{Keras}(2026{\natexlab{b}})]{KerasReduceLROnPlateau}
-{Keras}.
-\newblock Reducelronplateau.
-\newblock Keras Callbacks API documentation, 2026{\natexlab{b}}.
-\newblock URL \url{https://keras.io/api/callbacks/reduce_lr_on_plateau/}.
-
-\bibitem[{scikit-learn}(2026)]{ScikitClassificationReport}
-{scikit-learn}.
-\newblock classification\_report.
-\newblock scikit-learn API documentation, 2026.
-\newblock URL
-  \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html}.
-
-\bibitem[{Keras}(2026{\natexlab{c}})]{KerasMobileNet}
-{Keras}.
-\newblock Mobilenet, mobilenetv2, and mobilenetv3.
-\newblock Keras Applications documentation, 2026{\natexlab{c}}.
-\newblock URL \url{https://keras.io/2/api/applications/mobilenet/}.
-
-\bibitem[Sandler et~al.(2018)Sandler, Howard, Zhu, Zhmoginov, and
-  Chen]{Sandler2018}
-Mark Sandler, Andrew Howard, Menglong Zhu, Andrey Zhmoginov, and Liang-Chieh
-  Chen.
-\newblock Mobilenetv2: Inverted residuals and linear bottlenecks.
-\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
-  Pattern Recognition (CVPR)}, 2018.
-\newblock URL \url{https://openaccess.thecvf.com/content_cvpr_2018/papers/
-  Sandler_MobileNetV2_Inverted_Residuals_CVPR_2018_paper.pdf}.
-
-\bibitem[{Keras}(2026{\natexlab{d}})]{KerasTransferLearning}
-{Keras}.
-\newblock Transfer learning and fine-tuning.
-\newblock Keras Guides, 2026{\natexlab{d}}.
-\newblock URL \url{https://keras.io/guides/transfer_learning/}.
-
-\bibitem[Dhaka et~al.(2021)]{Dhaka2021}
-V.~S. Dhaka et~al.
-\newblock A survey of deep convolutional neural networks applied for prediction
-  of plant leaf diseases.
-\newblock \emph{Sensors}, 21\penalty0 (14):\penalty0 4749, 2021.
-\newblock \doi{10.3390/s21144749}.
-\newblock URL \url{https://www.mdpi.com/1424-8220/21/14/4749}.
-
-\bibitem[{CABI Digital Library}(2026)]{CABI2026}
-{CABI Digital Library}.
-\newblock Hemileia vastatrix (coffee leaf rust).
-\newblock CABI Compendium, 2026.
-\newblock URL
-  \url{https://www.cabidigitallibrary.org/doi/full/10.1079/cabicompendium.26865}.
-
-\bibitem[{Revista Cultivar}(2024)]{RevistaCultivar2024}
-{Revista Cultivar}.
-\newblock Phoma spot or ascochyta spot of coffee.
-\newblock Article, 2024.
-\newblock URL
-  \url{https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee}.
 
 \end{thebibliography}

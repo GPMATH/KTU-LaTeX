@@ -4,45 +4,47 @@ The top-level auxiliary file: main.aux
 Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: unsrtnat.bst
 Reallocating 'name_of_file' (item size: 1) to 10 items.
+I found no \citation commands---while reading file main.aux
 Database file #1: dummy-bib.bib
-You've used 10 entries,
+You've used 0 entries,
             2481 wiz_defined-function locations,
-            617 strings with 6356 characters,
-and the built_in function-call counts, 3064 in all, are:
-= -- 265
-> -- 124
-< -- 8
-+ -- 59
-- -- 36
-* -- 176
-:= -- 494
-add.period$ -- 41
-call.type$ -- 10
-change.case$ -- 20
-chr.to.int$ -- 7
-cite$ -- 10
-duplicate$ -- 153
-empty$ -- 314
-format.name$ -- 47
-if$ -- 665
-int.to.chr$ -- 4
-int.to.str$ -- 11
-missing$ -- 2
-newline$ -- 69
-num.names$ -- 30
-pop$ -- 105
+            551 strings with 4421 characters,
+and the built_in function-call counts, 34 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 2
+:= -- 11
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 8
+num.names$ -- 0
+pop$ -- 0
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 0
 quote$ -- 0
-skip$ -- 105
+skip$ -- 1
 stack$ -- 0
-substring$ -- 32
-swap$ -- 25
+substring$ -- 0
+swap$ -- 0
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 70
+type$ -- 0
 warning$ -- 0
-while$ -- 21
+while$ -- 0
 width$ -- 0
-write$ -- 150
+write$ -- 7
+(There was 1 error message)
