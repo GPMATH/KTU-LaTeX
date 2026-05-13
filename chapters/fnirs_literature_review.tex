@@ -32,8 +32,8 @@ DOI: 10.17632/k36wnd6knb.1 \cite{Chelangat2025}. The source describes labeled co
 leaf images collected under varied farm lighting conditions in Uganda, with three
 classes: healthy leaves, leaf rust, and Phoma disease \cite{Chelangat2025}.
 
-The source indicates 3,312 images, while the notebook workflow detected a slightly
-different local file count before cleanup. After corrupted-image cleansing, the run used
+The source have 3,312 images, while the notebook workflow detected a slightly
+different local file count before cleanup. After corrupted images removing, the run used
 2,252 training images, 483 validation images, and 485 test images, totaling
 3,220 usable images.
 
@@ -156,8 +156,8 @@ Total training time & 4,919.10 seconds / 81.99 minutes \\
 \end{table}
 
 The training curves demonstrate gradual improvement and slightly unstable validation loss
-in the initial training epochs. It is natural for a CNN model trained from scratch due
-to randomly initialised network weights. Once the network learns useful visual filters
+in the initial training epochs. It is expected for a CNN trained from scratch because the 
+network weights are randomly initialised at the beginning of training. Once the network learns useful visual filters
 from the input images, validation accuracy increases, and the model restores the best
 performance weights according to the callback settings.
 
