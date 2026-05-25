@@ -31,6 +31,33 @@ architecture which learned convolutional filters during the training process usi
 dataset. Both of these models were applied depending on the conditions: transfer learning
 in case there was a lack of labeled data and vice versa.
 
+\subsection{Related Work and Scientific Context}
+
+Previous works demonstrate that accurate plant disease image classification could be
+accomplished if both training and validation images come from the same data set;
+however, it is not always the case. Mohanty et al. trained their deep learning
+algorithm on the PlantVillage data set and obtained 99.35\% classification accuracy.
+Nonetheless, when their model was trained using other online images, the overall
+accuracy reached just 31.4\%. It follows that although high accuracy within the same
+data set demonstrates feasibility, it still should not be considered a sufficient
+condition for deployment \cite{Mohanty2016}.
+
+This applies even for more specialized models designed to recognize coffee-related
+diseases. Esgario et al. used CNN-based classifiers to distinguish different coffee
+biotic stresses and their severity. The authors obtained 95.24\% accuracy for
+classification and 86.51\% for estimation of coffee leaves' disease severity
+\cite{Esgario2020}. In this paper, the authors also noted that some errors occurred due
+to the resemblance of the disease's signs and due to imbalanced dataset. Consequently,
+failure cases in scientific studies provide information about the limitations of the
+approach and necessary improvements.
+
+Several specific coffee leaf data sets (e.g., RoCoLe and JMuBEN/JMuBEN2) have been
+developed recently to improve availability of such images. For example, RoCoLe data set
+includes images of Robusta coffee leaves that are either healthy or contain symptoms of
+various diseases. Another example is JMuBEN and JMuBEN2 which include 58,555 images of
+Arabica coffee leaves (disease and healthy images) \cite{ParragaAlava2019,Jepkoech2021}.
+\nocite{Buda2018,Kapoor2023,Selvaraju2017,KerasMobileNetDocumentation2026}
+
 \section{Dataset Description}
 
 The external dataset used in this experiment was ``A Machine Learning Dataset for
@@ -68,6 +95,47 @@ Total & 2,252 & 483 & 485 & 3,220 \\
 \end{tabular}
 \end{table}
 
+\subsection{Dataset Balance and Discrepancy Check}
+
+The source claims that there were 3,312 images in total, however, our local
+experimentally cleaned dataset included only 3,220 images usable for training. This can
+be attributed to the image cleaning process we did for the local experiment, during
+which unreadable and/or corrupted images were deleted. Therefore, our results must be
+interpreted as the results on the cleaned local dataset, and not on the whole source
+dataset. To improve the reproducibility of the work, the final work should state the
+number of files that were excluded, as well as have an exact manifest of the exact
+images used for the train/validation/test sets.
+
+It is worth noting that the final three-class dataset was relatively balanced: the
+biggest class consisted of Phoma with 1,110 images, whereas the smallest class consisted
+of leaf rust with 1,031 images. This means that there was little class imbalance, with
+the imbalance factor equal to around 1. As such, there probably isn't much to be said
+regarding the difference between MobileNetV2 and Simple CNN in regard to class
+imbalance. Moreover, the majority of images were not healthy leaves even when taking
+diseased classes into account: healthy leaves accounted for 1,079 images, while diseased
+leaves had 2,141 images. Nevertheless, the three classes were balanced.
+
+\[
+IR=\frac{n_{\max}}{n_{\min}}=\frac{1110}{1031}=1.08
+\]
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Class group images and percentage.}
+\begin{tabular}{|l|r|r|}
+\hline
+Class group & Images & Percentage \\
+\hline
+Healthy leaves & 1,079 & 33.5\% \\
+Leaf rust & 1,031 & 32.0\% \\
+Phoma & 1,110 & 34.5\% \\
+Diseased combined & 2,141 & 66.5\% \\
+\hline
+\end{tabular}
+\end{table}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{images/Count of usable images printed by the transfer-learning notebook after image cleansing.png}
@@ -83,12 +151,9 @@ random rotations, width shifts, height shifts, horizontal flips, and zooming. Va
 and test data were not augmented; they were only rescaled.
 
 Models were compiled with categorical cross-entropy as a loss function and Adam optimizer
-with the initial learning rate of 0.001. The early stopping strategy, reduce learning
-rate on plateau, and save best model were used during model training. As documented by
-Keras, EarlyStopping was a callback that stopped model training when no improvement in the
-monitored quantity was observed. Similarly, ReduceLROnPlateau was a callback that
-decreased learning rate upon a lack of improvement during training \cite{KerasEarlyStopping,KerasReduceLROnPlateau}. Finally,
-the classification reports were generated with scikit-learn using its classification\_report
+with the initial learning rate of 0.001. Early stopping, learning-rate reduction on
+plateau, and best-model checkpointing were used to reduce overfitting and keep the best
+validation model. Finally, the classification reports were generated with scikit-learn using its classification\_report
 function \cite{ScikitClassificationReport}.
 
 A methodology limitation was related to the MobileNetV2 preprocessing pipeline. According
@@ -111,28 +176,6 @@ pooling, a 0.3 rate dropout, and a dense softmax classifier with three output cl
 Thus, the workflow matched the typical transfer learning pipeline as follows: loading
 pre-trained base model, freezing the base model, creating and stacking the new model on top, and
 then training the classifier on the target data \cite{KerasTransferLearning}.
-
-\begin{table}[ht]
-\centering
-\small
-\renewcommand{\arraystretch}{1.15}
-\caption{Summary of the MobileNetV2 transfer learning model.}
-\begin{tabularx}{\textwidth}{|p{42mm}|X|}
-\hline
-Component & Description \\
-\hline
-Base model & MobileNetV2; include\_top=False; ImageNet weights \\
-Training status of the base model & Frozen during the main training run \\
-Pooling layer & GlobalAveragePooling2D \\
-Dropout & 0.3 \\
-Classifier output layer & Dense layer with 3 softmax outputs \\
-Total parameters & 2,261,827 \\
-Trainable parameters & 3,843 \\
-Non-trainable parameters & 2,257,984 \\
-Number of epochs with frozen base model & 20 epochs \\
-\hline
-\end{tabularx}
-\end{table}
 
 Additionally, an optional fine-tuning stage was included where the top layers of
 MobileNetV2 were unfrozen and trained with a reduced learning rate. The results
@@ -159,19 +202,18 @@ all trainable filters needed to be learned from scratch using the project datase
 \centering
 \small
 \renewcommand{\arraystretch}{1.15}
-\caption{Summary of the Simple CNN model.}
-\begin{tabularx}{\textwidth}{|p{42mm}|X|}
+\caption{Summary of the MobileNetV2 transfer learning model and Simple CNN model.}
+\begin{tabularx}{\textwidth}{|p{33mm}|X|X|}
 \hline
-Component & Description \\
+Component & MobileNetV2 transfer learning model & Simple CNN model \\
 \hline
-Architecture type & Custom CNN trained from scratch \\
-Input image size & 224 x 224 x 3 \\
-Layers & Conv2D, BatchNormalization, MaxPooling2D, Dropout \\
-Classifier output layer & Dense layer with 3 softmax outputs \\
-Total number of parameters & 1,442,851 \\
-Training status of all model parameters & All model weights trained from the coffee leaf data \\
-Number of epochs completed & 22 epochs \\
-Total training time & 4,919.10 seconds / 81.99 minutes \\
+Architecture type & MobileNetV2; include\_top=False; ImageNet weights & Custom CNN trained from scratch \\
+Training status & Frozen during the main training run & All model weights trained from the coffee leaf data \\
+Layers & GlobalAveragePooling2D; Dropout; Dense layer with 3 softmax outputs & Conv2D, BatchNormalization, MaxPooling2D, Dropout; Dense layer with 3 softmax outputs \\
+Total parameters & 2,261,827 & 1,442,851 \\
+Trainable parameters & 3,843 & 1,442,851 \\
+Number of epochs & 20 epochs & 22 epochs \\
+Total training time & ~969 seconds / 16.15 minutes & 4,919.10 seconds / 81.99 minutes \\
 \hline
 \end{tabularx}
 \end{table}
@@ -209,7 +251,6 @@ Test loss & 0.1630 & 0.1158 & Simple CNN \\
 Total parameters & 2,261,827 & 1,442,851 & Simple CNN smaller total model \\
 Trainable parameters in main run & 3,843 & 1,442,851 & MobileNetV2 fewer trainable parameters \\
 Training time & ~969 seconds / 16.15 minutes & 4,919.10 seconds / 81.99 minutes & MobileNetV2 faster training \\
-Model size in notebook summary & 8.63 MB & 5.50 MB & Simple CNN smaller file/model summary \\
 Training strategy & Transfer learning & From scratch & Depending on objective \\
 \hline
 \end{tabularx}
@@ -272,6 +313,36 @@ when identifying healthy samples but minimized Phoma-to-rust confusion by classi
 Phoma samples as leaf rust instead. Thus, Simple CNN seemed to better distinguish the two
 classes in this run.
 
+However, besides the absolute number of accurate predictions, an important aspect of
+comparing model accuracy lies in the kind of errors each of them produces. MobileNetV2
+classified all healthy test images accurately; however, it misclassified 18 Phoma
+samples as leaf rust. On the contrary, Simple CNN lowered the rate of Phoma
+misclassification to 12, but made a couple of misclassifications for healthy images. This
+suggests that classification of healthy leaves seems to be relatively simpler than Phoma
+and leaf rust recognition because the latter categories are too visually similar to one
+another. Such results also agree with common practice in the area of coffee disease
+recognition, which frequently makes mistakes on samples having visually similar patterns
+such as spots and lesions appearing on the leaf surface \cite{Esgario2020}.
+
+The difference in the performance of the models equals 1.45\% or, in other words, no
+more than seven images out of 485 tested samples. Therefore, these numbers cannot be
+interpreted in favor of Simple CNN as being superior to MobileNetV2 in terms of
+accuracy. Instead, a fair comparison should include repeating the training process
+multiple times, taking the mean and standard deviation of accuracies and macro F1-scores
+for all iterations, and ideally including the statistical evaluation of paired sample
+predictions.
+
+Another reason that can explain the low accuracy obtained by MobileNetV2 could be the
+use of a non-optimal pre-processing step before training. As stated in the Keras
+documentation, mobileNetV2.\allowbreak preprocess\_input must be employed, meaning that the image
+pixels' values need to be scaled to [-1, 1]. Moreover, during the process of training
+MobileNetV2, most of its layers remained unchanged, meaning that the network did not
+fully adjust to the characteristics of the coffee leaf samples.
+
+Keras confirms the MobileNetV2 preprocessing requirement, and its transfer-learning
+guide says fine-tuning can improve results but can also overfit if not done carefully
+\cite{KerasMobileNetDocumentation2026}.
+
 Finally, care was needed in interpreting the result since the dataset source mentioned
 that augmentation techniques were utilized to improve sample diversity \cite{Chelangat2025}. Augmented
 versions of the same leaves might have been included in each split, leading to an
@@ -281,30 +352,42 @@ that ensured each sample group contained similar augmented variants.
 
 \section{Limitations and Improvements}
 
-The requirement for the assignment was fulfilled since both models were trained and tested
-on the same dataset with coffee leaves. Some limitations affected the scientific nature of
-the report:
+The biggest limitations of this experiment are methodological limitations rather than
+simply those pertaining to the choice of the model:
 
 \begin{enumerate}
-\item The official MobileNetV2 preprocessing pipeline was not applied, since the current
-rescale = 1/255 was used instead of the preprocess\_input() function.
+\item MobileNetV2 was not preprocessed optimally. In particular, image rescaling to
+[0, 1] range instead of using the standard Keras MobileNetV2 preprocessing function was
+done.
 
-\item The fine-tuned MobileNetV2 model was not evaluated separately on the test set. Although the
-fine-tuning block of the MobileNetV2 model was included, there was no evaluation of its results.
+\item Fine-tuning of MobileNetV2 was not tested on the test set. As a consequence, it
+cannot be concluded definitively that the frozen base version performed slightly better
+than the Simple CNN on the test set in this particular run.
 
-\item The code was not run using several random seeds, so the average accuracy and average
-F1-score were not reported.
+\item Only one train/validation/test split and one random seed were employed. With an
+accuracy difference of seven images only, repeating this experiment several times is
+required in order to come to a conclusion.
 
-\item Possible data leakage was not fully excluded when splitting the datasets into training,
-validation, and test sets. Augmented images or duplicates could have appeared in other sets
-besides the test one.
+\item Possible presence of duplicates or augmented images was not considered fully.
+Should some images of the same original leaf appear in each of these three sets, the
+accuracy of the experiment would be biased.
 
-\item The models were not evaluated on an additional dataset or with images collected
-during the project.
+\item Neither validation nor any external testing was performed. The ability of this
+model to recognize diseased leaves on the data from RoCoLe or JMuBEN/JMuBEN2 datasets
+must be tested to determine whether the model generalizes outside of the local dataset.
 
-\item The inference time per image and memory consumption on the targeted device were not estimated.
-Training time alone could not be the determinant for selecting a particular model.
-
-\item An explanation technique such as Grad-CAM was not added to confirm that the models learned
-features from disease regions rather than background artifacts.
+\item Explainability method was omitted. Application of Grad-CAM is required to
+ascertain whether the models actually pay attention to the actual signs of disease and
+not other factors such as leaf boundaries, backgrounds, or lighting \cite{Selvaraju2017}.
 \end{enumerate}
+
+Adding more models and comparing the accuracies is not necessary, since it is important
+to make this experiment truly scientifically valid. The suggested next experiment is as
+follows: fix MobileNetV2 preprocessing, test frozen and fine-tuned versions separately,
+run both models at least five times using different random seeds, present means and
+standard deviations for these values, perform perceptual hashing to detect duplicates,
+and provide some samples of Grad-CAM output for classification mistakes.
+
+This problem is known as data leakage. Data leakage leads to overly optimistic results
+\cite{Kapoor2023}. Class imbalance negatively impacts CNN's effectiveness in some cases
+\cite{Buda2018}.
