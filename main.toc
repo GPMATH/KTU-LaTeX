@@ -1,18 +1,37 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{List of Figures}{3}{Doc-Start}%
-\contentsline {section}{\numberline {1}Literature Review}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Scope of This Literature Analysis}{4}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Methodological Evidence From fNIRS Studies}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}GASF-Based Task-State Classification}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}CNN + LSTM Neural Network Model for fNIRS Workload Classification}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Methodological Considerations for Deep Learning in fNIRS}{7}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Walking-Task Classification in Older Adults}{9}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Cognitive-Effort Modeling Framework}{10}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Adjacent Neuroimaging Context}{12}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}fMRI-Based Autism Classification Context}{12}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Ecological and Multimodal Assessment Context}{12}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Automated Neuroimaging Segmentation Context}{12}{subsubsection.2.6.3}%
-\contentsline {section}{\numberline {3}Cross-Study Interpretation}{14}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Methodological Implications}{14}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Conclusions}{15}{section.4}%
-\contentsline {section}{References}{16}{section*.11}%
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Executive Summary}{4}{section.2}%
+\contentsline {section}{\numberline {3}Station Description}{5}{section.3}%
+\contentsline {section}{\numberline {4}Allocation List}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Inputs}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Outputs}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Added Diagnostic Flags}{6}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Added Override Flags}{7}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Added Timers}{7}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Reset and Diagnostic Recovery Procedure}{8}{section.5}%
+\contentsline {section}{\numberline {6}Diagnostic Override Function}{9}{section.6}%
+\contentsline {section}{\numberline {7}Detailed Fault Analysis}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Fault 1: No Part Detected at Start}{10}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Detection Mechanism}{10}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Code Implementation}{10}{subsubsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.2}Fault 2: Test Socket Position Fault}{11}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Detection Mechanism}{11}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Code Implementation}{12}{subsubsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.3}Fault 3: Drill Cylinder Fault}{12}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Detection Mechanism}{13}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}Code Implementation}{13}{subsubsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.4}Fault 4: Testing Cylinder Fault}{14}{subsection.7.4}%
+\contentsline {subsubsection}{\numberline {7.4.1}Detection Mechanism}{15}{subsubsection.7.4.1}%
+\contentsline {subsubsection}{\numberline {7.4.2}Code Implementation}{15}{subsubsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.5}Fault 5: Stop or Emergency Stop Condition}{16}{subsection.7.5}%
+\contentsline {subsubsection}{\numberline {7.5.1}Detection Mechanism}{16}{subsubsection.7.5.1}%
+\contentsline {subsubsection}{\numberline {7.5.2}Code Implementation}{17}{subsubsection.7.5.2}%
+\contentsline {section}{\numberline {8}Diagnostic LED Control}{18}{section.8}%
+\contentsline {section}{\numberline {9}Lamp Indication Summary}{19}{section.9}%
+\contentsline {section}{\numberline {10}Diagnostic Stop State}{20}{section.10}%
+\contentsline {section}{\numberline {11}Diagnostic Override / Ignore Logic}{21}{section.11}%
+\contentsline {subsubsection}{\numberline {11.0.1}Override Example Code}{21}{subsubsection.11.0.1}%
+\contentsline {section}{\numberline {12}Program Files Modified}{23}{section.12}%
+\contentsline {section}{\numberline {13}Testing and Validation Procedure}{24}{section.13}%
+\contentsline {section}{\numberline {14}Safety Notes}{25}{section.14}%
+\contentsline {section}{\numberline {15}Conclusion}{26}{section.15}%
