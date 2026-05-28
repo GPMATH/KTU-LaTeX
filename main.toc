@@ -4,15 +4,14 @@
 \contentsline {subsection}{\numberline {1.1}Scope of This Literature Analysis}{4}{subsection.1.1}%
 \contentsline {section}{\numberline {2}Methodological Evidence From fNIRS Studies}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}GASF-Based Task-State Classification}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}CNN + LSTM Neural Network Model for fNIRS Workload Classification}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Methodological Considerations for Deep Learning in fNIRS}{7}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Walking-Task Classification in Older Adults}{9}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Cognitive-Effort Modeling Framework}{10}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Adjacent Neuroimaging Context}{12}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}fMRI-Based Autism Classification Context}{12}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Ecological and Multimodal Assessment Context}{12}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Automated Neuroimaging Segmentation Context}{12}{subsubsection.2.6.3}%
-\contentsline {section}{\numberline {3}Cross-Study Interpretation}{14}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Methodological Implications}{14}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Conclusions}{15}{section.4}%
-\contentsline {section}{References}{16}{section*.11}%
+\contentsline {subsection}{\numberline {2.2}Signal Representation With Preserved Temporal Structure}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}CNN + LSTM Neural Network Model for fNIRS Workload Classification}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Correct Haemodynamic Quantities}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Physiological Confounds and Short-Channel Regression}{7}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Walking-Task Classification in Older Adults}{8}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Cognitive-Effort Modeling Framework}{8}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Cross-Study Interpretation}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Leakage-Safe Evaluation Pipeline}{10}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Methodological Implications}{10}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusions}{11}{section.4}%
+\contentsline {section}{References}{12}{section*.7}%
