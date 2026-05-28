@@ -1,6 +1,6 @@
 \section{Literature Review}
 
-This literature review focuses on functional near-infrared spectroscopy (fNIRS) and machine learning as techniques for researching neurocognitive and health-related task patterns. The updated methodology is intentionally modest, as fNIRS is taken here as a tool to measure relative haemodynamic changes, whereas machine-learning models depend on valid preprocessing, physiologically relevant signal representation, and leak-proof evaluation.
+This literature review focuses on functional near-infrared spectroscopy (fNIRS) and machine learning as techniques for researching neurocognitive and health-related task patterns. The updated methodology is intentionally modest, as fNIRS is taken here as a tool to measure relative haemodynamic changes, whereas machine-learning models depend on valid preprocessing, physiologically relevant signal representation, and leakage-safe evaluation.
 
 The cited evidence shows that modelling of task states, workload, walking-task, and cognitive-effort tasks has stronger grounds than classification for clinical diagnostics purposes. This means that the thesis does not imply that the fNIRS technique alone can detect mental disorders or neurodevelopmental conditions. Rather, it questions whether relative frontal haemodynamic patterns can be preprocessed and modelled in a valid manner.
 
@@ -69,7 +69,7 @@ Modern deep-learning models for classification of fNIRS data show that CNN-LSTM,
 
 \subsection{CNN + LSTM Neural Network Model for fNIRS Workload Classification}
 
-Convolutional and LSTM layers are necessary to create an architecture capable of processing a two-way variation in fNIRS data. The former learns local patterns, whereas the latter deals with dependencies between samples \cite{Khan2025}. Nevertheless, the reported high accuracy of the fNIRS workload classifier cannot imply its diagnostic ability as the workload itself is determined experimentally and may reflect various factors.
+Convolutional and LSTM layers are potentially useful to create an architecture capable of processing a two-way variation in fNIRS data. The former learns local patterns, whereas the latter deals with dependencies between samples \cite{Khan2025}. Nevertheless, the reported high accuracy of the fNIRS workload classifier cannot imply its diagnostic ability as the workload itself is determined experimentally and may reflect various factors.
 
 \begin{figure}[h]
 \centering
@@ -130,7 +130,7 @@ y_{\text{clean}} = y_{\text{long}} - \alpha y_{\text{short}},
 {\langle y_{\text{short}}, y_{\text{short}} \rangle}.
 \end{equation}
 
-Another approach would be using the general GLM method where short- and long-distance channel regressors, and physiological confound regressors will be used. The cleaned haemodynamic signal will be obtained as residuals.
+A general GLM approach can model the separation fNIRS signal as a combination of task regressors, short-distance channel regressors, and physiological nuisance regressors. The cleaned haemodynamic signal will be obtained as residuals.
 
 \begin{equation}
 Y = X_{\text{task}}\beta_{\text{task}} +
@@ -200,6 +200,8 @@ Methodology-wise, short-channel regression becomes crucial, and a classifier inp
 Physiological machine-learning classifiers are highly vulnerable to overfitting in case when windows from the same participant are contained in training and testing sets \cite{Brookshire2024}. Instead of being trained on task-related patterns, such classifier is likely to learn stable participant-specific features or even motion artifacts. A leakage-free protocol for fNIRS classification studies was recently introduced as BenchNIRS \cite{Benerradi2023}.
 
 Thus, in this thesis, any data splitting must be performed participant-wise before the training of the classifier. All hyperparameters should be tuned on training data only and validated on separate data. Scaling, feature selection, dimensionality reduction, and model selection steps must be done in the same manner. For data with windows, all windows from the same participant are supposed to stay in the same part of the split.
+
+In the planned thesis pipeline, participants will be split before window extraction and model training. Preprocessing parameters, normalization, feature extraction, and model selection will be fitted only on the training set and then applied to validation and test data. The main representation will preserve the channel-by-time haemodynamic structure using $\Delta$HbO and $\Delta$HbR, with HbDiff and HbT used only as relative derived measures. Deep-learning models will be compared against classical baselines, and their value will be judged by generalization to unseen participants rather than by within-subject accuracy.
 
 \begin{figure}[h]
 \centering
