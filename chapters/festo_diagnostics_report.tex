@@ -1,54 +1,58 @@
 \section{Introduction}
 
-In this report, the diagnostic extension of the FESTO Processing Station is presented. The station makes a basic industrial automation routine where a part is located in the socket, the test socket/table transports it, the part is drilled, checked by the testing cylinder, and taken to its final destination.
+This report provides a diagnostic and rectification guide for the FESTO Processing Station. The aim of the lab work was to identify important failure situations, detect them using PLC logic, and provide clear lamp indications so that an operator or maintenance engineer can quickly find the possible cause.
 
-The program of automatic operation of the station already worked successfully. The task was to introduce a diagnostic system for possible errors and notify the operator about them via indicator lamps.
+The station performs a basic automated process: a part is detected in the socket, moved to the drilling position, drilled, checked by the testing cylinder, and then moved to the final position. The added diagnostic logic monitors this process using sensor feedback, timers, flags, and the three available indicator lamps.
 
-The diagnostic extension was designed for the older FESTO/FST software that ran on Windows XP. For this reason, the program was created using simple PLC logic, timers, flags, and comparison blocks without any special libraries.
+The system uses the following diagnostic methods:
+
+\begin{itemize}
+    \item sensor inputs for material and position confirmation,
+    \item timer-based detection for movement timeouts,
+    \item logical checks for impossible sensor states,
+    \item lamp indications for operator feedback,
+    \item reset logic for fault recovery.
+\end{itemize}
 
 \section{Executive Summary}
 
-Five types of possible errors were programmed for the FESTO Processing Station. They correspond to the most likely failures of the equipment: no material in the socket, test socket transport error, drill cylinder error, testing cylinder error, and stop/ emergency stop condition.
+Five fault categories were implemented for the FESTO Processing Station. They cover the main process, mechanical, pneumatic, electrical, and safety-related problems that can occur during operation.
 
-Moreover, an additional function of diagnostics override was introduced. Once the error occurred during the cycle after its automatic start, the operator can press the button Input I2.2 to bypass the current diagnostic and go to the next step. Override is impossible if the automatic cycle is yet to start, and it also cannot be done for stop/e-stop conditions.
-
-\begin{longtable}{|p{0.7cm}|p{3.6cm}|p{3.3cm}|p{3.2cm}|p{3.0cm}|}
+\begin{longtable}{|p{0.8cm}|p{4.0cm}|p{4.0cm}|p{4.0cm}|}
 \hline
-No. & Diagnostic Category & Root Cause Domain & Detection Type & Lamp Indication \\
+No. & Fault Category & Root Cause Domain & Indication \\
 \hline
-1 & No Part Detected at Start & Process / Material & Instantaneous & O1.0 blinking \\
+1 & No part detected at start & Process / material & O1.0 blinking \\
 \hline
-2 & Test Socket Position Fault & Mechanical / Electrical / Sensor & Timer-based & O1.0 + O1.1 blinking \\
+2 & Test socket position fault & Mechanical / electrical / sensor & O1.0 + O1.1 blinking \\
 \hline
-3 & Drill Cylinder Fault & Pneumatic / Mechanical / Sensor & Timer-based + logical conflict & O1.0 + O1.2 blinking \\
+3 & Drill cylinder fault & Pneumatic / mechanical / sensor & O1.0 + O1.2 blinking \\
 \hline
-4 & Testing Cylinder Fault & Pneumatic / Mechanical / Sensor & Timer-based + logical conflict & O1.1 + O1.2 blinking \\
+4 & Testing cylinder fault & Pneumatic / mechanical / sensor & O1.1 + O1.2 blinking \\
 \hline
-5 & Stop or Emergency Stop Condition & Operator / Safety & Instantaneous & O1.1 blinking \\
+5 & Stop or emergency stop condition & Operator / safety & O1.1 blinking \\
 \hline
 \end{longtable}
 
 \section{Station Description}
 
-The major components of the FESTO Processing Station include: socket, drilling slot, drill, test socket and testing cylinder, and final slot.
+The FESTO Processing Station consists of a part socket, rotating test socket/table, drilling mechanism, testing cylinder, and final part position. The automatic sequence starts when a part is placed in the socket and the Start button is pressed. The part is moved to the drilling position, drilled, checked by the testing cylinder, and transferred to the final position.
 
-\begin{longtable}{|p{1.2cm}|p{4.4cm}|p{7.4cm}|}
+\begin{longtable}{|p{1.2cm}|p{4.2cm}|p{7.2cm}|}
 \hline
 Label & Station Part & Function \\
 \hline
-A & Part taking slot / socket & Initial position where the part is detected \\
+A & Part socket & Detects the inserted part \\
 \hline
-B & Drilling slot & Position where the part is held and drilled \\
+B & Drilling position & Holds the part for drilling \\
 \hline
 C & Drill & Performs the drilling operation \\
 \hline
-D & Test socket / testing cylinder & Checks the drilled hole \\
+D & Testing cylinder & Checks the processed part \\
 \hline
-E & Final slot & Final output position of the processed part \\
+E & Final slot & Receives the processed part \\
 \hline
 \end{longtable}
-
-A basic cycle starts when a part is put in the socket and the operator presses the Start button. Then, the test socket/table starts transporting it to the drilling slot, and when it is finished, the drill starts working. At first, the drill cylinder goes down, then the drilling process is done, and finally, the drill cylinder returns back to its upper position. The table transports the part to the testing slot, and the testing cylinder checks it. Then, the table transports the part to the final slot.
 
 \section{Allocation List}
 
@@ -60,31 +64,31 @@ Address & Description \\
 \hline
 I0.0 & Part in socket \\
 \hline
-I0.1 & Test socket turn position sensor \\
+I0.1 & Test socket position sensor \\
 \hline
-I0.2 & Hold cylinder in home position \\
+I0.2 & Hold cylinder home position \\
 \hline
-I0.3 & Hold cylinder in final position \\
+I0.3 & Hold cylinder final position \\
 \hline
-I0.4 & Drill cylinder in upper position \\
+I0.4 & Drill cylinder upper position \\
 \hline
-I0.5 & Drill cylinder in lower position \\
+I0.5 & Drill cylinder lower position \\
 \hline
-I0.6 & Testing cylinder in upper position \\
+I0.6 & Testing cylinder upper position \\
 \hline
-I0.7 & Testing cylinder in lower position \\
+I0.7 & Testing cylinder lower position \\
 \hline
 I2.0 & Start button \\
 \hline
 I2.1 & Reset / clear diagnostics \\
 \hline
-I2.2 & Positioning button / diagnostic override \\
+I2.2 & Positioning button \\
 \hline
 I2.3 & Auto / manual control \\
 \hline
 I2.4 & Stop button \\
 \hline
-I2.7 & Reset emergency stop \\
+I2.7 & Emergency stop reset \\
 \hline
 \end{longtable}
 
@@ -98,13 +102,13 @@ O0.1 & Drill engine \\
 \hline
 O0.2 & Test socket engine \\
 \hline
-O0.3 & Drill position down \\
+O0.3 & Drill down command \\
 \hline
-O0.4 & Drill position up \\
+O0.4 & Drill up command \\
 \hline
-O0.5 & Hold piston to home position \\
+O0.5 & Hold piston home command \\
 \hline
-O0.6 & Testing piston to lower position \\
+O0.6 & Testing piston down command \\
 \hline
 O0.7 & Piston holder \\
 \hline
@@ -116,151 +120,66 @@ O1.2 & Positioning lamp / diagnostic LED 3 \\
 \hline
 \end{longtable}
 
-\subsection{Added Diagnostic Flags}
+\subsection{Added Diagnostic Flags and Timers}
 
-\begin{longtable}{|p{2.0cm}|p{10.8cm}|}
+\begin{longtable}{|p{2.4cm}|p{10.4cm}|}
 \hline
-Flag & Description \\
+Address & Description \\
 \hline
-F0.0 & Diagnostic 1: No part detected \\
+F0.0 & Fault 1: no part detected \\
 \hline
-F0.1 & Diagnostic 2: Test socket position fault \\
+F0.1 & Fault 2: test socket position fault \\
 \hline
-F0.2 & Diagnostic 3: Drill cylinder fault \\
+F0.2 & Fault 3: drill cylinder fault \\
 \hline
-F0.3 & Diagnostic 4: Testing cylinder fault \\
+F0.3 & Fault 4: testing cylinder fault \\
 \hline
-F0.4 & Stop flag \\
-\hline
-F0.5 & Diagnostic 5: Stop or emergency stop condition \\
+F0.5 & Fault 5: stop or emergency stop condition \\
 \hline
 F0.6 & Diagnostic blink OFF phase \\
 \hline
 F0.7 & Diagnostic blink ON phase \\
 \hline
-\end{longtable}
-
-\subsection{Added Override Flags}
-
-\begin{longtable}{|p{2.0cm}|p{10.8cm}|}
-\hline
-Flag & Description \\
-\hline
-F1.0 & Automatic cycle started / override allowed \\
-\hline
-F1.1 & Override return to Step 8 \\
-\hline
-F1.2 & Override return to Step 16 \\
-\hline
-F1.3 & Override return to Step 18 \\
-\hline
-F1.4 & Override return to Step 25 \\
-\hline
-F1.5 & Override return to Step 31 \\
-\hline
-F1.6 & Override return to Step 1 \\
-\hline
-\end{longtable}
-
-\subsection{Added Timers}
-
-\begin{longtable}{|p{2.0cm}|p{10.8cm}|}
-\hline
-Timer & Description \\
-\hline
 T7 & Diagnostic LED ON timer \\
 \hline
 T8 & Diagnostic LED OFF timer \\
 \hline
-T9 & Diagnostic movement fault timeout \\
+T9 & Movement fault timeout timer \\
 \hline
 \end{longtable}
 
-\section{Reset and Diagnostic Recovery Procedure}
+\section{Reset Procedure}
 
-Pressing the Reset button I2.1 turns off the diagnostic lamps, removes active diagnostic flags and blinking lamps, resets the timers, and resets the return override flags F1.1--F1.6.
-
-It allows the operator to clear up the diagnostic code.
+The Reset button I2.1 clears active fault flags, blinking flags, diagnostic lamps, and diagnostic timers. After the fault is removed, the operator can reset the indication and return the station to normal operation.
 
 \begin{verbatim}
 IF I2.1 'Reset / clear diagnostics
-THEN RESET F0.0 'DIAG 1 - no part
-     RESET F0.1 'DIAG 2 - test socket
-     RESET F0.2 'DIAG 3 - drill cylinder
-     RESET F0.3 'DIAG 4 - testing cylinder
-     RESET F0.5 'DIAG 5 - stop or emergency
-     RESET F0.6 'Diagnostic blink OFF phase
-     RESET F0.7 'Diagnostic blink ON phase
-     RESET F1.0 'Automatic cycle started / override allowed
-     RESET F1.1 'Override return to step 8
-     RESET F1.2 'Override return to step 16
-     RESET F1.3 'Override return to step 18
-     RESET F1.4 'Override return to step 25
-     RESET F1.5 'Override return to step 31
-     RESET F1.6 'Override return to step 1
-     RESET O1.0 'Start LED
-     RESET O1.1 'Reset LED
-     RESET O1.2 'Positioning LED
+THEN RESET F0.0
+     RESET F0.1
+     RESET F0.2
+     RESET F0.3
+     RESET F0.5
+     RESET F0.6
+     RESET F0.7
+     RESET O1.0
+     RESET O1.1
+     RESET O1.2
      RESET T7
      RESET T8
      RESET T9
 \end{verbatim}
 
-\section{Diagnostic Override Function}
-
-Additional diagnostic function was implemented using the input I2.2.
-
-Normally, it serves to start positioning program. But once the automatic cycle is launched, it may work as a diagnostics override button.
-
-It works depending on the state of the diagnostic flag F1.0. If it is not active (off), the automatic cycle has not started, and the override is not possible. If F1.0 is active, the override is permitted.
-
-Thus, it prevents the operator from continuing processing without a part at the beginning, and also from overriding the stop and e-stop conditions.
-
-\begin{longtable}{|p{7.4cm}|p{5.4cm}|}
-\hline
-Condition & I2.2 Function \\
-\hline
-Automatic cycle has not started & Normal positioning \\
-\hline
-Automatic cycle has started and a timeout fault occurs & Ignore fault and continue to stored next step \\
-\hline
-Emergency stop or Stop condition active & Override not allowed \\
-\hline
-No part detected before cycle starts & Override not allowed \\
-\hline
-\end{longtable}
-
-\begin{longtable}{|p{2.4cm}|p{10.4cm}|}
-\hline
-Flag & Meaning \\
-\hline
-F1.0 = 0 & Automatic cycle has not started, override is not allowed \\
-\hline
-F1.0 = 1 & Automatic cycle has started, override is allowed for selected faults \\
-\hline
-\end{longtable}
-
 \section{Detailed Fault Analysis}
 
 \subsection{Fault 1: No Part Detected at Start}
 
-\textbf{Root Cause Domain:} Process / Material
+\textbf{Root Cause Domain:} Process / material
 
-\textbf{Severity:} High
+\textbf{Severity:} High \quad \textbf{Detection Type:} Instantaneous
 
-\textbf{Detection Type:} Instantaneous
+\subsubsection{Fault Condition}
 
-\textbf{Diagnostic Flag:} F0.0
-
-\textbf{Lamp Indication:} O1.0 blinking
-
-The fault happens when the operator presses the start button, but the sensor I0.0 fails to detect a part in the socket.
-
-Since there is no part, the automatic operation cannot safely proceed because it involves rotating, drilling and testing.
-
-Root causes might include: no part in the socket, wrong part positioning, malfunctioning or dirty sensor I0.0, loose/damaged wires of the sensor, part too small to be detected by the sensor or faulty sensor input.
-
-In order to solve the problem, the operator should ensure that there is a part in the socket and that it is well positioned. Then the operator should check the LED of I0.0 and clean the sensor if needed. Also, the wiring and connector should be checked. Then press reset I2.1 and Start I2.0 once the part is detected.
+This fault occurs when the operator presses Start I2.0, but the part sensor I0.0 does not detect a part in the socket. The cycle must not start because the station would attempt to move, drill, and test without material.
 
 \subsubsection{Detection Mechanism}
 
@@ -268,7 +187,7 @@ In order to solve the problem, the operator should ensure that there is a part i
 \hline
 Parameter & Details \\
 \hline
-Input checked & I0.0 Part in socket \\
+Input checked & I0.0 part in socket \\
 \hline
 Trigger & I2.0 Start button pressed \\
 \hline
@@ -278,17 +197,26 @@ Diagnostic flag & F0.0 \\
 \hline
 Indicator & O1.0 blinking \\
 \hline
-Override allowed & No \\
-\hline
 \end{longtable}
+
+\subsubsection{Possible Causes and Rectification}
+
+\begin{itemize}
+    \item Verify that a part is present in the socket.
+    \item Check if the part is seated correctly.
+    \item Inspect and clean sensor I0.0.
+    \item Check the sensor LED, wiring, and connector.
+    \item Replace or adjust the sensor if it does not switch.
+    \item Press Reset I2.1 after correction and start again.
+\end{itemize}
 
 \subsubsection{Code Implementation}
 
 \begin{verbatim}
-IF I2.0 'Start
-   AND I2.7 'Emergency is reset
-   AND N I0.0 'Part in socket
-THEN SET F0.0 'DIAG 1 - no part detected
+IF I2.0
+   AND I2.7
+   AND N I0.0
+THEN SET F0.0
      RESET F0.1
      RESET F0.2
      RESET F0.3
@@ -296,32 +224,21 @@ THEN SET F0.0 'DIAG 1 - no part detected
 \end{verbatim}
 
 \begin{verbatim}
-IF I2.0 'Start
-   AND I2.7 'Emergency is reset
-   AND I0.0 'Part in socket
-THEN SET F1.0 'Automatic cycle started / override allowed
-     SET P2 'AUTOMATIC
+IF I2.0
+   AND I2.7
+   AND I0.0
+THEN SET P2
 \end{verbatim}
 
 \subsection{Fault 2: Test Socket Position Fault}
 
-\textbf{Root Cause Domain:} Mechanical / Electrical / Sensor
+\textbf{Root Cause Domain:} Mechanical / electrical / sensor
 
-\textbf{Severity:} High
+\textbf{Severity:} High \quad \textbf{Detection Type:} Timer-based
 
-\textbf{Detection Type:} Timer-based
+\subsubsection{Fault Condition}
 
-\textbf{Diagnostic Flag:} F0.1
-
-\textbf{Lamp Indication:} O1.0 + O1.1 blinking
-
-The fault occurs when engine O0.2 gets energized, but sensor I0.1 fails to become active within the set time.
-
-The table/test socket must reach its right position for further drilling/testing operation to proceed. Thus, if sensor I0.1 fails to confirm the right position, the process becomes out-of-order.
-
-Root causes for the problem might include: jamming of the test socket/table, malfunctions in the motor or actuator which is operated with O0.2, malfunction in the position sensor I0.1, malfunction in the wiring and connector of I0.1, incomplete rotation of the test socket/table, insufficient power supplied to O0.2 and sensor I0.1 or mechanical blockage in the way of the table/test socket.
-
-To solve the problem, the operator should check the physical rotation of the test socket/table, check whether the path is blocked, verify O0.2 with its indicator light and verify I0.1 with the help of its LED. The operator should also check whether I0.1 activates when test/socket comes into its position. The cable connecting the sensor and the PLC should also be checked. Once the problem is diagnosed, press Reset I2.1. Then press Override I2.2 to allow continuing if the process is already in motion.
+This fault occurs when the test socket engine O0.2 is switched ON, but the position sensor I0.1 does not confirm the correct position within the timeout period. If this position is not confirmed, drilling or testing may be misaligned.
 
 \subsubsection{Detection Mechanism}
 
@@ -329,11 +246,11 @@ To solve the problem, the operator should check the physical rotation of the tes
 \hline
 Parameter & Details \\
 \hline
-Output command & O0.2 Test socket engine \\
+Output command & O0.2 test socket engine \\
 \hline
-Sensor feedback & I0.1 Test socket turn position sensor \\
+Sensor feedback & I0.1 test socket position sensor \\
 \hline
-Timer used & T9 \\
+Timer used & T9 movement fault timeout \\
 \hline
 Timeout value & 5 seconds \\
 \hline
@@ -343,51 +260,45 @@ Diagnostic flag & F0.1 \\
 \hline
 Indicator & O1.0 + O1.1 blinking \\
 \hline
-Override allowed & Yes, only if automatic cycle already started \\
-\hline
 \end{longtable}
+
+\subsubsection{Possible Causes and Rectification}
+
+\begin{itemize}
+    \item Check if the table or test socket physically rotates.
+    \item Inspect the table path for obstruction or mechanical debris.
+    \item Check air supply or motor/actuator power depending on the mechanism.
+    \item Verify that output O0.2 switches correctly.
+    \item Inspect sensor I0.1 alignment and LED indication.
+    \item Check PLC input wiring and connector for I0.1.
+    \item Press Reset I2.1 after the fault is corrected.
+\end{itemize}
 
 \subsubsection{Code Implementation}
 
 \begin{verbatim}
-IF N T1 'FIRST DELAY
-THEN SET O0.2 'Test socket engine
-     SET T9 'Diagnostic movement fault timeout
-       WITH 5s
+IF N T1
+THEN SET O0.2
+     SET T9 WITH 5s
 \end{verbatim}
 
 \begin{verbatim}
-IF N T9 'Diagnostic movement fault timeout
-   AND N I0.1 'Test socket turn position sensor
-THEN RESET F0.0
-     SET F0.1 'DIAG 2 - test socket fault
-     RESET F0.2
-     RESET F0.3
-     RESET F0.5
-     RESET O0.2 'Test socket engine
-     SET F1.1 'Override return to step 8
+IF N T9
+   AND N I0.1
+THEN SET F0.1
+     RESET O0.2
      JMP TO 200
 \end{verbatim}
 
 \subsection{Fault 3: Drill Cylinder Fault}
 
-\textbf{Root Cause Domain:} Pneumatic / Mechanical / Sensor
+\textbf{Root Cause Domain:} Pneumatic / mechanical / sensor
 
-\textbf{Severity:} Critical
+\textbf{Severity:} Critical \quad \textbf{Detection Type:} Timer-based and logical conflict
 
-\textbf{Detection Type:} Timer-based and logical sensor conflict
+\subsubsection{Fault Condition}
 
-\textbf{Diagnostic Flag:} F0.2
-
-\textbf{Lamp Indication:} O1.0 + O1.2 blinking
-
-The fault occurs when the cylinder fails to come to its position within the set time. The other possible fault is simultaneous activation of the upper and lower sensor.
-
-It should never happen that the upper and the lower position sensors get activated simultaneously since it means some wiring or sensor problems.
-
-The root cause for the fault might include: jamming of the cylinder, low pressure of the air in the drill chamber, malfunction of the solenoid valve O0.3/O0.4, malfunction of I0.4 or I0.5 position sensors, damage to wires from these sensors, slow moving cylinder, mechanical blocking in the drill cylinder or electrical short circuit resulting in activation of both position sensors.
-
-Solving the problem involves: checking the air pressure supply in the drill cylinder, checking the mechanical condition of the drill cylinder. Also, the output O0.3/O0.4 should be verified. Moreover, the LEDs on I0.4 and I0.5 should be verified and ensure that only one position sensor works at any time. The cable should be inspected and any mechanical blockage be removed. After diagnostics, press Reset I2.1. If the automatic cycle had been initiated and the problem was timeout only, I2.2 can be used for override.
+This fault occurs when the drill cylinder does not reach the commanded upper or lower position within the allowed time. It is also detected if both drill position sensors I0.4 and I0.5 are active at the same time, which is physically impossible.
 
 \subsubsection{Detection Mechanism}
 
@@ -395,103 +306,81 @@ Solving the problem involves: checking the air pressure supply in the drill cyli
 \hline
 Parameter & Details \\
 \hline
-Down command & O0.3 Drill position down \\
+Down command & O0.3 drill down \\
 \hline
-Up command & O0.4 Drill position up \\
+Up command & O0.4 drill up \\
 \hline
-Lower position sensor & I0.5 \\
+Lower sensor & I0.5 drill lower position \\
 \hline
-Upper position sensor & I0.4 \\
+Upper sensor & I0.4 drill upper position \\
 \hline
-Timer used & T9 \\
+Timer used & T9 movement fault timeout \\
 \hline
 Timeout value & 3 seconds \\
 \hline
-Fault condition 1 & Drill down commanded but I0.5 not reached \\
-\hline
-Fault condition 2 & Drill up commanded but I0.4 not reached \\
-\hline
-Fault condition 3 & I0.4 and I0.5 active simultaneously \\
+Fault condition & Commanded position not reached, or I0.4 and I0.5 both ON \\
 \hline
 Diagnostic flag & F0.2 \\
 \hline
 Indicator & O1.0 + O1.2 blinking \\
 \hline
-Override allowed & Yes, only if automatic cycle already started and not a safety stop \\
-\hline
 \end{longtable}
+
+\subsubsection{Possible Causes and Rectification}
+
+\begin{itemize}
+    \item Check pneumatic pressure and air supply to the drill cylinder.
+    \item Inspect the drill cylinder for mechanical blockage or damage.
+    \item Verify solenoid valve operation for O0.3 and O0.4.
+    \item Check sensors I0.4 and I0.5 for alignment and LED state.
+    \item Confirm that only one drill position sensor is active at a time.
+    \item Inspect sensor wiring for loose wires or short circuits.
+    \item Press Reset I2.1 after the fault is removed.
+\end{itemize}
 
 \subsubsection{Code Implementation}
 
 \begin{verbatim}
-IF O0.1 'Drill engine
-THEN SET O0.3 'Drill position down
-     SET T3 'DRILLING TIMER
-       WITH 2s
-     SET T4 'DRILL TIMER BUFFER
-       WITH 1s
-     SET T9 'Diagnostic movement fault timeout
-       WITH 3s
+IF O0.1
+THEN SET O0.3
+     SET T3 WITH 2s
+     SET T4 WITH 1s
+     SET T9 WITH 3s
 \end{verbatim}
 
 \begin{verbatim}
-IF N T9 'Diagnostic movement fault timeout
-   AND N I0.5 'Drill cylinder in lower position
-THEN RESET F0.0
-     RESET F0.1
-     SET F0.2 'DIAG 3 - drill cylinder lower fault
-     RESET F0.3
-     RESET F0.5
-     RESET O0.1 'Drill engine
-     RESET O0.3 'Drill position down
-     SET F1.2 'Override return to step 16
+IF N T9
+   AND N I0.5
+THEN SET F0.2
+     RESET O0.1
+     RESET O0.3
      JMP TO 200
 \end{verbatim}
 
 \begin{verbatim}
-IF N T9 'Diagnostic movement fault timeout
-   AND N I0.4 'Drill cylinder in upper position
-THEN RESET F0.0
-     RESET F0.1
-     SET F0.2 'DIAG 3 - drill cylinder upper fault
-     RESET F0.3
-     RESET F0.5
-     RESET O0.1 'Drill engine
-     RESET O0.4 'Drill position up
-     SET F1.3 'Override return to step 18
+IF N T9
+   AND N I0.4
+THEN SET F0.2
+     RESET O0.1
+     RESET O0.4
      JMP TO 200
 \end{verbatim}
 
 \begin{verbatim}
-IF I0.4 'Drill cylinder in upper position
-   AND I0.5 'Drill cylinder in lower position
-THEN RESET F0.0
-     RESET F0.1
-     SET F0.2 'DIAG 3 - drill sensor contradiction
-     RESET F0.3
+IF I0.4
+   AND I0.5
+THEN SET F0.2
 \end{verbatim}
 
 \subsection{Fault 4: Testing Cylinder Fault}
 
-\textbf{Root Cause Domain:} Pneumatic / Mechanical / Sensor
+\textbf{Root Cause Domain:} Pneumatic / mechanical / sensor
 
-\textbf{Severity:} High
+\textbf{Severity:} High \quad \textbf{Detection Type:} Timer-based and logical conflict
 
-\textbf{Detection Type:} Timer-based and logical sensor conflict
+\subsubsection{Fault Condition}
 
-\textbf{Diagnostic Flag:} F0.3
-
-\textbf{Lamp Indication:} O1.1 + O1.2 blinking
-
-This fault happens when the testing cylinder is requested to move downwards, but the lower position sensor I0.7 is not detected within the acceptable period.
-
-Testing cylinder is used for checking the drilled hole or confirmation of processed part. If the cylinder cannot reach the required position, there will be no confirmation of inspection performed.
-
-The two testing cylinders sensors must never be active at the same time.
-
-Possible faults include jammed testing cylinder, insufficient pneumatic pressure, broken or disconnected solenoid, clogged testing probe due to wrong positioning of a part, malfunctioning lower position sensor I0.7, wiring fault on one of sensors (I0.6, I0.7), both sensors detecting due to short circuit or misalignment.
-
-To fix this problem, the operator needs to inspect the movement of testing cylinder and inspect the testing probe for any obstructions. The lower position sensor I0.7 and upper position sensor I0.6 should be inspected. It is also necessary to make sure that both sensors are never active simultaneously. Pneumatic tubing and valve need to be inspected as well. Once the problem is fixed, Reset I2.1 button needs to be pushed. The override signal I2.2 can be used if it is safe to continue the automatic cycle that has already started.
+This fault occurs when the testing cylinder is commanded to move down using O0.6, but the lower position sensor I0.7 does not become active within the allowed time. A second fault condition is when upper sensor I0.6 and lower sensor I0.7 are active simultaneously.
 
 \subsubsection{Detection Mechanism}
 
@@ -499,80 +388,68 @@ To fix this problem, the operator needs to inspect the movement of testing cylin
 \hline
 Parameter & Details \\
 \hline
-Output command & O0.6 Testing piston to lower position \\
+Output command & O0.6 testing piston down \\
 \hline
-Upper position sensor & I0.6 \\
+Upper sensor & I0.6 testing cylinder upper position \\
 \hline
-Lower position sensor & I0.7 \\
+Lower sensor & I0.7 testing cylinder lower position \\
 \hline
-Timer used & T9 \\
+Timer used & T9 movement fault timeout \\
 \hline
 Timeout value & 3 seconds \\
 \hline
-Fault condition 1 & O0.6 commanded but I0.7 not reached \\
-\hline
-Fault condition 2 & I0.6 and I0.7 active simultaneously \\
+Fault condition & I0.7 not reached, or I0.6 and I0.7 both ON \\
 \hline
 Diagnostic flag & F0.3 \\
 \hline
 Indicator & O1.1 + O1.2 blinking \\
 \hline
-Override allowed & Yes, only if automatic cycle already started and not a safety stop \\
-\hline
 \end{longtable}
+
+\subsubsection{Possible Causes and Rectification}
+
+\begin{itemize}
+    \item Check the testing cylinder for free movement.
+    \item Inspect the testing probe for obstruction or incorrect part position.
+    \item Check pneumatic pressure, tubing, and solenoid valve.
+    \item Verify sensor I0.7 lower position detection.
+    \item Verify sensor I0.6 upper position detection.
+    \item Inspect wiring if both sensors are active together.
+    \item Press Reset I2.1 after correction.
+\end{itemize}
 
 \subsubsection{Code Implementation}
 
 \begin{verbatim}
-IF N T2 'MOVEMENT DELAY
-THEN SET O0.6 'Testing piston to lower position
-     SET T4 'DRILL TIMER BUFFER
-       WITH 1s
-     SET T9 'Diagnostic movement fault timeout
-       WITH 3s
+IF N T2
+THEN SET O0.6
+     SET T4 WITH 1s
+     SET T9 WITH 3s
 \end{verbatim}
 
 \begin{verbatim}
-IF N T9 'Diagnostic movement fault timeout
-   AND N I0.7 'Testing cylinder in lower position
-THEN RESET F0.0
-     RESET F0.1
-     RESET F0.2
-     SET F0.3 'DIAG 4 - testing cylinder lower fault
-     RESET F0.5
-     RESET O0.6 'Testing piston to lower position
-     SET F1.5 'Override return to step 31
+IF N T9
+   AND N I0.7
+THEN SET F0.3
+     RESET O0.6
      JMP TO 200
 \end{verbatim}
 
 \begin{verbatim}
-IF I0.6 'Testing cylinder in upper position
-   AND I0.7 'Testing cylinder in lower position
-THEN RESET F0.0
-     RESET F0.1
-     RESET F0.2
-     SET F0.3 'DIAG 4 - testing sensor contradiction
+IF I0.6
+   AND I0.7
+THEN SET F0.3
 \end{verbatim}
 
 \subsection{Fault 5: Stop or Emergency Stop Condition}
 
-\textbf{Root Cause Domain:} Operator / Safety
+\textbf{Root Cause Domain:} Operator / safety
 
-\textbf{Severity:} Critical
+\textbf{Severity:} Critical \quad \textbf{Detection Type:} Instantaneous
 
-\textbf{Detection Type:} Instantaneous
+\subsubsection{Fault Condition}
 
-\textbf{Diagnostic Flag:} F0.5
-
-\textbf{Lamp Indication:} O1.1 blinking
-
-This fault is triggered either by pressing of Stop button or lack of emergency stop reset condition.
-
-This situation is considered a safety condition. The primary reason of displaying this warning is not merely diagnostics but making sure that operator inspects the machine before automatic cycle continues.
-
-Root causes of the problem include pressing Stop during cycle, activation of emergency stop, absence of emergency stop reset condition, interruption of operation by operator due to unsafe condition, or machine condition requiring operator to perform some safety checks before operation can resume.
-
-To resolve the fault, it is necessary to identify the reasons for pressing Stop and/or emergency stop condition activation. Any obstructions and other safety concerns should be resolved. Motion of the machine must be stopped completely by the operator before anything else. The operator needs to ensure that emergency stop circuit is released. After this, Reset I2.1 button needs to be pushed. Overriding of this diagnosis is explicitly forbidden.
+This fault occurs when Stop I2.4 is pressed or when the emergency stop reset input I2.7 is not active. This condition requires the station to stop and remain stopped until the operator checks the reason.
 
 \subsubsection{Detection Mechanism}
 
@@ -584,30 +461,36 @@ Stop input & I2.4 \\
 \hline
 Emergency reset input & I2.7 \\
 \hline
+Detection type & Instantaneous \\
+\hline
 Diagnostic flag & F0.5 \\
 \hline
 Indicator & O1.1 blinking \\
 \hline
-Override allowed & No \\
-\hline
 \end{longtable}
+
+\subsubsection{Possible Causes and Rectification}
+
+\begin{itemize}
+    \item Identify why Stop or emergency stop was activated.
+    \item Remove any obstruction or unsafe condition.
+    \item Confirm that all motion has stopped.
+    \item Reset the emergency stop circuit.
+    \item Press Reset I2.1 to clear diagnostics.
+    \item Restart only after the station is safe.
+\end{itemize}
 
 \subsubsection{Code Implementation}
 
 \begin{verbatim}
-IF I2.4 'Stop
-THEN SET F0.4 'FLAG
-     SET F0.5 'DIAG 5 - stop pressed / start required
-     RESET F1.0 'Automatic cycle started / override allowed
+IF I2.4
+THEN SET F0.4
+     SET F0.5
 \end{verbatim}
 
 \begin{verbatim}
-IF N I2.7 'Reset emergency stop
-THEN RESET F0.0
-     RESET F0.1
-     RESET F0.2
-     RESET F0.3
-     SET F0.5 'DIAG 5 - emergency stop / reset required
+IF N I2.7
+THEN SET F0.5
      RESET O0.1
      RESET O0.2
      RESET O0.3
@@ -615,195 +498,76 @@ THEN RESET F0.0
      RESET O0.5
      RESET O0.6
      RESET O0.7
-     RESET F1.0
 \end{verbatim}
-
-\section{Diagnostic LED Control}
-
-LED diagnostics is implemented in the compare block CMP2. There are three LEDs available which are blinking with the period of 1 second on and 1 second off.
-
-The basic principle is that the diagnostic flag is raised, then the beginning of ON phase begins with F0.7 signal. Necessary combination of LEDs goes ON, then the ON phase ends after time period T7 and the LEDs go off. Afterward, F0.6 initiates the OFF phase which is terminated by T8 and cycle starts again.
-
-This makes the problem more obvious since there is blinking of lights rather than constant lighting.
-
-\begin{longtable}{|p{3.0cm}|p{9.8cm}|}
-\hline
-Timer / Flag & Function \\
-\hline
-T7 & LED ON phase timer \\
-\hline
-T8 & LED OFF phase timer \\
-\hline
-F0.7 & Blink ON phase \\
-\hline
-F0.6 & Blink OFF phase \\
-\hline
-\end{longtable}
 
 \section{Lamp Indication Summary}
 
-\begin{longtable}{|p{1.3cm}|p{3.0cm}|p{2.0cm}|p{3.0cm}|p{3.5cm}|}
+The three available lamps are reused as diagnostic indicators. The blinking pattern identifies the active fault and directs the operator to the first area to inspect.
+
+\begin{longtable}{|p{0.8cm}|p{4.0cm}|p{3.4cm}|p{4.6cm}|}
 \hline
-Fault No. & Fault Title & Active Flag & Lamp Pattern & First Inspection Area \\
+No. & Fault Title & Lamp Pattern & First Inspection Area \\
 \hline
-1 & No part detected at start & F0.0 & O1.0 blinking & Part socket, I0.0 sensor \\
+1 & No part detected at start & O1.0 blinking & Part socket, I0.0 sensor \\
 \hline
-2 & Test socket position fault & F0.1 & O1.0 + O1.1 blinking & Table/socket movement, I0.1 sensor \\
+2 & Test socket position fault & O1.0 + O1.1 blinking & Table movement, I0.1 sensor \\
 \hline
-3 & Drill cylinder fault & F0.2 & O1.0 + O1.2 blinking & Drill cylinder, I0.4/I0.5 sensors \\
+3 & Drill cylinder fault & O1.0 + O1.2 blinking & Drill cylinder, I0.4/I0.5 sensors \\
 \hline
-4 & Testing cylinder fault & F0.3 & O1.1 + O1.2 blinking & Testing cylinder, I0.6/I0.7 sensors \\
+4 & Testing cylinder fault & O1.1 + O1.2 blinking & Testing cylinder, I0.6/I0.7 sensors \\
 \hline
-5 & Stop or emergency stop & F0.5 & O1.1 blinking & Stop button, emergency circuit \\
+5 & Stop or emergency stop & O1.1 blinking & Stop button, emergency circuit \\
 \hline
 \end{longtable}
 
 \section{Diagnostic Stop State}
 
-If diagnostic problem appears during the automatic cycle, the program goes to Step 200. This ensures the disabling of all harmful and moving outputs so that the automatic cycle will not progress further without solving the problem.
-
-Thus, the diagnostic state becomes much safer since there will be turning off of motion commands before any overriding attempts.
+When a diagnostic fault occurs during the automatic cycle, the program jumps to Step 200. This step removes the main motion commands before the operator resets or restarts the station.
 
 \begin{verbatim}
 STEP 200
 IF NOP
-THEN RESET O0.1 'Drill engine
-     RESET O0.2 'Test socket engine
-     RESET O0.3 'Drill position down
-     RESET O0.4 'Drill position up
-     RESET O0.6 'Testing piston to lower position
-     RESET T9 'Diagnostic movement fault timeout
+THEN RESET O0.1
+     RESET O0.2
+     RESET O0.3
+     RESET O0.4
+     RESET O0.6
+     RESET T9
      JMP TO 201
 \end{verbatim}
 
-\section{Diagnostic Override / Ignore Logic}
+\section{Testing and Validation}
 
-Diagnostic override logic is introduced at Step 201.
+The diagnostic functions were checked by creating each fault condition and observing the diagnostic flag, lamp indication, and program reaction. The expected result is that the correct lamp pattern appears and the unsafe output commands are removed.
 
-In case of any fault, an operator may choose to press Reset I2.1 to clear diagnostics and restart the program from Step 1 or press Positioning I2.2 to ignore the diagnostic fault and continue the program to the stored next step.
-
-Nevertheless, Positioning I2.2 will serve as override only when F1.0 flag is active, which implies that the automatic cycle has been launched.
-
-Specifically, in case of test socket fault in the earlier stage than Step 8, the F1.1 is activated by the program. Upon pressing the Positioning I2.2 button, the diagnostic fault is cleared and program moves on to Step 8.
-
-The above scheme is repeated for other stored return points as well.
-
-\begin{longtable}{|p{4.5cm}|p{8.3cm}|}
+\begin{longtable}{|p{1.0cm}|p{6.0cm}|p{5.8cm}|}
 \hline
-Override Flag & Return Step \\
+Test & Scenario & Expected Result \\
 \hline
-F1.1 & Step 8 \\
+1 & Press Start with no part in socket & F0.0 active, O1.0 blinks, cycle does not start \\
 \hline
-F1.2 & Step 16 \\
+2 & Block I0.1 during table movement & F0.1 active, O1.0 + O1.1 blink, movement stops \\
 \hline
-F1.3 & Step 18 \\
+3 & Block I0.5 during drill down & F0.2 active, O1.0 + O1.2 blink, drill command stops \\
 \hline
-F1.4 & Step 25 \\
+4 & Block I0.4 during drill return & F0.2 active, O1.0 + O1.2 blink, drill up command stops \\
 \hline
-F1.5 & Step 31 \\
+5 & Block I0.7 during testing & F0.3 active, O1.1 + O1.2 blink, testing command stops \\
 \hline
-F1.6 & Step 1 \\
+6 & Force I0.4 and I0.5 ON together & F0.2 active as drill sensor conflict \\
+\hline
+7 & Force I0.6 and I0.7 ON together & F0.3 active as testing sensor conflict \\
+\hline
+8 & Press Stop during automatic cycle & F0.5 active, O1.1 blinks, outputs stop \\
+\hline
+9 & Activate emergency stop condition & F0.5 active, O1.1 blinks, all main outputs reset \\
 \hline
 \end{longtable}
-
-\subsubsection{Override Example Code}
-
-\begin{verbatim}
-IF I2.2 'Positioning button used as diagnostic override
-   AND F1.0 'Automatic cycle started / override allowed
-   AND F1.1 'Stored return step
-   AND N F0.5 'Do not override stop/emergency
-THEN RESET F0.0
-     RESET F0.1
-     RESET F0.2
-     RESET F0.3
-     RESET F0.6
-     RESET F0.7
-     RESET O1.0
-     RESET O1.1
-     RESET O1.2
-     RESET T7
-     RESET T8
-     RESET T9
-     RESET F1.1
-     RESET F1.2
-     RESET F1.3
-     RESET F1.4
-     RESET F1.5
-     RESET F1.6
-     JMP TO 8
-\end{verbatim}
-
-\section{Program Files Modified}
-
-\begin{longtable}{|p{5.2cm}|p{7.6cm}|}
-\hline
-File & Purpose of Change \\
-\hline
-P0\_MAIN\_DIAGNOSTICS\_OVERRIDE & Added reset logic, start condition check, no-part diagnostic, and positioning/override separation \\
-\hline
-P2\_AUTOMATIC\_DIAGNOSTICS\_OVERRIDE & Added movement timeout diagnostics, diagnostic stop state, and override return logic \\
-\hline
-CMP0\_emergency\_DIAGNOSTICS\_OVERRIDE & Added emergency diagnostic and clears override flags \\
-\hline
-CMP1\_STOP\_DIAGNOSTICS\_OVERRIDE & Added stop diagnostic and clears override flags \\
-\hline
-CMP2\_DIAGNOSTICS & Added LED blinking logic and sensor contradiction checks \\
-\hline
-ALOCATION LIST\_DIAGNOSTICS\_OVERRIDE & Added diagnostic flags, timers, and override flag descriptions \\
-\hline
-\end{longtable}
-
-\section{Testing and Validation Procedure}
-
-Validation of diagnostic functions took place by creating each of the mentioned faults and observing the behavior of corresponding flag, lamp pattern, and program flow. Test cases included station operation without the part, obstruction or disconnection of position sensors, inability of cylinders to reach the specified position, creation of contradictive state of the sensors, activation of Stop or Emergency Stop faults, and testing override in case of fault due to timeout.
-
-Correct response was assumed when the proper diagnostic flag was activated, corresponding lamp pattern began blinking, and potentially dangerous outputs were deactivated if required.
-
-Override logic was verified by making sure that only faults after starting of the automatic cycle could be ignored and that no override was possible before cycle start or during stop/e-stop situations.
-
-\begin{longtable}{|p{1.3cm}|p{6.2cm}|p{5.3cm}|}
-\hline
-Test No. & Test Scenario & Expected Result \\
-\hline
-1 & Press Start with no part in socket & F0.0 activates, O1.0 blinks, automatic cycle does not start \\
-\hline
-2 & Block or disconnect I0.1 during table rotation & F0.1 activates, O1.0 + O1.1 blink, movement stops \\
-\hline
-3 & Prevent drill lower sensor I0.5 from activating & F0.2 activates, O1.0 + O1.2 blink, drill command stops \\
-\hline
-4 & Prevent drill upper sensor I0.4 from activating & F0.2 activates, O1.0 + O1.2 blink, drill up command stops \\
-\hline
-5 & Prevent testing lower sensor I0.7 from activating & F0.3 activates, O1.1 + O1.2 blink, testing command stops \\
-\hline
-6 & Force I0.4 and I0.5 ON together & F0.2 activates as drill sensor contradiction \\
-\hline
-7 & Force I0.6 and I0.7 ON together & F0.3 activates as testing sensor contradiction \\
-\hline
-8 & Press Stop during automatic cycle & F0.5 activates, O1.1 blinks, override is not allowed \\
-\hline
-9 & Activate emergency stop condition & F0.5 activates, O1.1 blinks, outputs are reset \\
-\hline
-10 & Press I2.2 after a timeout fault during cycle & Fault clears and program continues to stored next step \\
-\hline
-11 & Press I2.2 before automatic cycle starts & Positioning function works normally; diagnostic override is not active \\
-\hline
-\end{longtable}
-
-\section{Safety Notes}
-
-Diagnostic override can be useful for demonstration purposes or in case of intentional creation of faults during lab testing and for proceeding through the process once the malfunctioning sensor is identified.
-
-It is critical to remember that if a cylinder does not reach its specified position, overriding will lead to a collision or incorrect drilling and testing operations.
-
-Thus, no-part-at-start fault cannot be overridden, stop and e-stop faults cannot be overridden, reset is the only appropriate reaction in most cases, and override shall be performed only when operator knows about the safety of the next step.
 
 \section{Conclusion}
 
-In conclusion, this report described the implementation of the diagnostic system for the FESTO Processing Station. In addition to the existing automatic sequence, five additional diagnostic categories related to material absence, table positioning problem, drill cylinder fault, testing cylinder fault, and stop/e-stop conditions were added to the system.
+This report presents a structured diagnostic guide for the FESTO Processing Station. Five important faults were implemented: missing part, test socket position fault, drill cylinder fault, testing cylinder fault, and stop/emergency stop condition.
 
-Diagnosis was implemented utilizing all existing PLC resources, namely input sensors, output lamps, flags, timers, and compare blocks. Three existing output lamps were used for diagnostic purposes by changing their blinking patterns (O1.0, O1.1, and O1.2).
+The diagnostic system uses PLC inputs, outputs, timers, flags, and lamp indications to identify faults and guide troubleshooting. Each fault includes the detection condition, possible causes, and rectification steps, so the report can be used as a practical manual for operators and maintenance engineers.
 
-A controlled diagnostic override using Positioning button (I2.2) was also implemented to allow selected faults to be ignored only after the launch of the automatic cycle.
-
-Overall, diagnostics greatly improve fault detection capability and provide valuable information for troubleshooting and system safety, while being fully compatible with older FESTO/FST4 environment and Windows XP-based programming.
+The final implementation improves fault detection, reduces troubleshooting time, and supports safer operation of the FESTO station.

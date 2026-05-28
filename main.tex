@@ -8,8 +8,8 @@
 \input{TitlePage}
 
 
-\setcounter{page}{2} % count from title page; print from TOC
-\tableofcontents
+\setcounter{page}{2} % count from title page; report starts without TOC
+\renewcommand\sectionbreak{}
 
 \clearpage
 \input{chapters/festo_diagnostics_report.tex}
