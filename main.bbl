@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -31,6 +31,24 @@ Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
 \newblock \doi{10.1109/TNSRE.2023.3306365}.
 \newblock URL \url{https://arxiv.org/abs/2102.03987}.
 
+\bibitem[Yang and Wang(2025)]{Yang2025}
+Lirui Yang and Zehua Wang.
+\newblock Applications and advances of combined fmri-fnirs techniques in brain
+  functional research.
+\newblock \emph{Frontiers in Neurology}, 16, 2025.
+\newblock \doi{10.3389/fneur.2025.1542075}.
+\newblock URL
+  \url{https://www.frontiersin.org/articles/10.3389/fneur.2025.1542075}.
+
+\bibitem[Zhan et~al.(2024)Zhan, Yang, Luo, and Zhang]{Zhan2024}
+Zehui Zhan, Qinchen Yang, Lixia Luo, and Xia Zhang.
+\newblock Applying functional near-infrared spectroscopy (fnirs) in educational
+  research: A systematic review.
+\newblock \emph{Current Psychology}, 43\penalty0 (11):\penalty0 9676--9691,
+  2024.
+\newblock \doi{10.1007/s12144-023-05094-y}.
+\newblock URL \url{https://doi.org/10.1007/s12144-023-05094-y}.
+
 \bibitem[Yucel et~al.(2021)]{Yucel2021}
 Meryem~A. Yucel et~al.
 \newblock Best practices for fnirs publications.
@@ -47,6 +65,16 @@ Felix Scholkmann, Ilias Tachtsidis, Martin Wolf, and Ursula Wolf.
 \newblock \doi{10.1117/1.NPh.9.3.030801}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9272976/}.
 
+\bibitem[Amendola et~al.(2023)Amendola, Contini, Re, Spinelli, Frabasile,
+  Levoni, and Torricelli]{Amendola2023}
+Caterina Amendola, Davide Contini, Rebecca Re, Lorenzo Spinelli, Lorenzo
+  Frabasile, Pietro Levoni, and Alessandro Torricelli.
+\newblock Robustness of tissue oxygenation estimates by continuous wave
+  space-resolved near infrared spectroscopy.
+\newblock \emph{Journal of Biomedical Optics}, 28\penalty0 (7), 2023.
+\newblock \doi{10.1117/1.JBO.28.7.075002}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10351877/}.
+
 \bibitem[Yucel et~al.(2025)Yucel, Luke, Mesquita, von Luhmann,
   et~al.]{Yucel2025}
 Meryem~A. Yucel, Robert Luke, Rickson~C. Mesquita, Alexander von Luhmann,
@@ -56,6 +84,46 @@ Meryem~A. Yucel, Robert Luke, Rickson~C. Mesquita, Alexander von Luhmann,
 \newblock \emph{Communications Biology}, 8, 2025.
 \newblock \doi{10.1038/s42003-025-08412-1}.
 \newblock URL \url{https://www.nature.com/articles/s42003-025-08412-1}.
+
+\bibitem[Stute et~al.(2025)Stute, Gosse, Montero-Hernandez, Perkins, and
+  Yucel]{Stute2025}
+Katharina Stute, Louisa~K. Gosse, Samuel Montero-Hernandez, Guy~A. Perkins, and
+  Meryem~A. Yucel.
+\newblock The fnirs glossary project: A consensus-based resource for functional
+  near-infrared spectroscopy terminology.
+\newblock \emph{Neurophotonics}, 12\penalty0 (2), 2025.
+\newblock \doi{10.1117/1.NPh.12.2.027801}.
+\newblock URL \url{https://doi.org/10.1117/1.NPh.12.2.027801}.
+
+\bibitem[Benerradi et~al.(2023)Benerradi, Clos, Landowska, Valstar, and
+  Wilson]{Benerradi2023}
+Johann Benerradi, Jeremie Clos, Aleksandra Landowska, Michel~F. Valstar, and
+  Max~L. Wilson.
+\newblock Benchmarking framework for machine learning classification from fnirs
+  data.
+\newblock \emph{Frontiers in Neuroergonomics}, 4, 2023.
+\newblock \doi{10.3389/fnrgo.2023.994969}.
+\newblock URL
+  \url{https://www.frontiersin.org/articles/10.3389/fnrgo.2023.994969/full}.
+
+\bibitem[Brookshire et~al.(2024)Brookshire, Kasper, Blauch, Wu, Glatt, Merrill,
+  Gerrol, Yoder, Quirk, and Lucero]{Brookshire2024}
+Geoffrey Brookshire, Jake Kasper, Nicholas~M. Blauch, Yunan~Charles Wu, Ryan
+  Glatt, David~A. Merrill, Spencer Gerrol, Keith~J. Yoder, Colin Quirk, and Che
+  Lucero.
+\newblock Data leakage in deep learning studies of translational eeg.
+\newblock \emph{Frontiers in Neuroscience}, 18, 2024.
+\newblock \doi{10.3389/fnins.2024.1373515}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11099244/}.
+
+\bibitem[Klein(2024)]{Klein2024}
+Franziska Klein.
+\newblock Optimizing spatial specificity and signal quality in fnirs: An
+  overview of potential challenges and possible options for improving the
+  reliability of real-time applications.
+\newblock \emph{Frontiers in Neuroergonomics}, 5, 2024.
+\newblock \doi{10.3389/fnrgo.2024.1286586}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11188482/}.
 
 \bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
 Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
@@ -106,15 +174,6 @@ Franziska Klein, Michael Luhrs, Amaia Benitez-Andonegui, Philipp Roehn, and
 \newblock \doi{10.1117/1.NPh.10.1.013503}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9555616/}.
 
-\bibitem[Klein(2024)]{Klein2024}
-Franziska Klein.
-\newblock Optimizing spatial specificity and signal quality in fnirs: An
-  overview of potential challenges and possible options for improving the
-  reliability of real-time applications.
-\newblock \emph{Frontiers in Neuroergonomics}, 5, 2024.
-\newblock \doi{10.3389/fnrgo.2024.1286586}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11188482/}.
-
 \bibitem[An et~al.(2025)An, Goyal, Luft, and Schonhammer]{An2025}
 Jiahui An, Pulkit Goyal, Andreas~R. Luft, and Josef~G. Schonhammer.
 \newblock Functional near-infrared spectroscopy short-channel regression
@@ -123,35 +182,64 @@ Jiahui An, Pulkit Goyal, Andreas~R. Luft, and Josef~G. Schonhammer.
 \newblock \doi{10.1117/1.NPh.12.3.035009}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC12368614/}.
 
-\bibitem[Benerradi et~al.(2023)Benerradi, Clos, Landowska, Valstar, and
-  Wilson]{Benerradi2023}
-Johann Benerradi, Jeremie Clos, Aleksandra Landowska, Michel~F. Valstar, and
-  Max~L. Wilson.
-\newblock Benchmarking framework for machine learning classification from fnirs
-  data.
-\newblock \emph{Frontiers in Neuroergonomics}, 4, 2023.
-\newblock \doi{10.3389/fnrgo.2023.994969}.
+\bibitem[Luke et~al.(2025)Luke, Oostenveld, Cockx, Niso, Shader,
+  Orihuela-Espina, Innes-Brown, Tucker, Boas, Yucel, et~al.]{Luke2025}
+Robert Luke, Robert Oostenveld, Helena Cockx, Guiomar Niso, Maureen~J. Shader,
+  Felipe Orihuela-Espina, Hamish Innes-Brown, Stephen Tucker, David Boas,
+  Meryem~A. Yucel, et~al.
+\newblock Nirs-bids: Brain imaging data structure extended to near-infrared
+  spectroscopy.
+\newblock \emph{Scientific Data}, 12, 2025.
+\newblock \doi{10.1038/s41597-024-04136-9}.
+\newblock URL \url{https://www.nature.com/articles/s41597-024-04136-9}.
+
+\bibitem[Poldrack et~al.(2024)Poldrack, Markiewicz, Appelhoff, Ashar, Auer,
+  Baillet, and Gorgolewski]{Poldrack2024}
+Russell~A. Poldrack, Christopher~J. Markiewicz, Stefan Appelhoff, Yoni~K.
+  Ashar, Tibor Auer, Sylvain Baillet, and Krzysztof~J. Gorgolewski.
+\newblock The past, present, and future of the brain imaging data structure.
+\newblock \emph{Imaging Neuroscience}, 2:\penalty0 1--19, 2024.
+\newblock \doi{10.1162/imag_a_00103}.
 \newblock URL
-  \url{https://www.frontiersin.org/articles/10.3389/fnrgo.2023.994969/full}.
+  \url{https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00103/119672/The-past-present-and-future-of-the-Brain-Imaging}.
 
-\bibitem[Brookshire et~al.(2024)Brookshire, Kasper, Blauch, Wu, Glatt, Merrill,
-  Gerrol, Yoder, Quirk, and Lucero]{Brookshire2024}
-Geoffrey Brookshire, Jake Kasper, Nicholas~M. Blauch, Yunan~Charles Wu, Ryan
-  Glatt, David~A. Merrill, Spencer Gerrol, Keith~J. Yoder, Colin Quirk, and Che
-  Lucero.
-\newblock Data leakage in deep learning studies of translational eeg.
-\newblock \emph{Frontiers in Neuroscience}, 18, 2024.
-\newblock \doi{10.3389/fnins.2024.1373515}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11099244/}.
+\bibitem[Rahimpour~Jounghani et~al.(2025)Rahimpour~Jounghani, Kumar,
+  Moreno~Carbonell, Lopez~Aguilar, Picardi, Crawford, Bowden, and
+  Hosseini]{RahimpourJounghani2025}
+Ali Rahimpour~Jounghani, Anupam Kumar, Laura Moreno~Carbonell, Ester~Patrize
+  Lopez~Aguilar, Tulla~Bee Picardi, Seth Crawford, Audrey~K. Bowden, and
+  S.~M.~Hadi Hosseini.
+\newblock Wearable fnirs platform for dense sampling and precision functional
+  neuroimaging.
+\newblock \emph{npj Digital Medicine}, 8, 2025.
+\newblock \doi{10.1038/s41746-025-01690-3}.
+\newblock URL \url{https://www.nature.com/articles/s41746-025-01690-3}.
 
-\bibitem[Amendola et~al.(2023)Amendola, Contini, Re, Spinelli, Frabasile,
-  Levoni, and Torricelli]{Amendola2023}
-Caterina Amendola, Davide Contini, Rebecca Re, Lorenzo Spinelli, Lorenzo
-  Frabasile, Pietro Levoni, and Alessandro Torricelli.
-\newblock Robustness of tissue oxygenation estimates by continuous wave
-  space-resolved near infrared spectroscopy.
-\newblock \emph{Journal of Biomedical Optics}, 28\penalty0 (7), 2023.
-\newblock \doi{10.1117/1.JBO.28.7.075002}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10351877/}.
+\bibitem[Tang et~al.(2024)Tang, Kebaya, Vahidi, Meyerink, de~Ribaupierre,
+  Bhattacharya, St.~Lawrence, and Duerden]{Tang2024}
+Lingkai Tang, Lilian M.~N. Kebaya, Homa Vahidi, Paige Meyerink, Sandrine
+  de~Ribaupierre, Soume Bhattacharya, Keith St.~Lawrence, and Emma~G. Duerden.
+\newblock Predicting cortical-thalamic functional connectivity using functional
+  near-infrared spectroscopy and graph convolutional networks.
+\newblock \emph{Scientific Reports}, 14, 2024.
+\newblock \doi{10.1038/s41598-024-79390-3}.
+\newblock URL \url{https://www.nature.com/articles/s41598-024-79390-3}.
+
+\bibitem[Belov et~al.(2024)Belov, Erwin-Grabner, Aghajani, Aleman, Amod,
+  et~al.]{Belov2024}
+Vladimir Belov, Tracy Erwin-Grabner, Moji Aghajani, Andre Aleman, Alyssa~R.
+  Amod, et~al.
+\newblock Multi-site benchmark classification of major depressive disorder
+  using machine learning on cortical and subcortical measures.
+\newblock \emph{Scientific Reports}, 14, 2024.
+\newblock \doi{10.1038/s41598-023-47934-8}.
+\newblock URL \url{https://www.nature.com/articles/s41598-023-47934-8}.
+
+\bibitem[Beam et~al.(2021)Beam, Potts, Poldrack, and Etkin]{Beam2021}
+Emily Beam, Christopher Potts, Russell~A. Poldrack, and Amit Etkin.
+\newblock A data-driven framework for mapping domains of human neurobiology.
+\newblock \emph{Nature Neuroscience}, 24:\penalty0 1733--1744, 2021.
+\newblock \doi{10.1038/s41593-021-00948-9}.
+\newblock URL \url{https://www.nature.com/articles/s41593-021-00948-9}.
 
 \end{thebibliography}

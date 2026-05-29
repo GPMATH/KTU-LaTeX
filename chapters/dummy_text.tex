@@ -1,13 +1,13 @@
-\section{Research Problem and Scope of the Literature Analysis}
+\section{Methodology}
 
 The thesis topic sits in an attractive but risky research space. fNIRS offers a portable and non-invasive way to observe relative haemodynamic activity during cognitive, motor, educational, or social tasks. However, mental-health and neurodevelopmental conditions rarely map to one clean physiological marker. A model may find statistical structure in the signal without learning a clinically meaningful pattern.
 
 For that reason, the defensible framing is not that fNIRS diagnoses mental disease. The stronger position is that task-evoked fNIRS, combined with leakage-safe machine learning, may contribute to objective assessment by modelling relative neurocognitive response patterns.
 
-\section{Methodological Risks}
+\subsection{Methodological Risks}
 
 The current methodology must control four risks. First, extracerebral systemic physiology can contaminate long-separation fNIRS channels, so short-distance channels should be used as nuisance regressors where available \cite{Scholkmann2022,Wyser2022,Klein2023,An2025}. Second, fNIRS should be represented as channel-by-time haemodynamic data rather than arbitrarily resized into a generic image grid \cite{Khan2025,Qin2024}. Third, HbDiff and HbT are relative haemodynamic quantities and should not be described as tissue oxygen saturation \cite{Yucel2021,Amendola2023}. Fourth, model evaluation must avoid leakage from participant identity, preprocessing, hyperparameter tuning, and overlapping windows \cite{Benerradi2023,Brookshire2024}.
 
-\section{Thesis Positioning}
+\subsection{Thesis Positioning}
 
 The reviewed literature supports task-state, workload, walking-task, and cognitive-effort modelling more strongly than stand-alone clinical diagnosis \cite{Wickramaratne2021,Eastmond2022,Ma2023,Sharmin2026}. A strong and defensible aim is to investigate whether task-evoked fNIRS signals, analysed with short-channel correction and subject-wise validation, can reveal objective relative haemodynamic patterns associated with selected neurocognitive indicators.

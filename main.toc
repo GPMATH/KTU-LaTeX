@@ -2,16 +2,22 @@
 \contentsline {section}{List of Figures}{3}{Doc-Start}%
 \contentsline {section}{\numberline {1}Literature Review}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Scope of This Literature Analysis}{4}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Methodological Evidence From fNIRS Studies}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}GASF-Based Task-State Classification}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Signal Representation With Preserved Temporal Structure}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}CNN + LSTM Neural Network Model for fNIRS Workload Classification}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Correct Haemodynamic Quantities}{7}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Physiological Confounds and Short-Channel Regression}{7}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Walking-Task Classification in Older Adults}{8}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Cognitive-Effort Modeling Framework}{8}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Cross-Study Interpretation}{10}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Leakage-Safe Evaluation Pipeline}{10}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Methodological Implications}{10}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusions}{12}{section.4}%
-\contentsline {section}{References}{13}{section*.7}%
+\contentsline {subsection}{\numberline {1.2}fNIRS Signal Composition and Haemodynamic Estimates}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Methodological Evidence From fNIRS Studies}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Physiological Confounds and Short-Channel Regression}{5}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Signal Structure and Representation for Machine Learning}{6}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}GASF-Based Task-State Classification}{7}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Classical Machine Learning and Deep Learning Models}{8}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.5}CNN-LSTM Neural Network Model for fNIRS Workload Classification}{9}{subsubsection.1.3.5}%
+\contentsline {subsubsection}{\numberline {1.3.6}Task-State, Workload, and Walking-Task Classification}{9}{subsubsection.1.3.6}%
+\contentsline {subsubsection}{\numberline {1.3.7}Cognitive-Effort Modelling Framework}{10}{subsubsection.1.3.7}%
+\contentsline {subsubsection}{\numberline {1.3.8}Leakage-Free Evaluation of Models}{11}{subsubsection.1.3.8}%
+\contentsline {subsubsection}{\numberline {1.3.9}Reproducibility Guidelines, Standardisation, and Wearable fNIRS}{12}{subsubsection.1.3.9}%
+\contentsline {subsubsection}{\numberline {1.3.10}Connectivity-Aware and Graph-Based Extensions}{13}{subsubsection.1.3.10}%
+\contentsline {subsubsection}{\numberline {1.3.11}Cross-Study Interpretation}{13}{subsubsection.1.3.11}%
+\contentsline {subsubsection}{\numberline {1.3.12}Methodological Implications}{14}{subsubsection.1.3.12}%
+\contentsline {section}{\numberline {2}Methodology}{15}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Methodological Risks}{15}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Thesis Positioning}{15}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Conclusions}{16}{section.3}%
+\contentsline {section}{References}{17}{section*.7}%

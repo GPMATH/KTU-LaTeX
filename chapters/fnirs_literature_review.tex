@@ -1,126 +1,81 @@
 \section{Literature Review}
 
-This literature review focuses on functional near-infrared spectroscopy (fNIRS) and machine learning as techniques for researching neurocognitive and health-related task patterns. The updated methodology is intentionally modest, as fNIRS is taken here as a tool to measure relative haemodynamic changes, whereas machine-learning models depend on valid preprocessing, physiologically relevant signal representation, and leakage-safe evaluation.
+In recent years, functional near-infrared spectroscopy (fNIRS) has become an increasingly valuable neuroimaging technique for the investigation of brain functionality and the dynamics of neurocognitive processes \cite{Yang2025,Zhan2024}. One of the advantages of fNIRS is its portability and suitability for studies in realistic environments that cannot accommodate bulky scanner setups. In neurocognitive and mental-health screening contexts, however, fNIRS should be considered cautiously. Continuous-wave fNIRS does not estimate brain activity directly and does not provide a diagnostic biomarker by itself. Instead, it provides an indirect estimate of relative haemodynamic responses based on changes in oxyhaemoglobin and deoxyhaemoglobin levels \cite{Yucel2021,Scholkmann2022,Amendola2023}.
 
-The cited evidence shows that modelling of task states, workload, walking-task, and cognitive-effort tasks has stronger grounds than classification for clinical diagnostics purposes. This means that the thesis does not imply that the fNIRS technique alone can detect mental disorders or neurodevelopmental conditions. Rather, it questions whether relative frontal haemodynamic patterns can be preprocessed and modelled in a valid manner.
+Therefore, the scientifically defensible question is not whether fNIRS and machine-learning algorithms can directly diagnose mental-health conditions or neurodevelopmental disorders. A more accurate question is whether relative changes in frontal haemodynamic patterns can be preprocessed, represented, and classified under valid methodological conditions. This view aligns with current best practices and recent reproducibility guidance, which show that fNIRS outcomes are strongly influenced by signal quality, short-channel correction, data structuring, terminology, and evaluation strategy \cite{Yucel2021,Yucel2025,Stute2025,Benerradi2023,Brookshire2024}.
 
 \subsection{Scope of This Literature Analysis}
 
-The key challenge is not only in obtaining high accuracy with a classifier. Is the signal entered into a classifier plausible? As noted in current fNIRS methodology, there are a number of physiological considerations which need to be accounted for to obtain a valid result \cite{Yucel2021,Scholkmann2022,Yucel2025}.
+The key challenge is not only obtaining high accuracy with a classifier. The more important question is whether the signal entered into the classifier is physiologically plausible. Current fNIRS methodology stresses that systemic physiology, superficial blood flow, motion, optode contact, preprocessing choices, and participant-wise evaluation must be controlled before a classification result can be interpreted \cite{Yucel2021,Scholkmann2022,Klein2024,Yucel2025}.
 
-Several papers cited in this review contain examples of fNIRS classification and deep learning \cite{Wickramaratne2021,Khan2025,Eastmond2022,Ma2023,Sharmin2026,Qin2024}. However, their relevance is conditional on the limitations of fNIRS data. Most evidence that the current thesis relies on concerns the issues of short-channel regression, physiological confound, benchmarking, and data leakage \cite{Wyser2022,Klein2023,Klein2024,An2025,Benerradi2023,Brookshire2024}.
+Several papers cited in this review contain examples of fNIRS classification and deep learning \cite{Wickramaratne2021,Khan2025,Eastmond2022,Ma2023,Sharmin2026,Qin2024}. Their relevance is conditional on the limitations of fNIRS data. The thesis therefore relies most strongly on methodological evidence concerning short-channel regression, physiological confounds, benchmarking, reproducible data organization, and data leakage \cite{Wyser2022,Klein2023,Klein2024,An2025,Benerradi2023,Brookshire2024,Luke2025}.
 
-\section{Methodological Evidence From fNIRS Studies}
+\subsection{fNIRS Signal Composition and Haemodynamic Estimates}
 
-\subsection{GASF-Based Task-State Classification}
-
-An example of conversion of the fNIRS signals to GASF images is provided by Wickramaratne and Mahmud \cite{Wickramaratne2021}. It is useful as a representative approach to signal representation in classification tasks, but should not be considered as the preferred methodology in this thesis due to potential issues. First of all, fNIRS provides a multichannel time series. Its conversion to an image could significantly alter its temporal structure.
-
-It means that in this thesis, the use of images created from time-series based on GASF is considered as an example from the literature, and not as a preferred choice of signal representation. Whatever type of signal representation will be chosen for processing in this thesis, the window duration, sampling frequency, and channel distribution should be preserved. Otherwise, the representation becomes too generic to be valid for physiological data.
-
-\textit{Gramian Angular Summation Field representation:}
-
-\begin{align}
-\tilde{x}_i &= \frac{x_i - \min(X)}{\max(X) - \min(X)} \\
-\varphi_i &= \arccos(\tilde{x}_i) \\
-\text{GASF}_{ij} &= \cos(\varphi_i + \varphi_j) \\
-\text{GASF}_{ij} &= \tilde{x}_i\tilde{x}_j - \sqrt{1 - \tilde{x}_i^2}\sqrt{1 - \tilde{x}_j^2}
-\end{align}
-
-\textit{Note: Here are the formulas to convert an fNIRS time-series signal into GASF representation.}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/The proposed convolutional networks.png}
-\caption{Example convolutional neural network used for GASF-based fNIRS task classification \cite{Wickramaratne2021}.}
-\label{fig:wickramaratne_fig3}
-\end{figure}
-
-\subsection{Signal Representation With Preserved Temporal Structure}
-
-In this thesis, the primary input representation is a multichannel time series of haemodynamics. For each fixed-duration analysis window, the representation is a channel-by-time-by-signal three-dimensional matrix:
+An fNIRS signal is obtained by detecting near-infrared light intensity after scattering and absorption in biological tissue. Optical density (OD) can be calculated by subtracting the logarithm of the ratio between recorded and reference intensities:
 
 \begin{equation}
-X \in \mathrm{R}^{C \times T \times K},
+\mathrm{OD}(\lambda,t)=-\log\left(\frac{I(\lambda,t)}{I_0(\lambda)}\right).
 \end{equation}
 
-where \(C\) is the number of fNIRS channels, \(T\) is the number of time samples in the window, and \(K\) is the number of haemodynamic signals in each channel, for example \(\Delta\mathrm{HbO}\), \(\Delta\mathrm{HbR}\), HbDiff, or HbT. Time windows are predefined in physical time before training, and sampling structure is retained.
-
-Modern deep-learning models for classification of fNIRS data show that CNN-LSTM, one-dimensional convolutional, attentional, and temporal convolutional models can process temporal and spatial aspects of fNIRS signal without changing its representation into an image \cite{Khan2025,Qin2024,Eastmond2022}. Additionally, classical machine-learning models can use the extracted features from the input windows under a condition that those will be fitted and evaluated without leakage \cite{Benerradi2023}.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[
-  node distance=1.4cm,
-  box/.style={draw, rounded corners=2pt, align=center, minimum height=0.9cm, minimum width=2.7cm},
-  arrow/.style={-{Latex[length=2mm]}, thick}
-]
-\node[box] (raw) {Optical\\density};
-\node[box, right=of raw] (hb) {\(\Delta\mathrm{HbO}\),\\\(\Delta\mathrm{HbR}\)};
-\node[box, right=of hb] (tensor) {\(C \times T \times K\)\\window};
-\node[box, right=of tensor] (models) {Baseline ML\\or temporal DL};
-\draw[arrow] (raw) -- (hb);
-\draw[arrow] (hb) -- (tensor);
-\draw[arrow] (tensor) -- (models);
-\end{tikzpicture}
-\caption{Sequence-preserving fNIRS representation used for model input.}
-\label{fig:temporal_representation}
-\end{figure}
-
-\subsection{CNN + LSTM Neural Network Model for fNIRS Workload Classification}
-
-Convolutional and LSTM layers are potentially useful to create an architecture capable of processing a two-way variation in fNIRS data. The former learns local patterns, whereas the latter deals with dependencies between samples \cite{Khan2025}. Nevertheless, the reported high accuracy of the fNIRS workload classifier cannot imply its diagnostic ability as the workload itself is determined experimentally and may reflect various factors.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png}
-\caption{Example CNN-LSTM architecture for fNIRS workload classification \cite{Khan2025}.}
-\label{fig:khan_fig1}
-\end{figure}
-
-\textit{Convolution operation and related functions:}
-
-\begin{align}
-Y[i] &= f\left(\sum_{j=1}^{k} X[i + j - 1] \cdot W[j] + b\right) \\
-Y[i] &= \max(0, X[i]) \quad \text{(ReLU activation)} \\
-Y[i] &= \max(X[i \cdot p : (i+1) \cdot p]) \quad \text{(Max-pooling operation)}
-\end{align}
-
-\textit{Note: Deep architectures are considered only after reliable leakage-safe baselines are established.}
-
-\subsection{Correct Haemodynamic Quantities}
-
-In continuous-wave fNIRS, haemoglobin concentration changes can be estimated through conversion of optical density to relative oxyhaemoglobin and deoxyhaemoglobin changes after applying the modified Beer-Lambert law \cite{Yucel2021,Amendola2023}. These haemodynamic quantities are measured relatively, not absolutely.
+The corresponding change in optical density is defined as:
 
 \begin{equation}
-\Delta A(\lambda)= \mathrm{DPF}\cdot r \cdot
+\Delta \mathrm{OD}(\lambda,t)=\mathrm{OD}(\lambda,t)-\mathrm{OD}(\lambda,t_0).
+\end{equation}
+
+For continuous-wave fNIRS, optical-density signals are transformed into relative haemodynamic signal changes by applying the modified Beer-Lambert law. For a given wavelength \(\lambda\), this relation can be written as:
+
+\begin{equation}
+\Delta A(\lambda)= \mathrm{DPF} \cdot r \cdot
 \left[
-\varepsilon_{\mathrm{HbO}}(\lambda)\Delta c_{\mathrm{HbO}}+
-\varepsilon_{\mathrm{HbR}}(\lambda)\Delta c_{\mathrm{HbR}}
-\right]
+\varepsilon_{\mathrm{HbO}}(\lambda)\Delta \mathrm{HbO}+
+\varepsilon_{\mathrm{HbR}}(\lambda)\Delta \mathrm{HbR}
+\right],
 \end{equation}
 
+where \(\mathrm{DPF}\) is the differential pathlength factor, \(r\) is the source-detector distance, \(\varepsilon_{\mathrm{HbO}}\) and \(\varepsilon_{\mathrm{HbR}}\) are the extinction coefficients of oxyhaemoglobin and deoxyhaemoglobin, and \(\Delta \mathrm{HbO}\) and \(\Delta \mathrm{HbR}\) are relative concentration changes \cite{Yucel2021,Amendola2023,Stute2025}. For two wavelengths, the same relation can be represented as:
+
+\begin{equation}
+\begin{bmatrix}
+\Delta A(\lambda_1)\\
+\Delta A(\lambda_2)
+\end{bmatrix}
+=
+\mathrm{DPF}\cdot r
+\begin{bmatrix}
+\varepsilon_{\mathrm{HbO}}(\lambda_1) & \varepsilon_{\mathrm{HbR}}(\lambda_1)\\
+\varepsilon_{\mathrm{HbO}}(\lambda_2) & \varepsilon_{\mathrm{HbR}}(\lambda_2)
+\end{bmatrix}
+\begin{bmatrix}
+\Delta \mathrm{HbO}\\
+\Delta \mathrm{HbR}
+\end{bmatrix}.
+\end{equation}
+
+The fNIRS features used in this thesis are based on the following relative haemodynamic estimates:
+
 \begin{align}
-\mathrm{HbDiff} &= \Delta \mathrm{HbO} - \Delta \mathrm{HbR} \\
-\mathrm{HbT} &= \Delta \mathrm{HbO} + \Delta \mathrm{HbR}
+\mathrm{HbDiff} &= \Delta \mathrm{HbO}-\Delta \mathrm{HbR},\\
+\mathrm{HbT} &= \Delta \mathrm{HbO}+\Delta \mathrm{HbR}.
 \end{align}
 
-The difference between relative oxyhaemoglobin and deoxyhaemoglobin changes is called HbDiff. Relative haemoglobin total changes is HbT. Both terms cannot be considered oxygenation indexes or oxygen saturation measures. Ratio-based values like the regional oxygen saturation or tissue saturation index are calculated explicitly by the device and software algorithms \cite{Amendola2023}.
+These quantities should not be confused with oxygen saturation, because saturation depends on an estimation algorithm and hardware-specific assumptions \cite{Amendola2023,Stute2025}. For example, a saturation quantity could be calculated as:
 
 \begin{equation}
 \mathrm{rSO}_2 \text{ or TSI} =
-\frac{\mathrm{HbO}_2}{\mathrm{HbO}_2 + \mathrm{Hb}}
-\times 100
-\quad \text{only when saturation is explicitly estimated.}
+\frac{\mathrm{HbO}_2}{\mathrm{HbO}_2+\mathrm{Hb}}\times100,
 \end{equation}
 
-Thus, the present thesis defines \(\Delta\mathrm{HbO}\), \(\Delta\mathrm{HbR}\), HbDiff, and HbT as relative haemodynamic measures. Physiological interpretation is possible only in terms of task-related patterns under the mentioned preprocessing.
+but this term should be used only when it is actually calculated by the device or analysis software. Thus, the present research uses \(\Delta \mathrm{HbO}\), \(\Delta \mathrm{HbR}\), HbDiff, and HbT as relative haemodynamic features.
 
-\subsection{Physiological Confounds and Short-Channel Regression}
+\subsection{Methodological Evidence From fNIRS Studies}
 
-fNIRS data from channels separated by large distances contain both haemodynamic signal originating in the cortex and haemodynamic activity caused by other factors \cite{Scholkmann2022,Klein2024}. Those can be scalp blood flow, heart rate, respiration, blood pressure changes, Mayer waves, motion artifacts, etc. If those confounds are not removed, the classifier learns a superficial signal instead of actual task-related patterns.
+\subsubsection{Physiological Confounds and Short-Channel Regression}
 
-One approach to addressing this problem is to use short-distance channels to estimate the effect of extracerebral haemodynamic activity. It is applicable since the present thesis database contains data for short-distance channels. Thus, those should be used as nuisance regressors in preprocessing.
+One disadvantage of fNIRS is that long-distance channels receive mixed signals from cortical haemodynamics and superficial tissues, such as the scalp and skin. Superficial physiology includes systemic activity, blood-pressure changes, breathing, skin and scalp blood flow, motion artefacts, Mayer waves, and optode-contact changes \cite{Scholkmann2022,Klein2024}. If these variables are not controlled, they can become the main drivers of machine-learning model output.
+
+One way to address this limitation is to use short-distance channels, because short channels are more sensitive to superficial physiological noise than long channels \cite{Wyser2022,Klein2023,An2025}. The following equation illustrates how a short-channel signal can serve as a nuisance variable for correcting a long-channel signal:
 
 \begin{equation}
 y_{\text{clean}} = y_{\text{long}} - \alpha y_{\text{short}},
@@ -130,15 +85,19 @@ y_{\text{clean}} = y_{\text{long}} - \alpha y_{\text{short}},
 {\langle y_{\text{short}}, y_{\text{short}} \rangle}.
 \end{equation}
 
-A general GLM approach can model the separation fNIRS signal as a combination of task regressors, short-distance channel regressors, and physiological nuisance regressors. The cleaned haemodynamic signal will be obtained as residuals.
+Here, \(y_{\text{long}}\) is a measured long-distance signal, \(y_{\text{short}}\) is a short-channel signal, and \(y_{\text{clean}}\) is the corrected long-distance signal. The coefficient \(\alpha\) defines the proportion of superficial haemodynamic activity shared between short and long channels.
+
+More generally, this correction can be expressed using a general linear model:
 
 \begin{equation}
 Y = X_{\text{task}}\beta_{\text{task}} +
 X_{\text{SDC}}\beta_{\text{SDC}} +
-X_{\text{phys}}\beta_{\text{phys}} + \varepsilon.
+X_{\text{phys}}\beta_{\text{phys}} + \varepsilon,
 \end{equation}
 
-Several recent papers have demonstrated the benefits of short-channel correction \cite{Wyser2022,Klein2023,An2025} with applications to working-memory load analysis.
+where \(X_{\text{task}}\) includes task-related regressors, \(X_{\text{SDC}}\) includes short-distance-channel regressors, \(X_{\text{phys}}\) includes additional physiological nuisance variables where available, and \(\varepsilon\) includes the residual signal. This decomposition is especially important in mental-health applications, where intergroup task-related differences can be subtle and easily confounded by systemic physiology \cite{Scholkmann2022,Yucel2025,Klein2024}.
+
+Recent reproducibility studies confirm the need to treat noise and preprocessing as part of scientific validity rather than as secondary details. The FRESH initiative showed that fNIRS findings are sensitive to signal quality, preprocessing steps, and researcher experience \cite{Yucel2025}. For this thesis, short-channel regression, artefact handling, and explicit reporting of preprocessing are therefore key steps before machine-learning techniques are applied.
 
 \begin{figure}[h]
 \centering
@@ -160,11 +119,144 @@ Several recent papers have demonstrated the benefits of short-channel correction
 \label{fig:short_long_channels}
 \end{figure}
 
-\subsection{Walking-Task Classification in Older Adults}
+\subsubsection{Signal Structure and Representation for Machine Learning}
 
-Ma et al. classified walking task states in older adults with the help of fNIRS \cite{Ma2023}. The paper is important in this respect that it shows the possibility of assessing complex neurophysiological functions related to mental and motor abilities in this age category. The authors have not made any attempt to establish the relation of these patterns to some clinical disorders; the experiment itself has merely confirmed the viability of task-based fNIRS analysis.
+One of the most important steps in machine learning with fNIRS data is signal representation. Unlike images, raw fNIRS data are not naturally represented in two-dimensional spatial coordinates. They are multichannel time series. For an analysis window, the input can be defined as:
 
-Image recognition components of the pipeline described in the article should not be used to reshape the thesis data into a standard generic image format. To the contrary, the better option would be to maintain a channel-by-time haemodynamic representation and validate models subject-wise.
+\begin{equation}
+X \in \mathrm{R}^{C \times T \times K},
+\end{equation}
+
+where \(C\) is the number of fNIRS channels, \(T\) is the number of time samples per channel, and \(K\) is the number of haemodynamic signals, such as \(\Delta \mathrm{HbO}\), \(\Delta \mathrm{HbR}\), HbDiff, and HbT. For \(N\) analysis windows, the full dataset can be written as:
+
+\begin{equation}
+\mathcal{X} \in \mathrm{R}^{N \times C \times T \times K}.
+\end{equation}
+
+This representation is preferable to aggressive reshaping into a generic image format. Modern fNIRS deep-learning models show that CNN-LSTM, 1D convolutional, attentional, and temporal convolutional models can process temporal and spatial aspects of fNIRS signals without discarding their channel-by-time structure \cite{Khan2025,Qin2024,Eastmond2022}. Classical machine-learning models can also use extracted features from these windows, provided that feature extraction and model evaluation are leakage-safe \cite{Benerradi2023}.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=1.4cm,
+  box/.style={draw, rounded corners=2pt, align=center, minimum height=0.9cm, minimum width=2.7cm},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[box] (raw) {Optical\\density};
+\node[box, right=of raw] (hb) {\(\Delta\mathrm{HbO}\),\\\(\Delta\mathrm{HbR}\)};
+\node[box, right=of hb] (tensor) {\(C \times T \times K\)\\window};
+\node[box, right=of tensor] (models) {Baseline ML\\or temporal DL};
+\draw[arrow] (raw) -- (hb);
+\draw[arrow] (hb) -- (tensor);
+\draw[arrow] (tensor) -- (models);
+\end{tikzpicture}
+\caption{Sequence-preserving fNIRS representation used for model input.}
+\label{fig:temporal_representation}
+\end{figure}
+
+\subsubsection{GASF-Based Task-State Classification}
+
+Some studies use image-based transformations of fNIRS data, such as Gramian Angular Summation Field (GASF). Wickramaratne and Mahmud used fNIRS signals transformed with GASF for three-class task classification, including mental arithmetic, motor imagery, and idle state \cite{Wickramaratne2021}. This confirms that fNIRS data can contain task-related haemodynamic activity, although it also raises questions about whether GASF preserves physiologically meaningful structure.
+
+The GASF representation is created by first normalizing the signal:
+
+\begin{equation}
+\tilde{x}_i=
+\frac{x_i-\min(X)}
+{\max(X)-\min(X)}.
+\end{equation}
+
+Each sample is then converted into a polar-angle representation:
+
+\begin{equation}
+\varphi_i=\arccos(\tilde{x}_i),
+\end{equation}
+
+and the matrix is constructed as:
+
+\begin{align}
+\mathrm{GASF}_{ij} &= \cos(\varphi_i+\varphi_j),\\
+\mathrm{GASF}_{ij} &= \tilde{x}_i\tilde{x}_j -
+\sqrt{1-\tilde{x}_i^2}
+\sqrt{1-\tilde{x}_j^2}.
+\end{align}
+
+Although GASF may be useful for designing image-based deep-learning models, this technique can distort the original physiological structure of fNIRS data. In this thesis, GASF is therefore treated as one possible representation from the literature rather than as the preferred approach. To retain physiological meaning, the window length, sampling frequency, channel distribution, and haemodynamic signal structure should remain explicit \cite{Khan2025,Qin2024,Benerradi2023}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{images/The proposed convolutional networks.png}
+\caption{Example convolutional neural network used for GASF-based fNIRS task classification \cite{Wickramaratne2021}.}
+\label{fig:wickramaratne_fig3}
+\end{figure}
+
+\subsubsection{Classical Machine Learning and Deep Learning Models}
+
+Classical machine-learning techniques remain important because they provide interpretable and reproducible baselines for deep-learning models. Common classical methods in fNIRS studies include linear discriminant analysis, logistic regression, support vector machines with linear or kernel methods, decision trees, random forests, and k-nearest neighbours \cite{Benerradi2023,Eastmond2022}. These models are usually applied to manually extracted features such as mean, slope, peak value, time-to-peak, variance, area under the curve, or spectral features. A feature extraction operation can be written as:
+
+\begin{equation}
+z_i=g(X_i),
+\end{equation}
+
+where \(X_i\) is a haemodynamic window and \(z_i\) is a feature vector. The classifier then maps the feature vector into class probabilities:
+
+\begin{equation}
+\hat{y}_i=f_{\theta}(z_i).
+\end{equation}
+
+Deep-learning models allow more flexible feature extraction without manual feature design. However, this increased flexibility also increases the risk of overfitting and leakage. Two common fNIRS deep-learning architectures use convolutional layers and recurrent layers, such as LSTM layers. CNN layers extract spatial or local temporal structures, whereas LSTM layers model temporal dependencies. One-dimensional convolution over time can be written as:
+
+\begin{equation}
+Y[i]=f\left(\sum_{j=1}^{k}X[i+j-1]\cdot W[j]+b\right),
+\end{equation}
+
+where \(k\) is the convolution-kernel size, \(W\) is the kernel, \(b\) is the bias, and \(f(\cdot)\) is a nonlinear activation function. A commonly used activation function is the rectified linear unit:
+
+\begin{equation}
+\mathrm{ReLU}(x)=\max(0,x).
+\end{equation}
+
+Pooling can be applied to reduce the temporal dimension:
+
+\begin{equation}
+Y[i]=\max(X[i\cdot p:(i+1)\cdot p]).
+\end{equation}
+
+CNN-LSTM models are relevant because fNIRS responses evolve over time. Recent research also explores spatiotemporal convolution, temporal convolutional networks, and attention mechanisms \cite{Eastmond2022,Qin2024}. In general, the final classifier of such a model can be expressed as:
+
+\begin{equation}
+\hat{y}=f_{\theta}(X), \quad X\in \mathrm{R}^{C\times T\times K}.
+\end{equation}
+
+The loss function commonly used for classification problems is cross-entropy:
+
+\begin{equation}
+\mathcal{L}
+=
+-\frac{1}{N}
+\sum_{i=1}^{N}
+\sum_{m=1}^{M}
+y_{im}\log(\hat{p}_{im}),
+\end{equation}
+
+where \(M\) is the number of classes, \(y_{im}\) is the class indicator, and \(\hat{p}_{im}\) is the predicted probability for class \(m\).
+
+\subsubsection{CNN-LSTM Neural Network Model for fNIRS Workload Classification}
+
+Convolutional and LSTM layers are potentially useful for building an architecture capable of processing two forms of variation in fNIRS data. CNN layers learn local patterns, whereas LSTM layers model dependencies between samples \cite{Khan2025}. Nevertheless, high reported accuracy in workload classification cannot imply diagnostic ability, because workload classes are experimentally defined and may reflect many non-clinical factors.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{images/The diagram illustrates the proposed architecture, incorporating both CNN and LSTM.png}
+\caption{Example CNN-LSTM architecture for fNIRS workload classification \cite{Khan2025}.}
+\label{fig:khan_fig1}
+\end{figure}
+
+\subsubsection{Task-State, Workload, and Walking-Task Classification}
+
+Modern literature supports fNIRS machine learning for task-state, workload, and walking-task classification more strongly than for standalone diagnosis. Khan et al. show the benefits of deep learning for cognitive workload modelling \cite{Khan2025}. This is relevant because workload is related to mental effort. Nevertheless, workload classification cannot be equated with mental-health screening: a classification task is defined experimentally, whereas a diagnosis is defined by clinical criteria.
+
+Ma et al. developed a deep-learning model to distinguish walking tasks in older adults \cite{Ma2023}. This work demonstrates the potential of fNIRS and deep learning for classification in motor-cognitive paradigms. At the same time, motion artefacts become especially important during walking, which increases the need for careful preprocessing and leakage-free evaluation \cite{Ma2023,Scholkmann2022,Brookshire2024}.
 
 \begin{figure}[h]
 \centering
@@ -173,35 +265,89 @@ Image recognition components of the pipeline described in the article should not
 \label{fig:ma_fig2}
 \end{figure}
 
-\subsection{Cognitive-Effort Modeling Framework}
+\subsubsection{Cognitive-Effort Modelling Framework}
 
-A cognitive-effort modeling framework is interesting because it allows accounting for individual effort spent on completing a task in addition to just the task-related changes \cite{Sharmin2026}. Such individual effort expenditure may differ even in case when participants achieve the same results. This approach can contribute to mental-health analysis, although it needs further development.
+A cognitive-effort modelling framework is relevant because it allows the analysis to consider individual effort in addition to task performance \cite{Sharmin2026}. Cognitive effort must be defined independently from performance. Standardization can be written as:
 
-\textit{Cognitive effort framework and evaluation metrics:}
+\begin{equation}
+z=\frac{x-\mu}{\sigma}.
+\end{equation}
+
+For performance and cognitive-load variables, this becomes:
 
 \begin{align}
-z &= \frac{x - \mu}{\sigma} \quad \text{(Z-score standardization)} \\
-P_z(s, i) &= \frac{P(s, i) - \mu(P_i)}{\sigma(P_i)} \quad \text{(Participant-specific standardized performance)} \\
-M_z(s, i) &= \frac{M(s, i) - \mu(M_i)}{\sigma(M_i)} \quad \text{(Participant-specific standardized cognitive load)} \\
-\text{RNE} &= \frac{P_z - M_z}{\sqrt{2}} \quad \text{(Relative Neural Efficiency)} \\
-\text{RNI} &= \frac{P_z + M_z}{\sqrt{2}} \quad \text{(Relative Neural Involvement)}
+P_z(s,i) &=
+\frac{P(s,i)-\mu(P_i)}
+{\sigma(P_i)},\\
+M_z(s,i) &=
+\frac{M(s,i)-\mu(M_i)}
+{\sigma(M_i)}.
 \end{align}
 
-\textit{Note: The concept of cognitive effort as such remains interesting; however, only relative haemodynamic data will be used from this thesis database.}
+Relative neural efficiency (RNE) and relative neural involvement (RNI) can then be written as:
 
-\section{Cross-Study Interpretation}
+\begin{align}
+\mathrm{RNE} &= \frac{P_z-M_z}{\sqrt{2}},\\
+\mathrm{RNI} &= \frac{P_z+M_z}{\sqrt{2}}.
+\end{align}
 
-In conclusion, the reviewed evidence suggests that a modest claim about fNIRS and machine learning can be made: the techniques may be used to classify task states and assess workload-related patterns, although clinically significant conclusions cannot yet be drawn \cite{Eastmond2022,Yucel2021,Yucel2025}.
+RNE and RNI may help distinguish participants in terms of cognitive effort, but they cannot serve as reliable indicators of clinical disorders. They are therefore useful only as possible neurocognitive task-classification variables.
 
-Methodology-wise, short-channel regression becomes crucial, and a classifier input must be able to account for the temporal structure of the physiological signal. Finally, evaluation should prevent leakage from the same participant or overlapping windows.
+\subsubsection{Leakage-Free Evaluation of Models}
 
-\subsection{Leakage-Safe Evaluation Pipeline}
+Several machine-learning issues create major challenges for fNIRS research, especially leakage and overfitting. When time windows from the same participant are divided between training, validation, and test sets, a classifier may learn participant-specific features, superficial physiology, motion patterns, or optode-placement differences instead of task-related haemodynamic responses \cite{Benerradi2023,Brookshire2024}.
 
-Physiological machine-learning classifiers are highly vulnerable to overfitting in case when windows from the same participant are contained in training and testing sets \cite{Brookshire2024}. Instead of being trained on task-related patterns, such classifier is likely to learn stable participant-specific features or even motion artifacts. A leakage-free protocol for fNIRS classification studies was recently introduced as BenchNIRS \cite{Benerradi2023}.
+A leakage-free procedure can be described by splitting subjects first:
 
-Thus, in this thesis, any data splitting must be performed participant-wise before the training of the classifier. All hyperparameters should be tuned on training data only and validated on separate data. Scaling, feature selection, dimensionality reduction, and model selection steps must be done in the same manner. For data with windows, all windows from the same participant are supposed to stay in the same part of the split.
+\begin{equation}
+S=S_{\text{train}}\cup S_{\text{val}}\cup S_{\text{test}},
+\end{equation}
 
-In the planned thesis pipeline, participants will be split before window extraction and model training. Preprocessing parameters, normalization, feature extraction, and model selection will be fitted only on the training set and then applied to validation and test data. The main representation will preserve the channel-by-time haemodynamic structure using $\Delta$HbO and $\Delta$HbR, with HbDiff and HbT used only as relative derived measures. Deep-learning models will be compared against classical baselines, and their value will be judged by generalization to unseen participants rather than by within-subject accuracy.
+where:
+
+\begin{equation}
+S_{\text{train}}\cap S_{\text{val}}=\emptyset,\quad
+S_{\text{train}}\cap S_{\text{test}}=\emptyset,\quad
+S_{\text{val}}\cap S_{\text{test}}=\emptyset.
+\end{equation}
+
+If the time windows from participant \(i\) are denoted as \(w_{i,t}\), then:
+
+\begin{equation}
+i\in S_k \Rightarrow w_{i,t}\in D_k
+\quad \forall t.
+\end{equation}
+
+This means that windows from a participant can belong to the training set, validation set, or test set, but cannot be divided across those sets. Splitting should occur before scaling, feature selection, dimensionality reduction, hyperparameter tuning, or model selection \cite{Benerradi2023}.
+
+BenchNIRS provides a useful background for leakage-safe fNIRS machine learning because it evaluates several models using public fNIRS Hub datasets and nested cross-validation \cite{Benerradi2023}. It also shows that performance on unseen data is lower than many optimistic reports suggest. Nested cross-validation can be expressed as:
+
+\begin{equation}
+\theta^*
+=
+\arg\min_{\theta}
+\frac{1}{K}
+\sum_{k=1}^{K}
+\mathcal{L}_{\text{val}}^{(k)}(\theta),
+\end{equation}
+
+where \(\theta^*\) denotes hyperparameters selected in the inner loop. The selected model is then tested on the outer set of participants:
+
+\begin{equation}
+\mathrm{Score}_{\text{test}}=
+\mathrm{Metric}(f_{\theta^*}(X_{\text{test}}),y_{\text{test}}).
+\end{equation}
+
+If classes are unbalanced, balanced accuracy is more informative than ordinary accuracy:
+
+\begin{equation}
+\mathrm{Balanced\ Accuracy}=
+\frac{1}{M}
+\sum_{m=1}^{M}
+\frac{\mathrm{TP}_m}{\mathrm{TP}_m+\mathrm{FN}_m},
+\end{equation}
+
+where \(M\) is the number of classes, \(\mathrm{TP}_m\) is the number of true positives for class \(m\), and \(\mathrm{FN}_m\) is the number of false negatives. F1-score, sensitivity, specificity, and confusion matrices should also be reported.
 
 \begin{figure}[h]
 \centering
@@ -222,8 +368,63 @@ In the planned thesis pipeline, participants will be split before window extract
 \label{fig:leakage_pipeline}
 \end{figure}
 
-\subsection{Methodological Implications}
+\subsubsection{Reproducibility Guidelines, Standardisation, and Wearable fNIRS}
 
-As for traditional machine-learning models, those are important as baselines. At least four of them should be tested: logistic regression or linear discriminant analysis, linear support vector machine, RBF-kernel SVM, and random forest. The CNNs, LSTM, CNN-LSTM, and temporal convolutional models can become useful only if they generalize better than the above models \cite{Benerradi2023,Khan2025,Qin2024}.
+The diversity of fNIRS preprocessing and modelling approaches makes reproducibility a central concern. FRESH shows that findings can vary with signal quality, analysis pipelines, and researcher expertise \cite{Yucel2025}. Consequently, machine-learning models should not be compared unless preprocessing and data quality are reported clearly.
 
-Furthermore, a proper model interpretability should be implemented. In case the predicted variable refers to mental or neurological condition, the thesis should discuss the contribution of particular channels, windows, or haemodynamic quantities.
+NIRS-BIDS is important for this thesis because it extends the Brain Imaging Data Structure to near-infrared spectroscopy \cite{Luke2025}. It supports standardisation of subject folders, tasks, events, channels, optodes, coordinate systems, and SNIRF-compatible data. The broader BIDS framework also provides a model for reproducible neuroimaging data organization \cite{Poldrack2024}. Organizing fNIRS data according to a BIDS-compatible or BIDS-inspired scheme is therefore an important future step for the thesis.
+
+Wearable fNIRS is another reason why this research direction may become more relevant in the future. Dense-sampling wearable platforms may support repeated measurements in natural environments and precision functional neuroimaging \cite{RahimpourJounghani2025}. However, current evidence remains preliminary. The safest conclusion is that wearable fNIRS may enable longitudinal studies and individual functional mapping, but more diverse clinical cohorts are required before claims about disorder screening can be made.
+
+\subsubsection{Connectivity-Aware and Graph-Based Extensions}
+
+Most fNIRS classification studies treat channels as independent variables. Recent work has started to model fNIRS data as networks, where nodes represent channels or cortical areas and edges represent relationships between those areas \cite{Tang2024}. This may be relevant because brain functions are not isolated to single cortical locations.
+
+A graph convolutional layer can be represented as:
+
+\begin{equation}
+H^{(l+1)}
+=
+\sigma
+\left(
+\tilde{D}^{-\frac{1}{2}}
+\tilde{A}
+\tilde{D}^{-\frac{1}{2}}
+H^{(l)}
+W^{(l)}
+\right),
+\end{equation}
+
+where \(\tilde{A}\) is an adjacency matrix with self-edges, \(\tilde{D}\) is a degree matrix, \(H^{(l)}\) is the feature matrix at layer \(l\), \(W^{(l)}\) is a trainable weight matrix, and \(\sigma\) is a nonlinear activation function. Tang et al. predicted cortical-thalamic functional connectivity from fNIRS-derived functional data using graph convolutional networks \cite{Tang2024}. This approach does not remove the depth limitation of fNIRS, but it shows that graph-based methods can model connectivity-aware information. In this thesis, graph-based approaches should therefore be considered future additions rather than the immediate methodological step.
+
+\subsubsection{Cross-Study Interpretation}
+
+The literature provides a cautious but sound basis for the thesis position. fNIRS combined with machine-learning techniques can be used to classify task patterns, cognitive workload, and cognitive effort in walking tasks \cite{Wickramaratne2021,Khan2025,Ma2023,Sharmin2026,Qin2024,Benerradi2023}. At the same time, fNIRS and machine learning are not sufficient for conclusive diagnosis of mental disorders or other brain conditions. This caution is supported by broader neuroimaging evidence showing that clinical classification can remain weak even in large multi-site datasets and that human neurobiology does not map cleanly onto simple diagnostic labels \cite{Belov2024,Beam2021}.
+
+Therefore, the validity of fNIRS machine learning should be tested by evaluating the entire pipeline:
+
+\begin{equation}
+\begin{aligned}
+&\text{Raw intensity}
+\rightarrow
+\text{Optical density}
+\rightarrow
+\Delta \mathrm{HbO},\Delta \mathrm{HbR}
+\rightarrow
+\text{Short-channel correction}\\
+&\rightarrow
+\text{Windowed representation}
+\rightarrow
+\text{Leakage-safe model training}
+\rightarrow
+\text{Unseen-participant evaluation}.
+\end{aligned}
+\end{equation}
+
+If one step in this chain is problematic, classification may produce apparently accurate results without physiological meaning. For this reason, the thesis should evaluate classifier performance by generalisation to unseen subjects, stability across folds, comparison with baseline methods, and interpretability of channel and haemodynamic contributions.
+
+\subsubsection{Methodological Implications}
+
+Traditional machine-learning models are important baselines. At minimum, logistic regression or linear discriminant analysis, linear support vector machine, RBF-kernel support vector machine, and random forest should be tested. CNN, LSTM, CNN-LSTM, and temporal-convolutional models become useful only if they generalize better than these baselines \cite{Benerradi2023,Khan2025,Qin2024}.
+
+The reviewed literature supports further development of this research only under careful methodological conditions. The thesis should avoid claiming that fNIRS diagnoses mental-health or neurodevelopmental conditions. A stronger and more defensible claim is that task-evoked fNIRS signals, analysed with short-channel correction and participant-wise validation, can reveal relative haemodynamic patterns associated with selected neurocognitive task conditions.
