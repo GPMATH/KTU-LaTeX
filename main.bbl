@@ -31,24 +31,6 @@ Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
 \newblock \doi{10.1109/TNSRE.2023.3306365}.
 \newblock URL \url{https://arxiv.org/abs/2102.03987}.
 
-\bibitem[Yang and Wang(2025)]{Yang2025}
-Lirui Yang and Zehua Wang.
-\newblock Applications and advances of combined fmri-fnirs techniques in brain
-  functional research.
-\newblock \emph{Frontiers in Neurology}, 16, 2025.
-\newblock \doi{10.3389/fneur.2025.1542075}.
-\newblock URL
-  \url{https://www.frontiersin.org/articles/10.3389/fneur.2025.1542075}.
-
-\bibitem[Zhan et~al.(2024)Zhan, Yang, Luo, and Zhang]{Zhan2024}
-Zehui Zhan, Qinchen Yang, Lixia Luo, and Xia Zhang.
-\newblock Applying functional near-infrared spectroscopy (fnirs) in educational
-  research: A systematic review.
-\newblock \emph{Current Psychology}, 43\penalty0 (11):\penalty0 9676--9691,
-  2024.
-\newblock \doi{10.1007/s12144-023-05094-y}.
-\newblock URL \url{https://doi.org/10.1007/s12144-023-05094-y}.
-
 \bibitem[Yucel et~al.(2021)]{Yucel2021}
 Meryem~A. Yucel et~al.
 \newblock Best practices for fnirs publications.
@@ -74,16 +56,6 @@ Caterina Amendola, Davide Contini, Rebecca Re, Lorenzo Spinelli, Lorenzo
 \newblock \emph{Journal of Biomedical Optics}, 28\penalty0 (7), 2023.
 \newblock \doi{10.1117/1.JBO.28.7.075002}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10351877/}.
-
-\bibitem[Yucel et~al.(2025)Yucel, Luke, Mesquita, von Luhmann,
-  et~al.]{Yucel2025}
-Meryem~A. Yucel, Robert Luke, Rickson~C. Mesquita, Alexander von Luhmann,
-  et~al.
-\newblock fnirs reproducibility varies with data quality, analysis pipelines,
-  and researcher experience.
-\newblock \emph{Communications Biology}, 8, 2025.
-\newblock \doi{10.1038/s42003-025-08412-1}.
-\newblock URL \url{https://www.nature.com/articles/s42003-025-08412-1}.
 
 \bibitem[Stute et~al.(2025)Stute, Gosse, Montero-Hernandez, Perkins, and
   Yucel]{Stute2025}
@@ -115,43 +87,6 @@ Geoffrey Brookshire, Jake Kasper, Nicholas~M. Blauch, Yunan~Charles Wu, Ryan
 \newblock \emph{Frontiers in Neuroscience}, 18, 2024.
 \newblock \doi{10.3389/fnins.2024.1373515}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11099244/}.
-
-\bibitem[Klein(2024)]{Klein2024}
-Franziska Klein.
-\newblock Optimizing spatial specificity and signal quality in fnirs: An
-  overview of potential challenges and possible options for improving the
-  reliability of real-time applications.
-\newblock \emph{Frontiers in Neuroergonomics}, 5, 2024.
-\newblock \doi{10.3389/fnrgo.2024.1286586}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11188482/}.
-
-\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
-Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
-\newblock Deep learning in fnirs: A review.
-\newblock \emph{Neurophotonics}, 9\penalty0 (4), 2022.
-\newblock \doi{10.1117/1.NPh.9.4.041411}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9301871/}.
-
-\bibitem[Sharmin et~al.(2026)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
-  Barmaki]{Sharmin2026}
-Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
-  Roghayeh~Leila Barmaki.
-\newblock Beyond cognitive load: Ai-based estimation of cognitive effort using
-  brain signals during digital tasks.
-\newblock \emph{Delaware Journal of Public Health}, 12\penalty0 (1):\penalty0
-  32--43, 2026.
-\newblock \doi{10.32481/djph.2026.03.08}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC13082466/}.
-
-\bibitem[Qin et~al.(2024)Qin, Li, Wang, Shi, Peng, and Lu]{Qin2024}
-Yuxin Qin, Baojiang Li, Wenlong Wang, Xingbin Shi, Cheng Peng, and Yifan Lu.
-\newblock Classification algorithm for fnirs-based brain signals using
-  convolutional neural network with spatiotemporal feature extraction
-  mechanism.
-\newblock \emph{Neuroscience}, 542:\penalty0 59--68, 2024.
-\newblock \doi{10.1016/j.neuroscience.2024.02.011}.
-\newblock URL
-  \url{https://www.sciencedirect.com/science/article/pii/S0306452224000617}.
 
 \bibitem[Wyser et~al.(2022)Wyser, Kanzler, Salzmann, Lambercy, Wolf,
   Scholkmann, and Gassert]{Wyser2022}
@@ -202,6 +137,71 @@ Russell~A. Poldrack, Christopher~J. Markiewicz, Stefan Appelhoff, Yoni~K.
 \newblock \doi{10.1162/imag_a_00103}.
 \newblock URL
   \url{https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00103/119672/The-past-present-and-future-of-the-Brain-Imaging}.
+
+\bibitem[Yang and Wang(2025)]{Yang2025}
+Lirui Yang and Zehua Wang.
+\newblock Applications and advances of combined fmri-fnirs techniques in brain
+  functional research.
+\newblock \emph{Frontiers in Neurology}, 16, 2025.
+\newblock \doi{10.3389/fneur.2025.1542075}.
+\newblock URL
+  \url{https://www.frontiersin.org/articles/10.3389/fneur.2025.1542075}.
+
+\bibitem[Zhan et~al.(2024)Zhan, Yang, Luo, and Zhang]{Zhan2024}
+Zehui Zhan, Qinchen Yang, Lixia Luo, and Xia Zhang.
+\newblock Applying functional near-infrared spectroscopy (fnirs) in educational
+  research: A systematic review.
+\newblock \emph{Current Psychology}, 43\penalty0 (11):\penalty0 9676--9691,
+  2024.
+\newblock \doi{10.1007/s12144-023-05094-y}.
+\newblock URL \url{https://doi.org/10.1007/s12144-023-05094-y}.
+
+\bibitem[Yucel et~al.(2025)Yucel, Luke, Mesquita, von Luhmann,
+  et~al.]{Yucel2025}
+Meryem~A. Yucel, Robert Luke, Rickson~C. Mesquita, Alexander von Luhmann,
+  et~al.
+\newblock fnirs reproducibility varies with data quality, analysis pipelines,
+  and researcher experience.
+\newblock \emph{Communications Biology}, 8, 2025.
+\newblock \doi{10.1038/s42003-025-08412-1}.
+\newblock URL \url{https://www.nature.com/articles/s42003-025-08412-1}.
+
+\bibitem[Klein(2024)]{Klein2024}
+Franziska Klein.
+\newblock Optimizing spatial specificity and signal quality in fnirs: An
+  overview of potential challenges and possible options for improving the
+  reliability of real-time applications.
+\newblock \emph{Frontiers in Neuroergonomics}, 5, 2024.
+\newblock \doi{10.3389/fnrgo.2024.1286586}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11188482/}.
+
+\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
+Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
+\newblock Deep learning in fnirs: A review.
+\newblock \emph{Neurophotonics}, 9\penalty0 (4), 2022.
+\newblock \doi{10.1117/1.NPh.9.4.041411}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9301871/}.
+
+\bibitem[Sharmin et~al.(2026)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
+  Barmaki]{Sharmin2026}
+Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
+  Roghayeh~Leila Barmaki.
+\newblock Beyond cognitive load: Ai-based estimation of cognitive effort using
+  brain signals during digital tasks.
+\newblock \emph{Delaware Journal of Public Health}, 12\penalty0 (1):\penalty0
+  32--43, 2026.
+\newblock \doi{10.32481/djph.2026.03.08}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC13082466/}.
+
+\bibitem[Qin et~al.(2024)Qin, Li, Wang, Shi, Peng, and Lu]{Qin2024}
+Yuxin Qin, Baojiang Li, Wenlong Wang, Xingbin Shi, Cheng Peng, and Yifan Lu.
+\newblock Classification algorithm for fnirs-based brain signals using
+  convolutional neural network with spatiotemporal feature extraction
+  mechanism.
+\newblock \emph{Neuroscience}, 542:\penalty0 59--68, 2024.
+\newblock \doi{10.1016/j.neuroscience.2024.02.011}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0306452224000617}.
 
 \bibitem[Rahimpour~Jounghani et~al.(2025)Rahimpour~Jounghani, Kumar,
   Moreno~Carbonell, Lopez~Aguilar, Picardi, Crawford, Bowden, and

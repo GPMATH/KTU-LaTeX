@@ -1,23 +1,25 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{3}{Doc-Start}%
-\contentsline {section}{\numberline {1}Literature Review}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Scope of This Literature Analysis}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}fNIRS Signal Composition and Haemodynamic Estimates}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Methodological Evidence From fNIRS Studies}{5}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Physiological Confounds and Short-Channel Regression}{5}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Signal Structure and Representation for Machine Learning}{6}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}GASF-Based Task-State Classification}{7}{subsubsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {1.3.4}Classical Machine Learning and Deep Learning Models}{8}{subsubsection.1.3.4}%
-\contentsline {subsubsection}{\numberline {1.3.5}CNN-LSTM Neural Network Model for fNIRS Workload Classification}{9}{subsubsection.1.3.5}%
-\contentsline {subsubsection}{\numberline {1.3.6}Task-State, Workload, and Walking-Task Classification}{9}{subsubsection.1.3.6}%
-\contentsline {subsubsection}{\numberline {1.3.7}Cognitive-Effort Modelling Framework}{10}{subsubsection.1.3.7}%
-\contentsline {subsubsection}{\numberline {1.3.8}Leakage-Free Evaluation of Models}{11}{subsubsection.1.3.8}%
-\contentsline {subsubsection}{\numberline {1.3.9}Reproducibility Guidelines, Standardisation, and Wearable fNIRS}{12}{subsubsection.1.3.9}%
-\contentsline {subsubsection}{\numberline {1.3.10}Connectivity-Aware and Graph-Based Extensions}{13}{subsubsection.1.3.10}%
-\contentsline {subsubsection}{\numberline {1.3.11}Cross-Study Interpretation}{13}{subsubsection.1.3.11}%
-\contentsline {subsubsection}{\numberline {1.3.12}Methodological Implications}{14}{subsubsection.1.3.12}%
-\contentsline {section}{\numberline {2}Methodology}{15}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Methodological Risks}{15}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Thesis Positioning}{15}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Conclusions}{16}{section.3}%
-\contentsline {section}{References}{17}{section*.7}%
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Research Object and Planned Research Workflow}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Literature Review}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Scope of This Literature Analysis}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}fNIRS Signal Composition and Haemodynamic Estimates}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Methodological Evidence From fNIRS Studies}{7}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Physiological Confounds and Short-Channel Regression}{7}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Signal Structure and Representation for Machine Learning}{8}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}GASF-Based Task-State Classification}{9}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Classical Machine Learning and Deep Learning Models}{10}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}CNN-LSTM Neural Network Model for fNIRS Workload Classification}{11}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}Task-State, Workload, and Walking-Task Classification}{11}{subsubsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.7}Cognitive-Effort Modelling Framework}{12}{subsubsection.2.3.7}%
+\contentsline {subsubsection}{\numberline {2.3.8}Leakage-Free Evaluation of Models}{13}{subsubsection.2.3.8}%
+\contentsline {subsubsection}{\numberline {2.3.9}Reproducibility Guidelines, Standardisation, and Wearable fNIRS}{14}{subsubsection.2.3.9}%
+\contentsline {subsubsection}{\numberline {2.3.10}Connectivity-Aware and Graph-Based Extensions}{15}{subsubsection.2.3.10}%
+\contentsline {subsubsection}{\numberline {2.3.11}Cross-Study Interpretation}{15}{subsubsection.2.3.11}%
+\contentsline {subsubsection}{\numberline {2.3.12}Methodological Implications}{16}{subsubsection.2.3.12}%
+\contentsline {section}{\numberline {3}Methodology}{17}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Methodological Risks}{17}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Thesis Positioning}{17}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusions}{18}{section.4}%
+\contentsline {section}{References}{19}{section*.8}%

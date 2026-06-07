@@ -1,11 +1,13 @@
 \babel@toc {english}{}\relax 
 \ttl@tocsep 
-\contentsline {figure}{\numberline {1}{\ignorespaces Conceptual short- and long-separation fNIRS channels. Short channels estimate superficial physiology; long channels contain both superficial and cortical components.}}{6}{figure.caption.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Sequence-preserving fNIRS representation used for model input.}}{7}{figure.caption.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Example convolutional neural network used for GASF-based fNIRS task classification \cite {Wickramaratne2021}.}}{8}{figure.caption.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Example CNN-LSTM architecture for fNIRS workload classification \cite {Khan2025}.}}{10}{figure.caption.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Example fNIRS sensor placement used in walking-task classification \cite {Ma2023}.}}{10}{figure.caption.5}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Leakage-safe evaluation pipeline for fNIRS machine learning.}}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Planned research workflow for the fNIRS measurement and machine-learning validation pipeline.}}{4}{figure.caption.1}%
+\ttl@tocsep 
+\contentsline {figure}{\numberline {2}{\ignorespaces Conceptual short- and long-separation fNIRS channels. Short channels estimate superficial physiology; long channels contain both superficial and cortical components.}}{8}{figure.caption.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Sequence-preserving fNIRS representation used for model input.}}{9}{figure.caption.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Example convolutional neural network used for GASF-based fNIRS task classification \cite {Wickramaratne2021}.}}{10}{figure.caption.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Example CNN-LSTM architecture for fNIRS workload classification \cite {Khan2025}.}}{12}{figure.caption.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Example fNIRS sensor placement used in walking-task classification \cite {Ma2023}.}}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Leakage-safe evaluation pipeline for fNIRS machine learning.}}{14}{figure.caption.7}%
 \ttl@tocsep 
 \ttl@tocsep 
 \ttl@tocsep 

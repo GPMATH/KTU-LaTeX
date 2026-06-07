@@ -1,3 +1,55 @@
+\section{Introduction}
+
+\subsection{Research Object and Planned Research Workflow}
+
+The object of this thesis is a combined fNIRS-based neurocognitive-state measurement and analysis system. It is not intended to be a clinical diagnostic procedure or a confirmed biomarker test. The research object consists of three connected parts: a continuous-wave fNIRS acquisition subsystem, a signal-processing pipeline for converting raw optical measurements into relative haemodynamic variables, and a machine-learning module for classifying experimentally defined neurocognitive task conditions. This framing is important because continuous-wave fNIRS provides indirect information about relative haemodynamic changes, not a direct measurement of neural activity or a definite diagnosis \cite{Yucel2021,Scholkmann2022,Amendola2023}.
+
+The target of the research is therefore the complete measurement and analysis pipeline rather than only one classifier or one device. The raw measured data will consist of multi-wavelength optical-intensity signals recorded from a frontal or prefrontal fNIRS montage together with synchronised task-condition markers. These measurements will be converted into optical density and then into relative changes in oxygenated and deoxygenated haemoglobin using the modified Beer-Lambert law \cite{Yucel2021,Amendola2023,Stute2025}. The primary processed variables will be \(\Delta\mathrm{HbO}\) and \(\Delta\mathrm{HbR}\), while HbDiff and HbT will be used as auxiliary derived variables. Behavioural measures such as task accuracy and reaction time may also be collected, but they will be interpreted as supporting information rather than as clinical ground truth.
+
+The planned research workflow is shown in Fig.~\ref{fig:research_workflow}. The work will begin with protocol preparation, ethics review, volunteer recruitment, and informed consent. After task-session setup, the fNIRS cap or headset will be positioned over the frontal or prefrontal area, calibration will be performed, and signal quality will be checked before recording. During the experiment, task-event markers will be synchronised with the fNIRS signal. The recorded data will then be processed by converting raw intensity to optical density, calculating \(\Delta\mathrm{HbO}\) and \(\Delta\mathrm{HbR}\), rejecting bad channels, correcting motion artefacts, filtering haemodynamic signals, applying short-separation-channel regression where available, epoching according to task events, and extracting features for machine-learning analysis.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=0.45cm and 0.55cm,
+  every node/.style={font=\scriptsize},
+  box/.style={draw, rounded corners=2pt, align=center, text width=2.55cm, minimum height=0.85cm},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[box] (protocol) {Protocol and ethics approval};
+\node[box, right=of protocol] (recruit) {Volunteer recruitment and informed consent};
+\node[box, right=of recruit] (setup) {Task setup and fNIRS calibration};
+\node[box, right=of setup] (record) {fNIRS recording with event markers};
+\node[box, below=of record] (quality) {Signal quality control};
+\node[box, left=of quality] (convert) {Optical density and MBLL conversion};
+\node[box, left=of convert] (preprocess) {Bad-channel rejection, correction, and filtering};
+\node[box, below=of preprocess] (short) {Short-channel correction when available};
+\node[box, right=of short] (features) {Epoching and feature extraction};
+\node[box, right=of features] (model) {Subject-wise ML training and validation};
+\node[box, right=of model] (results) {Results, interpretation, and thesis outputs};
+\draw[arrow] (protocol) -- (recruit);
+\draw[arrow] (recruit) -- (setup);
+\draw[arrow] (setup) -- (record);
+\draw[arrow] (record) -- (quality);
+\draw[arrow] (quality) -- (convert);
+\draw[arrow] (convert) -- (preprocess);
+\draw[arrow] (preprocess) -- (short);
+\draw[arrow] (short) -- (features);
+\draw[arrow] (features) -- (model);
+\draw[arrow] (model) -- (results);
+\end{tikzpicture}
+\caption{Planned research workflow for the fNIRS measurement and machine-learning validation pipeline.}
+\label{fig:research_workflow}
+\end{figure}
+
+Machine-learning evaluation will use subject-wise validation. This means that data from the same participant must not be divided between training, validation, and test sets. Models should be evaluated on participants that were not used for training, reducing the risk that the classifier learns participant identity, superficial physiology, motion patterns, or optode-placement differences instead of task-related haemodynamic responses \cite{Benerradi2023,Brookshire2024}.
+
+The equipment required for the planned study includes a continuous-wave multichannel fNIRS system with at least two wavelengths, an fNIRS optode cap or headset for frontal or prefrontal measurements, an acquisition computer, a stimulus-presentation computer or software environment, and a method for synchronising task markers with the fNIRS recording. Short-separation channels are preferred because they allow superficial physiological activity to be estimated and reduced before machine-learning analysis \cite{Wyser2022,Klein2023,An2025}. If the selected equipment does not include short-separation channels, stricter signal-quality control and more conservative interpretation will be required. MATLAB or Python will be used for analysis, and the data will be organised in a BIDS-compatible or BIDS-inspired structure to improve traceability and reproducibility \cite{Luke2025,Poldrack2024}.
+
+The planned study will be conducted as a pilot engineering-validation study with healthy adult volunteers. A realistic target is to recruit approximately 40--50 volunteers, allowing for the possibility that some recordings may be excluded because of poor signal quality, weak optode contact, excessive motion artefacts, or incomplete task execution. Recruitment may take place through university mailing lists, posters in public areas, classroom announcements, and direct invitations to interested students. Each volunteer will receive participant information, provide informed consent, and be informed that participation is voluntary. Participant data will be pseudonymised, and the re-identification key will be stored separately from the research dataset.
+
+The expected results are not clinical diagnostic decisions, but engineering validation of the complete measurement and analysis pipeline. The expected outputs include a quality-controlled fNIRS dataset, documentation of the preprocessing pipeline, baseline machine-learning models, validation results based on unseen participants, and an interpretation of which haemodynamic variables or channels are most relevant for classification. The success of the research will be evaluated using signal quality, physiologically plausible task-related haemodynamic responses, reproducibility of the processing pipeline, and classifiers that perform above chance under leakage-safe subject-wise validation conditions.
+
 \section{Literature Review}
 
 In recent years, functional near-infrared spectroscopy (fNIRS) has become an increasingly valuable neuroimaging technique for the investigation of brain functionality and the dynamics of neurocognitive processes \cite{Yang2025,Zhan2024}. One of the advantages of fNIRS is its portability and suitability for studies in realistic environments that cannot accommodate bulky scanner setups. In neurocognitive and mental-health screening contexts, however, fNIRS should be considered cautiously. Continuous-wave fNIRS does not estimate brain activity directly and does not provide a diagnostic biomarker by itself. Instead, it provides an indirect estimate of relative haemodynamic responses based on changes in oxyhaemoglobin and deoxyhaemoglobin levels \cite{Yucel2021,Scholkmann2022,Amendola2023}.
