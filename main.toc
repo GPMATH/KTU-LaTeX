@@ -18,8 +18,5 @@
 \contentsline {subsubsection}{\numberline {2.3.10}Connectivity-Aware and Graph-Based Extensions}{15}{subsubsection.2.3.10}%
 \contentsline {subsubsection}{\numberline {2.3.11}Cross-Study Interpretation}{15}{subsubsection.2.3.11}%
 \contentsline {subsubsection}{\numberline {2.3.12}Methodological Implications}{16}{subsubsection.2.3.12}%
-\contentsline {section}{\numberline {3}Methodology}{17}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Methodological Risks}{17}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Thesis Positioning}{17}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusions}{18}{section.4}%
-\contentsline {section}{References}{19}{section*.8}%
+\contentsline {section}{\numberline {3}Conclusions}{17}{section.3}%
+\contentsline {section}{References}{18}{section*.8}%
