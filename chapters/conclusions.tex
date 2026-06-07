@@ -1,15 +1,17 @@
 \section{Conclusion}
 
-This report provided a comparison of two models on a specific dataset containing
-coffee leaf disease images. The Simple CNN model gave the best test performance results with
-95.88\% accuracy. MobileNetV2 achieved the second-best test accuracy, with 94.43\%.
-Moreover, MobileNetV2 also showed high F1-scores. It is worth mentioning that the
-MobileNetV2 model was trained much faster as only the classifier was trained on the
-pre-trained base model. Therefore, the result did not show that one model was always
-the best, but that each model had its own advantages. The Simple CNN model gave better results in
-this notebook run, but MobileNetV2 was more efficient during training.
+This report provided a comparison of three model variants on a specific dataset
+containing coffee leaf disease images. After the additional experiment, the best result
+was obtained by the MobileNetV2 model with the dense classifier head. The original
+MobileNetV2 baseline achieved 94.23\% test accuracy in the repeated comparison, while
+the dense-head MobileNetV2 reached 97.53\%. This showed that the lower performance of
+the first MobileNetV2 model was likely caused partly by the very small classifier head
+rather than by the MobileNetV2 feature extractor itself. The Simple CNN still remains an
+important comparison because it achieved strong accuracy when trained from scratch, but
+the improved MobileNetV2 model became the best-performing model in the final experiment.
 
-Both models were used for the comparison. On the other hand, some limitations were also
-taken into account. Thus, among the technical errors, there were the use of incorrect MobileNetV2
-preprocessing, lack of evaluation of the fine-tuned MobileNetV2 model separately, and
-possibility of data leakage due to image augmentations.
+All model variants were used for the comparison. On the other hand, some limitations
+were also taken into account. Thus, among the technical errors, there were the use of
+incorrect MobileNetV2 preprocessing, lack of evaluation of the fine-tuned MobileNetV2
+model separately, increased overfitting risk in the dense-head model, and possibility of
+data leakage due to image augmentations.

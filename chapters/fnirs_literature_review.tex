@@ -1,35 +1,36 @@
 \section{Abstract}
 
-In this report, two image classification models trained on the same coffee leaf disease
+In this report, three image classification model variants trained on the same coffee leaf disease
 dataset were compared. The objective of this study was to classify images of coffee leaves
 into one of three classes -- healthy leaves, coffee leaf rust, and Phoma disease. The
-models tested in this experiment were a MobileNetV2 transfer learning model and a Simple
-CNN. Both models used the same training, validation, and testing folders, the same batch
-size, and input images of 224 x 224 pixels. The three output classes for both
-models were the same as well. The Simple CNN model performed better in terms of test
-accuracy, achieving 95.88\%, compared to 94.43\% in the case of the MobileNetV2 model.
-However, in terms of the training time, the Simple CNN model needed 82 minutes for
-training while MobileNetV2 needed only 16 minutes for the frozen-base model run.
+models tested in this experiment were a baseline MobileNetV2 transfer learning model, a
+MobileNetV2 model with a denser classifier head, and a Simple CNN. All models used the
+same training, validation, and testing folders, the same batch size, and input images of
+224 x 224 pixels. The three output classes for both MobileNetV2 versions and the Simple
+CNN were the same as well. After the additional experiment, the MobileNetV2 dense-head
+model performed best, achieving 97.53\% test accuracy, compared with 94.23\% for the
+MobileNetV2 baseline and 95.88\% for the Simple CNN. However, the improved MobileNetV2
+result was obtained by increasing the trainable capacity of the classifier head.
 
 \section{Introduction}
 
 Coffee leaf diseases may decrease crop productivity and quality. Machine vision-based
 computer models can assist farmers with automated disease detection by learning from
 labeled images of healthy and diseased leaves. In the current project, the task was not only to build a
-model that performed classification accurately, but also to compare two methods and
+model that performed classification accurately, but also to compare different methods and
 analyze the differences between the chosen models. Such analysis was useful since the
 model with the best accuracy was not necessarily the most efficient one to deploy. In this
 paper, the criteria for comparison included such parameters as accuracy, loss, performance
 per class, the number of model parameters, preprocessing, limitations and possible
 problems with the dataset.
 
-Two models discussed in this experiment belonged to two widely-used types of image
-classification techniques. The first one used transfer learning based on pre-trained
-MobileNetV2. Only a classification head was trained while the remaining feature
-extraction part of the model was kept frozen. The second approach used a custom CNN
-architecture which learned convolutional filters during the training process using the
-dataset. Both of these models were applied depending on the conditions: transfer learning
-in case there was a lack of labeled data and vice versa.
+The models discussed in this experiment belonged to two widely-used types of image
+classification techniques. The first approach used transfer learning based on pre-trained
+MobileNetV2. Two classifier heads were tested while the remaining feature extraction part
+of the model was kept frozen. The second approach used a custom CNN architecture which
+learned convolutional filters during the training process using the dataset. These models
+were applied depending on the conditions: transfer learning in case there was a lack of
+labeled data and training from scratch when the available dataset was sufficient.
 
 \subsection{Related Work and Scientific Context}
 
@@ -51,11 +52,10 @@ to the resemblance of the disease's signs and due to imbalanced dataset. Consequ
 failure cases in scientific studies provide information about the limitations of the
 approach and necessary improvements.
 
-Several specific coffee leaf data sets (e.g., RoCoLe and JMuBEN/JMuBEN2) have been
-developed recently to improve availability of such images. For example, RoCoLe data set
-includes images of Robusta coffee leaves that are either healthy or contain symptoms of
-various diseases. Another example is JMuBEN and JMuBEN2 which include 58,555 images of
-Arabica coffee leaves (disease and healthy images) \cite{ParragaAlava2019,Jepkoech2021}.
+Several specific coffee leaf data sets, such as RoCoLe and JMuBEN/JMuBEN2, have been
+developed recently to improve image availability. RoCoLe contains Robusta coffee leaf
+images, while JMuBEN and JMuBEN2 include 58,555 Arabica coffee leaf images
+\cite{ParragaAlava2019,Jepkoech2021}.
 \nocite{Buda2018,Kapoor2023,Selvaraju2017,KerasMobileNetDocumentation2026}
 
 \section{Dataset Description}
@@ -144,7 +144,7 @@ Diseased combined & 2,141 & 66.5\% \\
 
 \section{Preprocessing and Experimental Setup}
 
-The images were preprocessed and prepared for training in the same way for both models.
+The images were preprocessed and prepared for training in the same way for all model variants.
 The images were read from folders and scaled to 224 x 224 pixels. They were batched with
 batch size 32 and transformed to categorical labels. The training set was augmented with
 random rotations, width shifts, height shifts, horizontal flips, and zooming. Validation
@@ -171,16 +171,43 @@ applied inverted residual blocks with bottlenecks and supported ImageNet pre-tra
 weights \cite{KerasMobileNet}.
 
 The MobileNetV2 base was loaded with ImageNet weights, the original top
-classifier was removed, and the base was frozen. The new classification head contained global average
-pooling, a 0.3 rate dropout, and a dense softmax classifier with three output classes.
+classifier was removed, and the base was frozen. The baseline classification head
+contained global average pooling, a 0.3 rate dropout, and a dense softmax classifier
+with three output classes.
 Thus, the workflow matched the typical transfer learning pipeline as follows: loading
 pre-trained base model, freezing the base model, creating and stacking the new model on top, and
 then training the classifier on the target data \cite{KerasTransferLearning}.
 
+After receiving feedback, an additional MobileNetV2 variant was tested. The original
+frozen MobileNetV2 base was kept unchanged, but the classifier head was expanded to give
+the model more trainable capacity after feature extraction. The baseline head used
+GlobalAverage\allowbreak{}Pooling2D, Dropout(0.3), and a final softmax layer. The improved version
+used GlobalAverage\allowbreak{}Pooling2D, followed by Dense(512, relu), batch normalization,
+dropout, Dense(256, relu), batch normalization, dropout, and the final three-class
+softmax layer. Therefore, the experiment tested whether the pretrained MobileNetV2
+features could be used better by a stronger classifier head, without unfreezing the
+MobileNetV2 base. In the final comparison, this dense-head variant was treated as Model
+3 rather than replacing the baseline MobileNetV2 model.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Architecture comparison between the baseline and dense-head MobileNetV2 variants.}
+\begin{tabularx}{\textwidth}{|p{35mm}|X|p{20mm}|p{25mm}|}
+\hline
+MobileNetV2 version & Classifier head & Frozen base & Trainable parameters \\
+\hline
+Baseline MobileNetV2 & GAP + Dropout(0.3) + Softmax & Yes & 3,843 \\
+Dense-head MobileNetV2 & GAP + Dense(512) + BN + Dropout(0.5) + Dense(256) + BN + Dropout(0.5) + Softmax & Yes & 789,507 \\
+\hline
+\end{tabularx}
+\end{table}
+
 Additionally, an optional fine-tuning stage was included where the top layers of
 MobileNetV2 were unfrozen and trained with a reduced learning rate. The results
-comparison included the primary MobileNetV2 model evaluation score of 94.43\%
-test accuracy.
+comparison included the repeated MobileNetV2 baseline score of 94.23\% test accuracy
+and the dense-head MobileNetV2 score of 97.53\% test accuracy.
 
 \begin{figure}[ht]
 \centering
@@ -218,6 +245,25 @@ Total training time & ~969 seconds / 16.15 minutes & 4,919.10 seconds / 81.99 mi
 \end{tabularx}
 \end{table}
 
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Comparison between the original MobileNetV2 head and the dense-head MobileNetV2.}
+\begin{tabularx}{\textwidth}{|p{31mm}|X|X|X|}
+\hline
+Metric & MobileNetV2 baseline & MobileNetV2 dense head & Better result \\
+\hline
+Test accuracy & 94.23\% & 97.53\% & Dense-head MobileNetV2 \\
+Test loss & 0.1347 & 0.0959 & Dense-head MobileNetV2 \\
+Macro-F1 & 0.9423 & 0.9751 & Dense-head MobileNetV2 \\
+Total parameters & 2,261,827 & 3,049,027 & Baseline smaller \\
+Trainable parameters & 3,843 & 789,507 & Baseline lighter \\
+Training time & 14.2 min & 14.2 min & Similar \\
+\hline
+\end{tabularx}
+\end{table}
+
 The training curves demonstrated gradual improvement and slightly unstable validation loss
 in the initial training epochs. This was expected for a CNN model trained from scratch due to
 randomly initialized network weights. Once the network learned useful visual filters from
@@ -232,26 +278,52 @@ performance weights according to the callback settings.
 
 \section{Results}
 
-The same hold-out test set of 485 images was used for both models. This was an important
-criterion for comparability since both models' performance was measured against the same
-image distribution and class labels. The Simple CNN model yielded the highest overall
-test accuracy and lowest test loss value in this run.
+The same hold-out test set of 485 images was used for all model variants. This was an
+important criterion for comparability since each model's performance was measured
+against the same image distribution and class labels. The additional dense-head
+MobileNetV2 experiment was added to test whether the original MobileNetV2 result was
+limited by the small classifier head.
 
 \begin{table}[ht]
 \centering
 \small
 \renewcommand{\arraystretch}{1.15}
-\caption{General comparison between both models based on the experimental outputs.}
+\caption{General comparison between the MobileNetV2 baseline and Simple CNN based on the experimental outputs.}
 \begin{tabularx}{\textwidth}{|p{25mm}|X|X|X|}
 \hline
 Metric & MobileNetV2 transfer learning & Simple CNN & Best result \\
 \hline
-Test accuracy & 94.43\% & 95.88\% & Simple CNN \\
-Test loss & 0.1630 & 0.1158 & Simple CNN \\
+Test accuracy & 94.23\% & 95.88\% & Simple CNN \\
+Test loss & 0.1347 & 0.1158 & Simple CNN \\
 Total parameters & 2,261,827 & 1,442,851 & Simple CNN smaller total model \\
 Trainable parameters in main run & 3,843 & 1,442,851 & MobileNetV2 fewer trainable parameters \\
 Training time & ~969 seconds / 16.15 minutes & 4,919.10 seconds / 81.99 minutes & MobileNetV2 faster training \\
 Training strategy & Transfer learning & From scratch & Depending on objective \\
+\hline
+\end{tabularx}
+\end{table}
+
+A third comparison was added after the professor's feedback. Instead of replacing the
+original MobileNetV2 model, a second MobileNetV2 version was trained with a denser
+classifier head. This allowed a controlled comparison between two MobileNetV2 variants:
+one with a very small classification head and one with additional dense layers copied
+from the CNN classifier structure. The dense-head MobileNetV2 achieved 97.53\% test
+accuracy, compared with 94.23\% for the MobileNetV2 baseline. This corresponds to an
+improvement of 3.30 percentage points. Macro-F1 also increased from 0.9423 to 0.9751,
+showing that the improvement was not limited to only one class.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Per-class F1-score comparison between the MobileNetV2 baseline and dense-head MobileNetV2.}
+\begin{tabularx}{\textwidth}{|p{35mm}|X|X|X|}
+\hline
+Class & MobileNetV2 baseline F1 & MobileNetV2 dense-head F1 & Change \\
+\hline
+Healthy leaves & 0.9657 & 0.9878 & +0.0221 \\
+Leaf rust & 0.9221 & 0.9653 & +0.0432 \\
+Phoma & 0.9390 & 0.9723 & +0.0333 \\
 \hline
 \end{tabularx}
 \end{table}
@@ -267,11 +339,11 @@ Training strategy & Transfer learning & From scratch & Depending on objective \\
 \hline
 Class & MobileNetV2 precision & MobileNetV2 recall & MobileNetV2 F1 & Simple CNN precision & Simple CNN recall & Simple CNN F1 \\
 \hline
-Healthy leaves & 0.95 & 1.00 & 0.97 & 0.99 & 0.98 & 0.98 \\
-Leaf rust & 0.89 & 0.97 & 0.93 & 0.91 & 0.98 & 0.94 \\
-Phoma & 1.00 & 0.87 & 0.93 & 0.98 & 0.92 & 0.95 \\
-Macro average & 0.95 & 0.95 & 0.94 & 0.96 & 0.96 & 0.96 \\
-Weighted average & 0.95 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
+Healthy leaves & 0.97 & 0.96 & 0.97 & 0.99 & 0.98 & 0.98 \\
+Leaf rust & 0.90 & 0.95 & 0.92 & 0.91 & 0.98 & 0.94 \\
+Phoma & 0.96 & 0.92 & 0.94 & 0.98 & 0.92 & 0.95 \\
+Macro average & 0.94 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
+Weighted average & 0.94 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
 \hline
 \end{tabular}
 }
@@ -279,7 +351,17 @@ Weighted average & 0.95 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.65\textwidth]{images/Confusion matrix of MobileNetV2 on the test set.png}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+True / Predicted & Healthy leaves & Leaf rust & Phoma \\
+\hline
+Healthy leaves & 155 & 4 & 3 \\
+Leaf rust & 4 & 148 & 4 \\
+Phoma & 0 & 13 & 154 \\
+\hline
+\end{tabular}
 \caption{Confusion matrix of MobileNetV2 on the test set.}
 \end{figure}
 
@@ -291,49 +373,59 @@ Weighted average & 0.95 & 0.94 & 0.94 & 0.96 & 0.96 & 0.96 \\
 
 \section{Model Comparison and Discussion}
 
-The Simple CNN yielded the highest numerical score in this run, achieving a test accuracy
-of 95.88\%, compared to 94.43\% by MobileNetV2. The gap between the two was 1.45
-percentage points. Furthermore, the Simple CNN model also improved the recall value of
-the Phoma label from 0.87 to 0.92. This was an improvement of 0.05, which indicated that
-Simple CNN identified fewer false-negative Phoma instances than MobileNetV2. This was
-relevant since disease identification aimed to minimize false negatives.
+Before the dense-head MobileNetV2 experiment, the Simple CNN achieved a higher numerical
+score than the baseline MobileNetV2, with 95.88\% test accuracy compared to 94.23\%.
+However, the dense-head MobileNetV2 then achieved the highest score, with 97.53\% test
+accuracy. This suggests that the original MobileNetV2 feature extractor was not
+necessarily worse than the Simple CNN; rather, the original classifier head may have been
+too small for the final classification task.
 
-However, Simple CNN was not automatically the superior model. The
-Simple CNN required approximately 82 minutes for training, compared to around 16 minutes
-for MobileNetV2. This was because only 3,843 parameters were trainable in the main run of
-MobileNetV2, compared to 1.44 million for the Simple CNN model. Training time was an
-important criterion when quick model testing was crucial, thus making MobileNetV2 more
-efficient.
+The efficiency trade-off also changed after adding the dense head. The baseline
+MobileNetV2 had only 3,843 trainable parameters, while the dense-head MobileNetV2 had
+789,507 trainable parameters. This was still less than the 1.44 million trainable
+parameters in the Simple CNN, but it was much larger than the original MobileNetV2 head.
+Therefore, the improved accuracy should be interpreted together with the increased
+classifier capacity.
 
-The confusion matrix results revealed that both models could effectively classify healthy
-leaves, as seen by their high values in the True Positive and True Negative cells.
-However, MobileNetV2 could identify all healthy test samples but classified 18 images
-labeled as Phoma into the leaf rust category. In contrast, the Simple CNN made mistakes
-when identifying healthy samples but minimized Phoma-to-rust confusion by classifying 12
-Phoma samples as leaf rust instead. Thus, Simple CNN seemed to better distinguish the two
-classes in this run.
+The confusion matrix results showed that healthy leaves were easier for the models to
+identify than the two disease classes. The most important remaining confusion was between
+Phoma and leaf rust, which is plausible because both disease categories can contain
+visually similar spots and lesions on the leaf surface \cite{Esgario2020}.
 
-However, besides the absolute number of accurate predictions, an important aspect of
-comparing model accuracy lies in the kind of errors each of them produces. MobileNetV2
-classified all healthy test images accurately; however, it misclassified 18 Phoma
-samples as leaf rust. On the contrary, Simple CNN lowered the rate of Phoma
-misclassification to 12, but made a couple of misclassifications for healthy images. This
-suggests that classification of healthy leaves seems to be relatively simpler than Phoma
-and leaf rust recognition because the latter categories are too visually similar to one
-another. Such results also agree with common practice in the area of coffee disease
-recognition, which frequently makes mistakes on samples having visually similar patterns
-such as spots and lesions appearing on the leaf surface \cite{Esgario2020}.
+\begin{figure}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+True / Predicted & Healthy leaves & Leaf rust & Phoma \\
+\hline
+Healthy leaves & 162 & 0 & 0 \\
+Leaf rust & 3 & 153 & 0 \\
+Phoma & 1 & 8 & 158 \\
+\hline
+\end{tabular}
+\caption{Confusion matrix of MobileNetV2 with dense classifier head on the test set.}
+\end{figure}
 
-The difference in the performance of the models equals 1.45\% or, in other words, no
-more than seven images out of 485 tested samples. Therefore, these numbers cannot be
-interpreted in favor of Simple CNN as being superior to MobileNetV2 in terms of
-accuracy. Instead, a fair comparison should include repeating the training process
-multiple times, taking the mean and standard deviation of accuracies and macro F1-scores
-for all iterations, and ideally including the statistical evaluation of paired sample
-predictions.
+The dense-head MobileNetV2 confusion matrix shows that all healthy leaves were
+classified correctly. The main remaining error was still between Phoma and leaf rust, but
+this error was reduced compared with the baseline MobileNetV2 model. In the baseline
+run, 13 Phoma images were predicted as leaf rust, while the dense-head model reduced this
+number to 8. This suggests that the additional dense layers improved the separation
+between the two visually similar disease classes.
 
-Another reason that can explain the low accuracy obtained by MobileNetV2 could be the
-use of a non-optimal pre-processing step before training. As stated in the Keras
+The difference between the baseline MobileNetV2 and Simple CNN was small enough that it
+should not be interpreted as final proof that one architecture was always superior.
+However, the dense-head MobileNetV2 improved over the baseline by 3.30 percentage
+points, which made the classifier-head comparison more informative than the earlier
+two-model comparison. A fair final comparison should still include repeating the training
+process multiple times, taking the mean and standard deviation of accuracies and macro
+F1-scores for all iterations, and ideally including the statistical evaluation of paired
+sample predictions.
+
+Another reason that can explain the lower accuracy obtained by the baseline MobileNetV2
+could be the use of a non-optimal pre-processing step before training. As stated in the Keras
 documentation, mobileNetV2.\allowbreak preprocess\_input must be employed, meaning that the image
 pixels' values need to be scaled to [-1, 1]. Moreover, during the process of training
 MobileNetV2, most of its layers remained unchanged, meaning that the network did not
@@ -361,19 +453,25 @@ simply those pertaining to the choice of the model:
 done.
 
 \item Fine-tuning of MobileNetV2 was not tested on the test set. As a consequence, it
-cannot be concluded definitively that the frozen base version performed slightly better
-than the Simple CNN on the test set in this particular run.
+cannot be concluded definitively how much additional improvement could be obtained by
+unfreezing part of the MobileNetV2 base after classifier training.
 
-\item Only one train/validation/test split and one random seed were employed. With an
-accuracy difference of seven images only, repeating this experiment several times is
-required in order to come to a conclusion.
+\item Only one train/validation/test split and one random seed were employed. Repeating
+this experiment several times is required in order to confirm whether the dense-head
+MobileNetV2 improvement remains stable.
+
+\item The improved MobileNetV2 result was obtained by increasing the number of trainable
+parameters in the classifier head from 3,843 to 789,507. Although this improved test
+accuracy in the current run, it also increased the risk of overfitting. Therefore, the
+result should still be validated by repeating the experiment with several random seeds
+and reporting the mean and standard deviation of accuracy and macro-F1.
 
 \item Possible presence of duplicates or augmented images was not considered fully.
 Should some images of the same original leaf appear in each of these three sets, the
 accuracy of the experiment would be biased.
 
-\item Neither validation nor any external testing was performed. The ability of this
-model to recognize diseased leaves on the data from RoCoLe or JMuBEN/JMuBEN2 datasets
+\item Neither cross-validation nor any external testing was performed. The ability of
+these models to recognize diseased leaves on the data from RoCoLe or JMuBEN/JMuBEN2 datasets
 must be tested to determine whether the model generalizes outside of the local dataset.
 
 \item Explainability method was omitted. Application of Grad-CAM is required to
@@ -381,12 +479,16 @@ ascertain whether the models actually pay attention to the actual signs of disea
 not other factors such as leaf boundaries, backgrounds, or lighting \cite{Selvaraju2017}.
 \end{enumerate}
 
-Adding more models and comparing the accuracies is not necessary, since it is important
-to make this experiment truly scientifically valid. The suggested next experiment is as
-follows: fix MobileNetV2 preprocessing, test frozen and fine-tuned versions separately,
-run both models at least five times using different random seeds, present means and
-standard deviations for these values, perform perceptual hashing to detect duplicates,
-and provide some samples of Grad-CAM output for classification mistakes.
+Another improvement is to keep the dense-head MobileNetV2 as a separate third model in
+the comparison. This makes the report stronger because it directly answers the feedback
+about the simple MobileNetV2 classifier head. The final comparison should therefore
+include: Simple CNN, MobileNetV2 baseline, and MobileNetV2 with dense classifier head.
+
+The suggested next experiment is as follows: fix MobileNetV2 preprocessing, test frozen
+and fine-tuned versions separately, run all model variants at least five times using
+different random seeds, present means and standard deviations for these values, perform
+perceptual hashing to detect duplicates, and provide some samples of Grad-CAM output for
+classification mistakes.
 
 This problem is known as data leakage. Data leakage leads to overly optimistic results
 \cite{Kapoor2023}. Class imbalance negatively impacts CNN's effectiveness in some cases
