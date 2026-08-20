@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -30,6 +30,24 @@ Dongning Ma, Meltem Izzetoglu, Roee Holtzer, and Xun Jiao.
   Engineering}, 31:\penalty0 3437--3447, 2023.
 \newblock \doi{10.1109/TNSRE.2023.3306365}.
 \newblock URL \url{https://arxiv.org/abs/2102.03987}.
+
+\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
+Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
+\newblock Deep learning in fnirs: A review.
+\newblock \emph{Neurophotonics}, 9\penalty0 (4), 2022.
+\newblock \doi{10.1117/1.NPh.9.4.041411}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9301871/}.
+
+\bibitem[Benerradi et~al.(2023)Benerradi, Clos, Landowska, Valstar, and
+  Wilson]{Benerradi2023}
+Johann Benerradi, Jeremie Clos, Aleksandra Landowska, Michel~F. Valstar, and
+  Max~L. Wilson.
+\newblock Benchmarking framework for machine learning classification from fnirs
+  data.
+\newblock \emph{Frontiers in Neuroergonomics}, 4, 2023.
+\newblock \doi{10.3389/fnrgo.2023.994969}.
+\newblock URL
+  \url{https://www.frontiersin.org/articles/10.3389/fnrgo.2023.994969/full}.
 
 \bibitem[Yucel et~al.(2021)]{Yucel2021}
 Meryem~A. Yucel et~al.
@@ -67,17 +85,6 @@ Katharina Stute, Louisa~K. Gosse, Samuel Montero-Hernandez, Guy~A. Perkins, and
 \newblock \doi{10.1117/1.NPh.12.2.027801}.
 \newblock URL \url{https://doi.org/10.1117/1.NPh.12.2.027801}.
 
-\bibitem[Benerradi et~al.(2023)Benerradi, Clos, Landowska, Valstar, and
-  Wilson]{Benerradi2023}
-Johann Benerradi, Jeremie Clos, Aleksandra Landowska, Michel~F. Valstar, and
-  Max~L. Wilson.
-\newblock Benchmarking framework for machine learning classification from fnirs
-  data.
-\newblock \emph{Frontiers in Neuroergonomics}, 4, 2023.
-\newblock \doi{10.3389/fnrgo.2023.994969}.
-\newblock URL
-  \url{https://www.frontiersin.org/articles/10.3389/fnrgo.2023.994969/full}.
-
 \bibitem[Brookshire et~al.(2024)Brookshire, Kasper, Blauch, Wu, Glatt, Merrill,
   Gerrol, Yoder, Quirk, and Lucero]{Brookshire2024}
 Geoffrey Brookshire, Jake Kasper, Nicholas~M. Blauch, Yunan~Charles Wu, Ryan
@@ -87,6 +94,23 @@ Geoffrey Brookshire, Jake Kasper, Nicholas~M. Blauch, Yunan~Charles Wu, Ryan
 \newblock \emph{Frontiers in Neuroscience}, 18, 2024.
 \newblock \doi{10.3389/fnins.2024.1373515}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11099244/}.
+
+\bibitem[Qin et~al.(2024)Qin, Li, Wang, Shi, Peng, and Lu]{Qin2024}
+Yuxin Qin, Baojiang Li, Wenlong Wang, Xingbin Shi, Cheng Peng, and Yifan Lu.
+\newblock Classification algorithm for fnirs-based brain signals using
+  convolutional neural network with spatiotemporal feature extraction
+  mechanism.
+\newblock \emph{Neuroscience}, 542:\penalty0 59--68, 2024.
+\newblock \doi{10.1016/j.neuroscience.2024.02.011}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0306452224000617}.
+
+\bibitem[{Cortivision}(2026)]{CortivisionC23}
+{Cortivision}.
+\newblock Spectrum fnirs system (c23): Product specifications and capabilities,
+  2026.
+\newblock URL \url{https://cortivision.com/}.
+\newblock Accessed: 2026-06-08.
 
 \bibitem[Wyser et~al.(2022)Wyser, Kanzler, Salzmann, Lambercy, Wolf,
   Scholkmann, and Gassert]{Wyser2022}
@@ -175,13 +199,6 @@ Franziska Klein.
 \newblock \doi{10.3389/fnrgo.2024.1286586}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11188482/}.
 
-\bibitem[Eastmond et~al.(2022)Eastmond, Subedi, De, and Intes]{Eastmond2022}
-Condell Eastmond, Aseem Subedi, Suvranu De, and Xavier Intes.
-\newblock Deep learning in fnirs: A review.
-\newblock \emph{Neurophotonics}, 9\penalty0 (4), 2022.
-\newblock \doi{10.1117/1.NPh.9.4.041411}.
-\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9301871/}.
-
 \bibitem[Sharmin et~al.(2026)Sharmin, Abrar, Lucero-Palacios, Raikwar, and
   Barmaki]{Sharmin2026}
 Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
@@ -192,16 +209,6 @@ Shayla Sharmin, Mohammad~Fahim Abrar, Gael Lucero-Palacios, Aditya Raikwar, and
   32--43, 2026.
 \newblock \doi{10.32481/djph.2026.03.08}.
 \newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC13082466/}.
-
-\bibitem[Qin et~al.(2024)Qin, Li, Wang, Shi, Peng, and Lu]{Qin2024}
-Yuxin Qin, Baojiang Li, Wenlong Wang, Xingbin Shi, Cheng Peng, and Yifan Lu.
-\newblock Classification algorithm for fnirs-based brain signals using
-  convolutional neural network with spatiotemporal feature extraction
-  mechanism.
-\newblock \emph{Neuroscience}, 542:\penalty0 59--68, 2024.
-\newblock \doi{10.1016/j.neuroscience.2024.02.011}.
-\newblock URL
-  \url{https://www.sciencedirect.com/science/article/pii/S0306452224000617}.
 
 \bibitem[Rahimpour~Jounghani et~al.(2025)Rahimpour~Jounghani, Kumar,
   Moreno~Carbonell, Lopez~Aguilar, Picardi, Crawford, Bowden, and

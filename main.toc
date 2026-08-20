@@ -11,7 +11,7 @@
 \contentsline {subsubsection}{\numberline {2.3.3}GASF-Based Task-State Classification}{9}{subsubsection.2.3.3}%
 \contentsline {subsubsection}{\numberline {2.3.4}Classical Machine Learning and Deep Learning Models}{10}{subsubsection.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.3.5}CNN-LSTM Neural Network Model for fNIRS Workload Classification}{11}{subsubsection.2.3.5}%
-\contentsline {subsubsection}{\numberline {2.3.6}Task-State, Workload, and Walking-Task Classification}{11}{subsubsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.6}Task-State, Workload, and Walking-Task Classification}{12}{subsubsection.2.3.6}%
 \contentsline {subsubsection}{\numberline {2.3.7}Cognitive-Effort Modelling Framework}{12}{subsubsection.2.3.7}%
 \contentsline {subsubsection}{\numberline {2.3.8}Leakage-Free Evaluation of Models}{13}{subsubsection.2.3.8}%
 \contentsline {subsubsection}{\numberline {2.3.9}Reproducibility Guidelines, Standardisation, and Wearable fNIRS}{14}{subsubsection.2.3.9}%
