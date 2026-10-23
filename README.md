@@ -29,3 +29,7 @@ We welcome contributions and improvements to the template. Please submit a pull 
 ## Keywords
 
 Kaunas Technology University, KTU, LaTeX, thesis template, project template, academic document, Kaunas, Lithuania
+
+## Zotero reference management
+
+For Zotero → BibTeX export, citation-key management, LaTeX compilation, and source verification guidance, see [ZOTERO.md](ZOTERO.md). The existing `natbib`/BibTeX setup remains unchanged. Research-specific references belong on their project's branch or folder rather than replacing the reusable template bibliography.
