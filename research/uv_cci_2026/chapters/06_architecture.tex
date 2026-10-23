@@ -1,0 +1,57 @@
+\section{Proposed reference-aware inspection architecture}
+\subsection{Design rationale and data flow}
+The proposed architecture intentionally does not require inventing a new backbone before observing failure cases. A constrained board-specific coating plan defines \emph{where} coating is required or forbidden; the optical model measures \emph{whether} sufficient fluorescence evidence is observed; and an optional learned branch estimates ambiguous coating structure or defect patterns. This separation provides traceable explanations for inspection decisions and facilitates change control when a PCB revision modifies the coverage plan. Figure~\ref{fig:architecture} presents the proposed data flow.
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Stealth,node distance=0.70cm and 0.55cm,
+ block/.style={draw,rounded corners,align=center,minimum height=0.85cm,text width=3.7cm,font=\footnotesize},
+ wide/.style={draw,rounded corners,align=center,minimum height=.85cm,text width=6.7cm,font=\footnotesize}]
+\node[wide] (acq) {Controlled 365 nm UV exposure(s) + optional white-light registration image};
+\node[wide,below=of acq] (qc) {Acquisition QC: metadata, dark frame, exposure, saturation, fluorescent reference};
+\node[wide,below=of qc] (geo) {Undistort + align board to coating-plan coordinates; registration quality gate};
+\node[block,below left=.85cm and 0.1cm of geo] (model) {Classical / learned coating probability and possible defect confidence};
+\node[block,below right=.85cm and 0.1cm of geo] (ref) {Approved reference map: required, forbidden, optional, occluded};
+\node[wide,below=2.0cm of geo] (logic) {Area, boundary, connected regions, keep-out and critical-zone decision rules};
+\node[wide,below=of logic] (risk) {Pass / fail / manual review; reason, overlay, confidence and archived images};
+\draw[->] (acq)--(qc); \draw[->](qc)--(geo); \draw[->](geo)--(model); \draw[->](geo)--(ref);
+\draw[->](model)--(logic);\draw[->](ref)--(logic);\draw[->](logic)--(risk);
+\end{tikzpicture}
+\caption{Hypothesized inspectable and auditable architecture. This diagram represents a proposed pipeline, not experimentally validated improvement.}\label{fig:architecture}
+\end{figure}
+
+\subsection{Radiometric correction and quality gate}
+For an illuminated raw image $I$ with dark frame $D$ and stable flat fluorescent reference $F$ imaged under the same conditions, one possible corrected signal is
+\begin{equation}
+I_c(\mathbf{x}) = \frac{I(\mathbf{x})-D(\mathbf{x})}{\max(F(\mathbf{x})-D(\mathbf{x}),\epsilon)}\,\overline{(F-D)}.
+\label{eq:flatfield}
+\end{equation}
+Here $\epsilon$ prevents division by near-zero values and $\overline{(F-D)}$ controls overall scaling. Correction is accepted only where the reference is stable, correctly registered and not clipped. It \emph{does not} unshadow occluded surfaces or compensate for all changes in the fluorescent tracer's chemistry. Quality gates flag saturation, insufficient brightness, excessive dark-frame residual, missing board, out-of-focus image and out-of-distribution lighting conditions. A failed acquisition gate must produce \emph{review/reacquire}, not an automatic PASS.
+
+\subsection{Registration and reference coordinates}
+Let $\mathbf{p}$ denote an image pixel and $\mathbf{q}$ its location in the coating-plan coordinate frame. A planar projective transform $\mathbf{q}\sim H\mathbf{p}$ can be estimated from fiducials or stable features using RANSAC \citep{fischler1981ransac,zhang2000calibration}. Where board geometry is rigid and viewing is normal, a similarity or affine transformation may be adequate and less prone to overfitting. Registration uncertainty should be measured on withheld fiducials or physical landmarks. A failed registration quality gate must not silently propagate a displaced keep-out mask to product disposition. Precision can be reported as median, 95th percentile and maximum pixel reprojection errors, converted to millimetres by a calibrated transform.
+
+Approved mask regions form a disjoint partition of the visible board: $R$ = must-coat, $K$ = must-not-coat, $A$ = optional/allowed, and $U$ = not reliably inspectable/occluded. Every pixel belongs to exactly one region after resolving drawing overlaps. This explicit \emph{unknown/occluded} class prevents classification of hidden material as acceptable simply because the image contains no evidence. The plan revision is a versioned input, ideally derived from approved manufacturing data rather than an arbitrarily labelled ``perfect'' reference photo.
+
+\subsection{Segmentation output and interpretable indicators}
+Define $P(\mathbf{x})\in[0,1]$ as estimated probability or standardized evidence of coating, and $M_\tau(\mathbf{x})=\mathbb{1}[P(\mathbf{x})\geq\tau]$ as a binary mask chosen on validation data. Required-zone coverage and forbidden-zone contamination can be expressed as
+\begin{equation}
+C_R=\frac{|M_\tau\cap R|}{|R|},\qquad
+C_K=\frac{|M_\tau\cap K|}{|K|}.
+\end{equation}
+These are \emph{image-derived ratios}, not coating-thickness measurements. Overall coverage may conceal a critical local hole; therefore identify connected missing regions $H_i\subset R\setminus M_\tau$, measure each area $A_i = n_i s_xs_y$, maximum inscribed radius, contour length and proximity to critical features. For forbidden areas, analogous connected coating evidence is measured. Add image confidence and consistency across illumination exposures. Rules can assign separate criticality to connector pins, pads, RF areas or other zones, but only when approved by the manufacturing engineer.
+
+A nominal defect area threshold $A_{\min}$ should reflect actual product acceptance criteria and the optical measurement error. The decision logic may be written
+\begin{equation}
+D=\begin{cases}
+\mathrm{REVIEW}, & Q=0 \text{ or uncertainty $>u_{\max}$},\\
+\mathrm{FAIL}, & \exists\text{ validated actionable region violating $R$ or $K$ rules},\\
+\mathrm{PASS}, & \text{otherwise within defined visible inspection scope},
+\end{cases}
+\end{equation}
+where $Q$ summarizes acquisition, registration and model validity. A PASS must be explicitly scoped to inspected visible surfaces and validated defect categories; it must not imply that hidden component sides have been inspected.
+
+\subsection{Model selection and ablation logic}
+The segmentation branch should be replaceable: a calibrated HSV/intensity threshold, lightweight U-Net, MobileNetV3 decoder, SegFormer-B0 or a learned anomaly score. The reference-comparison branch must use identical region rules and optical inputs where possible across experiments. Ablations should remove individual modules one at a time: (A) flat-field correction; (B) geometric registration; (C) the learned mask; (D) the reference regions; (E) multi-angle illumination; and (F) uncertainty handling. If the hybrid's improvement disappears after the reference rules are applied to the classical baseline, the claimed innovation is better described as a useful industrial system design than as an ML architectural breakthrough.
+
+\subsection{Implementation interfaces}
+Recommended standalone software modules are \texttt{acquisition.py}, \texttt{calibration.py}, \texttt{registration.py}, \texttt{segmentation.py}, \texttt{reference\_map.py}, \texttt{defect\_metrics.py}, \texttt{decision.py}, \texttt{traceability.py} and \texttt{benchmark.py}. Each module should expose typed inputs, version, provenance and error states. Store the model weights, preprocessing parameters, mask revision, threshold revision, image hashes, human review and machine decision. For factory deployment, a deterministic result protocol and watchdog are as important as the selected model. ONNX Runtime's execution-provider model and current OpenVINO CPU support provide plausible portability options, but not guaranteed timing on an unspecified Intel PC \citep{onnxproviders,openvino2026}.

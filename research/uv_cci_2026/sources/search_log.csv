@@ -1,0 +1,11 @@
+date_utc,source_type,query_family,inclusion_scope,limitations
+2026-10-23,public academic web,PCB conformal coating inspection UV fluorescence research deep learning detection bubbles,Direct PCB coating; 2021--2026,Initial retrieval; exact hit count not exported
+2026-10-23,public academic web,conformal coating Faster R-CNN bubbles dewetting capillary YOLO intensity,Direct PCB coating; 2021--2026,"Included Korean journal, Springer and journal records"
+2026-10-23,official IPC web,IPC-CC-830C IPC-A-610J IPC-HDBK-830A conformal coating,Standards revision and public preview,Full standard texts not freely available
+2026-10-23,official product web,Gopel Multi Line CCI Nordson FX-940UV MIRTEC GENESYS-CC,Vendor capability pages,Independent sensitivity not confirmed
+2026-10-23,academic web,UV fluorescence imaging camera optical emission filter,Fluorescence optics,Included peer reviewed UV filter article
+2026-10-23,academic web,PCB U-Net RANSAC registration image segmentation defect inspection,Transfer PCB AOI,Conventional PCB data NOT coating
+2026-10-23,official dataset web,DeepPCB DsPCBSD+ MVTec AD VisA LOCO FPIC,Dataset identities and licenses,No labelled UV coating dataset verified
+2026-10-23,conference/publisher web,U-Net DeepLabv3+ SegFormer Swin Transformer Mask2Former MobileNetV3,Segmentation method baselines,Original method papers
+2026-10-23,conference/publisher web,PatchCore EfficientAD DRAEM industrial anomaly detection,Anomaly baselines,Benchmark results non-transferable
+2026-10-23,standards/vendor web,IEC 62471 ISO 12100 OpenVINO 2026 ONNX Runtime,Safety and CPU deployment,Official summaries

@@ -1,0 +1,31 @@
+\section{Supplementary research instruments and source audit}
+\subsection{Companion structured files}
+The following CSVs accompany this manuscript in the branch: \texttt{sources/source\_catalog.csv} (verified source identities, URLs, group, access status and cautionary notes); \texttt{sources/search\_log.csv} (query families and date); \texttt{sources/evidence\_matrix.csv} (critical methodological fields for detailed full-text extraction); \texttt{sources/dataset\_register\_template.csv} (prospective specimens/lot and acquisition metadata); and \texttt{sources/experiment\_plan.csv} (planned comparisons, metrics and evidence gates). The citation key is the stable join identifier. A source has not been \emph{fully evaluated} merely because its DOI was found.
+
+\subsection{Source access and interpretation notes}
+\begin{enumerate}[leftmargin=*]
+\item A publisher page showing an abstract authenticates the publication and abstract-level claims, but does not reveal all acquisition details or test-set composition.
+\item The freely exposed pages of IPC-HDBK-830A, IPC-A-610J and IPC-CC-830C are mainly covers/tables of contents; full licensed copies are required to implement exact acceptance thresholds.
+\item Manufacturer claims about smallest detectable bubbles and throughput are product specifications, not independent scientific sensitivity with confidence intervals.
+\item General PCB copper defect datasets are useful for algorithm prototyping, but not for evidence of conformal-coating performance.
+\item Publications about coatings on nozzles and OCT thickness maps are included deliberately as \emph{transfer or complementary modality} evidence.
+\item Publication year in bibliographic records is the official cited publication year. Proceedings timing and early-online dates may differ.
+\end{enumerate}
+
+\subsection{Search-log outline}
+The initial search date, topic-level queries and source categories have been retained in a machine-readable search log. A fully systematic update must export raw database results, count deduplicated records, archive inclusion/exclusion decisions and verify the actual complete text for key studies before paper submission \citep{page2021prisma}.
+
+\subsection{Technical acceptance checklist}
+\begin{enumerate}[leftmargin=*]
+\item UV leakage and electrical hazards independently assessed; access interlock verified.
+\item Full acceptance drawing available and interpreted by qualified manufacturing personnel.
+\item Calibration reproducibility and camera/illumination quality gates specified.
+\item Ground-truth annotations independently reviewed and physical IDs traceable.
+\item Test boards, production lots and image augmentations segregated without leakage.
+\item Relevant failure modes have measured recall and uncertainty, not only headline accuracy.
+\item Model thresholds selected before inspection of independent test set.
+\item Full CPU inspection cycle and fault recovery experimentally measured.
+\item Scope of hidden/occluded surfaces disclosed and a manual/alternate inspection method defined.
+\item Data confidentiality, software licence and any published dataset release approved.
+\end{enumerate}
+\input{research/uv_cci_2026/sources/source_index.tex}

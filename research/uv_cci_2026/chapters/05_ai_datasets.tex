@@ -1,0 +1,52 @@
+\section{Algorithms, public datasets and methodological trade-offs}
+\subsection{Classical vision is a necessary baseline}
+For a single known PCB design under controlled UV illumination, classical vision offers a strong, interpretable starting point. Correct dark frames, gain and spatial irradiation; align to fiducials or stable geometric features; threshold a normalized coating-likelihood channel; apply small, physically justified morphological operations; and compare the resulting film mask with required and forbidden polygons. Otsu's histogram thresholding is a principled unsupervised baseline \citep{otsu1979}. Geometric alignment can use fiducials and a planar projective transformation with robust RANSAC fitting \citep{fischler1981ransac}; camera intrinsics and lens distortion can be estimated with planar calibration \citep{zhang2000calibration}. Image registration reviews distinguish feature-based from intensity-based matching and the risks from resampling/occlusion \citep{zitova2003registration}. On boards with rich component textures the reference image may be stable; when strong UV appearance changes make feature matching unreliable, acquire an auxiliary white-light registration image or use mechanical fiducials.
+
+The main classical failure modes are nonuniform excitation, glossy reflectance, PCB fluorescence unrelated to the coating, component shadows, natural variation in tracer brightness and threshold sensitivity. Morphology can artificially erase a small genuine defect; the minimum structuring-element scale must be expressed in $\mu$m using measured image scale, and evaluated with defect-size-dependent recall. Rules should be engineered from independent validation data, not manually tuned on the final test boards.
+
+\subsection{CNN and transformer segmentation}
+U-Net remains a reasonable low-data segmentation comparator because its skip connections support preservation of spatial detail \citep{ronneberger2015unet}. DeepLabv3+ uses atrous processing and a boundary-refining decoder, offering a more complex reference model \citep{chen2018deeplab}. Lightweight backbones such as MobileNetV3 may reduce CPU cost \citep{howard2019mobile}. These methods were designed and first evaluated on other domains; UV coating segmentation performance must be learned empirically.
+
+Transformers provide a further family rather than an automatic upgrade. Swin Transformer aggregates hierarchical contextual representations \citep{liu2021swin}; SegFormer pairs multi-scale features with a small MLP decoder \citep{xie2021segformer}; Mask2Former supports multiple mask segmentation tasks \citep{cheng2022mask2former}; MobileViT investigates low-resource global representation \citep{mehta2022mobilevit}. The real evaluation criterion here is not a published score on ADE20K, but sensitivity to relevant physical flaws, annotation requirements, false-reject behaviour, CPU latency and reproducibility. A practical progression is (1) a classical reference-aware baseline; (2) small U-Net; (3) SegFormer-B0 or MobileNetV3-based segmentation if justified; and only then higher-capacity networks if systematic errors warrant them.
+
+For very small bubbles, downsampling a full 4000-pixel image to 512 or 640 pixels wide changes effective sampling from 20 to 125--156 $\mu$m/px. Consequently, a nominal 0.2~mm defect that spans ten original pixels may span only about 1.3--1.6 pixels after aggressive resize. The model evaluation must explicitly preserve resolution by using a high-resolution input, carefully selected tiles, a ROI hierarchy or a dedicated small-defect head. Tile counts and overlapping-region merging are part of runtime measurement. The Choi et al. paper is direct evidence that tiling has been investigated for tiny coating bubbles \citep{choi2024uv}; tiling as such is not novel.
+
+\subsection{Anomaly detection and scarce defects}
+Industrial inspection often has many acceptable specimens and few verified examples of rare defects. PatchCore represents acceptable image patches with a feature-memory bank \citep{roth2022patchcore}; DRAEM trains with synthetically generated anomalies \citep{zavrtanik2021draem}; EfficientAD explores a low-latency student--teacher arrangement and global context \citep{batzner2024efficientad}. The large accuracy and millisecond figures from those papers are benchmark- and hardware-specific. In coated PCB production, \emph{normal variation} includes acceptable fluorescence differences, changing component reflectance and permissible masking areas, so a normal-only model can flag harmless variations while missing subtle functionally meaningful deviations. If used, anomaly scores should be integrated with reference-region rules and evaluated at a selected board-level false-reject operating point.
+
+The uncertainty-aware PCB method $\mathrm{U}^{2}\mathrm{D}^{2}$PCB illustrates reconstruction and discriminative anomaly logic on conventional PCB data \citep{u2d2pcb2024}. It is a useful architectural candidate for low-defect-frequency problems but no substitute for an actual UV coating dataset. Likewise, CM-UNetv2 targets small ordinary PCB features and boundaries, offering a hypothesis about feature preservation rather than evidence of coating behavior \citep{guo2025cmunet}.
+
+\subsection{Dataset inventory and actual relevance}
+\begin{table}[htbp]\centering\footnotesize
+\caption{Verified public benchmark identities. None of these is a demonstrated public pixel-labelled UV PCB conformal-coating benchmark.}
+\begin{tabularx}{\textwidth}{p{25mm}p{25mm}X p{27mm}}\toprule
+Dataset & Scale / access & What it contains & Use in present study \\\midrule
+DeepPCB \citep{tang2019deeppcb} & 1,500 template/test pairs; source released & Conventional PCB pattern defects, six categories & Registration/detection pipeline only\\
+DsPCBSD+ \citep{lv2024dspcb,dspcbfigshare} & 10,259 images, 20,276 boxes; Figshare CC BY & Copper residue/deficiency, scratches and foreign objects; local crops & Annotation tooling, small-object benchmark\\
+FPIC \citep{jessurun2022fpic} & Research collection described in preprint & Semantic optical PCB assurance images & General semantic PCB task exploration\\
+MVTec AD \citep{bergmann2019mvtec,mvtecdataset} & 5,354 images; noncommercial license & 15 object/texture categories, anomalies & Anomaly-code sanity check only\\
+MVTec LOCO AD \citep{bergmann2022loco} & 3,644 images, noncommercial & Structural and logical anomalies & Test reference-rule ideas conceptually\\
+VisA \citep{visa2022dataset} & 10,821 images, CC BY & Industrial anomalies including PCB-like categories & Transfer learning or anomaly comparison, not coating ground truth\\
+\bottomrule\end{tabularx}
+\label{tab:datasets}
+\end{table}
+
+DsPCBSD+ provides explicitly downloadable images and object annotations under an official Figshare record \citep{dspcbfigshare}. This makes it useful for validating image loaders, annotation conversion and neural training code, but those image labels refer to bare PCB surface/copper defects. DeepPCB has reference/test image pairs and defect boxes, which could help test registration software before any UV data are captured \citep{tang2019deeppcb}. MVTec AD and LOCO AD carry non-commercial dataset licences; they must not silently migrate into a factory training or redistribution workflow \citep{mvtecdataset,bergmann2022loco}. VisA lists a more permissive CC BY dataset licence but is still not a substitute for collecting UV coating images \citep{visa2022dataset}.
+
+\subsection{Dataset acquisition is a central experimental contribution}
+A purpose-built UV coating dataset is therefore a \emph{necessary engineering deliverable} and possibly an independent scholarly contribution. It should include nominal 70~mm boards across physical board IDs, coating lots, component configurations and controlled acquisition conditions; carefully separated genuine defects and induced test coupons; expert-adjudicated defect masks or instances; and reference areas labelled as \emph{required, forbidden, permitted/optional, occluded and unknown}. In any published dataset, source images and annotations need a release decision independent of internal production images and CAD. One hundred repeat exposures from ten physical PCBs do not constitute one hundred independent defect specimens for statistical inference. Photometric augmentation cannot create genuinely new physical bubble morphologies or validate transfer to a novel coating batch.
+
+\subsection{Prior-work synthesis matrix}
+The detailed catalog in the accompanying CSV records 58 source identities and their verification status. The literature comparison in Table~\ref{tab:prior} summarizes why the architecture should be judged incrementally rather than advertised as a new generic fusion of known methods.
+\begin{table}[htbp]\centering\scriptsize
+\caption{Directness of the principal academic comparisons.}\label{tab:prior}
+\begin{tabularx}{\textwidth}{p{28mm}X p{25mm}}\toprule
+Study & Primary relevant contribution & Evidential constraint\\\midrule
+Lee et al. 2021a/b \citep{lee2021cnn,lee2021transfer} & Coating bubble UV candidate extraction plus CNN / transfer learning & Defect type primarily bubbles; no demonstrated production transfer to our line\\
+Choi et al. 2024 \citep{choi2024uv} & UV level suitability, multitype bubble location and tiled YOLOv8 & Does not settle other coating defects or CPU runtime\\
+Wang et al. 2025 \citep{wang2025bubble} & Enhanced YOLOv8-Nano for small PCB coating bubbles & Relative improvement reported; detailed sample counts unverified\\
+Patel et al. 2026 \citep{patel2026coverage} & Faster R-CNN for dewetting/capillary coating defects & Class recalls without general production false-acceptance operating point\\
+Han et al. 2025 \citep{han2025coating} & Self-labeling coating-interface localization & Fuel-injection nozzles, not UV PCB surfaces\\
+Shao et al. 2019 \citep{shao2019oct} & Independent non-destructive coating thickness metrology & Hardware and observable different from fluorescence coverage\\
+\bottomrule\end{tabularx}
+\end{table}

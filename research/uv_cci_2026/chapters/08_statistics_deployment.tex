@@ -1,0 +1,43 @@
+\section{Statistical analysis, reliability and production feasibility}
+\subsection{Primary and secondary outcomes}
+The proposed \emph{primary} outcome is board-level sensitivity for \emph{actionable} defects at a predeclared maximum false-reject rate on independent boards. For a binary decision, define defect-positive ground truth, true positives (TP), false negatives (FN), false positives (FP) and true negatives (TN) at the \emph{board level}. Then
+\begin{equation}
+\mathrm{Sensitivity}=\frac{TP}{TP+FN},\quad \mathrm{Specificity}=\frac{TN}{TN+FP},\quad
+\mathrm{Precision}=\frac{TP}{TP+FP},\quad \mathrm{FPR}=\frac{FP}{TN+FP}.
+\end{equation}
+False acceptance of a physically defective board is the risk-relevant $FN$ event; false rejection of a conforming board is $FP$. These conventions must be attached to every report to avoid ambiguous ``false pass'' terminology. At defect level, report size-stratified recall with an explicit matching rule. At pixel level, report Dice and IoU but interpret them as supporting localization metrics, not the factory pass criterion. Report uncertainty alongside proportions and the exact numerator and denominator.
+
+\subsection{Confidence intervals and sample-size planning}
+Use a binomial Wilson or exact interval for board-level proportions when board outcomes are sufficiently independent. At low defect prevalence, an apparent ``100\% recall'' on only ten defective boards says little about industrial reliability. For an illustration, if zero false accepts occur among $n$ independent actionable-defect boards, a rough one-sided 95\% upper bound on miss probability is $3/n$ (the ``rule of three'' approximation). Therefore even zero misses among 100 defective boards supports only an upper bound near 3\%, \emph{not} a proven $<0.1\%$ miss rate. Correlation within coating lots lowers effective information, so stratify and report between-lot results rather than treating thousands of crops as independent trials. Derive final sample sizes from desired confidence limits and the process's defect distribution before testing.
+
+\subsection{Comparing algorithms fairly}
+All methods must evaluate the same independent boards under the same acquisition conditions and specified threshold policy. For binary paired board outcomes, a paired disagreement analysis (e.g. McNemar-type test where assumptions apply) is preferable to treating the models' performance estimates as unpaired. For localization IoU or cycle-time measurements, consider paired bootstrap resampling at the \emph{physical-board level}; if lot clustering is material, resample lots and boards appropriately. Primary tests and alpha level should be prespecified. Exploratory comparisons across dozens of architectures are explicitly labelled exploratory, with appropriate caution regarding multiplicity. Report effect sizes and confidence intervals even when formal significance is inconclusive. Save the list of individual failure cases, not just summary percentages.
+
+\subsection{Repeatability and domain shift}
+A repeated-measures study should test the same board at multiple positions, orientations and times. Separate within-session repeatability from between-day, lighting-source aging and coating-batch reproducibility. Train/validation/test splits by \emph{physical board} remove identical-image leakage, but they do not independently test future batches; a deliberately held-out lot is stronger. Apply structured perturbations to registration, illumination and exposure and measure performance degradation with a documented acceptable degradation threshold. If a new PCB revision changes component heights or mask geometry, perform change-impact analysis rather than assuming old models generalize. Record ``review'' decisions separately from false rejects, since a system that abstains excessively may not meet line takt.
+
+\subsection{Failure-mode and risk analysis}
+\begin{table}[htbp]\centering\footnotesize
+\caption{Potential failure modes and the proposed monitoring response.}\label{tab:risk}
+\begin{tabularx}{\textwidth}{p{28mm}X p{35mm}}\toprule
+Failure & Consequence & Control / observable \\\midrule
+LED power or spectral drift & Weak fluorescence appears as missing coating & Stable reference target, drift alarm, locked settings\\
+Wrong/uncalibrated emission filter & Reflected UV dominates signal & Spectral check, reference subtraction, qualification records\\
+Board misregistration & False keep-out failures or masked true flaws & Fiducial residual threshold, manual review state\\
+Specular component/occlusion & Missing sidewall or dark inaccessible areas & Exclusion/occlusion map, optional side views\\
+Coating batch variation & Shift in nominal intensity and defect texture & Lot-stratified validation, recalibration, OOD alarm\\
+Model/rule mismatch & Silent false pass after PCB revision & Versioned CAD mask, software/configuration compatibility checks\\
+Dataset leakage & Inflated laboratory accuracy & Physical-board and lot keyed splits, audit script\\
+Camera/PC failure & Missing inspection or stale result reuse & Trigger sequence IDs, watchdog, fail-safe PLC handshake\\
+\bottomrule\end{tabularx}
+\end{table}
+
+\subsection{Hardware, economics and commissioning}
+An engineering BOM should include camera, lens, tested emission filter, UV source and driver, light shield/interlock, mechanical positioning, PC, I/O, calibration targets, enclosure cooling and traceability storage. For a 70~mm square board, a single 5--12~MP camera and compact directional UV sources may be feasible, but the smallest defect size and sidewall inspection requirements must drive the final optical choice. The earlier conceptual hardware-only budget of roughly €1,500--3,500 per station is \emph{an order-of-magnitude planning assumption}, not a verified October 2026 supplier quotation, not a guaranteed cost, and not inclusive of design engineering, safety validation, line integration, commissioning, process revalidation or service. No production takt or defect sensitivity should be priced as achieved before experiments.
+
+Intel CPUs can run common inference backends; 2026 OpenVINO documentation lists supported Intel Core generations, and ONNX Runtime's execution providers provide portable execution options \citep{openvino2026,onnxproviders}. Candidate model input sizes should be selected after measuring physical defect detectability. An optimized CPU inference engine can still lose to a fixed-rule approach if camera latency, feature tiling or database I/O dominates. A cost-performance plot should compare measured defect-level sensitivity at the selected false-reject rate \emph{versus} whole-cycle 95th-percentile time and amortized station cost. Avoid meaningless comparisons between vendor maximum pixels per second and our end-to-end cycle without identical test boards.
+
+\subsection{Standards and deployment validation}
+IPC material qualification (IPC-CC-830C), assembled-board acceptance (IPC-A-610J) and process guidance (IPC-HDBK-830A) play different roles \citep{ipccc830c,ipca610j,ipchdbk830a}. A conformal-coating inspection algorithm is not itself a material qualification procedure. The acceptance recipe must come from authorized full-text requirements and product-specific drawings. Optical and mechanical safety engineering should incorporate IEC~62471 and ISO~12100, with actual measurements and formal assessment \citep{iec62471,iso12100}. Attribute-based lot sampling concepts can support ongoing process monitoring (ISO~2859-1:2026), but must not be conflated with proving sensitivity of the automated 100\%-inspection device \citep{iso2859}.
+
+Pilot operation should initially compare AI decisions against an existing approved inspection process without automatically rejecting production. Review discordant cases, investigate systematic manufacturing shifts, and retrain/revalidate only under controlled revision. Production acceptance requires documented optical calibration, traceability, operator training, maintenance, failure recovery and periodic challenge boards with known defects. A claim of production suitability should only follow these steps.

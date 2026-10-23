@@ -1,0 +1,8 @@
+id,comparison,factors,primary_metrics,data_requirements,pre_registration_gate
+P0,Optical feasibility,"fluorescence emission, filter test",SNR contrast vs bare PCB; repeatability,true coating material,Independent optics acceptance
+P1,Classical vision,threshold-only and threshold+reference,board/defect recall; false reject,group-split samples,Rules frozen
+P2,CNN,small U-Net; input scale,"Dice, actionable recall; CPU time",same held-out boards,training and model locked
+P3,Transformer,SegFormer-B0 only if warranted,paired improvement over P2,same held-out boards,no test-tuning
+P4,Hybrid,U-Net with CAD reference,paired sensitivity at matched false reject,same held-out boards,ablation controls
+P5,Illumination robustness,top-only vs four-source/sequential,recall loss under shadows and shift,randomized captures,source heating control
+P6,Edge deployment,ONNX Runtime vs OpenVINO CPU,median/p95 end-to-end cycle,production-like hardware,watchdog and fault validation

@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+% KTU template's existing natbib / unsrtnat configuration is provided by this style.
+% Build from repository root; this project does not alter root main.tex or variables.tex.
+\usepackage{ktu_thesis_style}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{etoolbox}
+\hypersetup{hidelinks,pdftitle={UV PCB Conformal Coating Inspection Literature Review and Methodology}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\newcommand{\ccl}{conformal coating}
+\newcommand{\systemname}{UV-CCI}
+\newcommand{\evidencenote}[1]{\textit{Evidence caveat: #1}}
+\begin{document}
+\begin{center}
+{\large\bfseries KAUNAS UNIVERSITY OF TECHNOLOGY}\par\vspace{0.6cm}
+{\large\bfseries Scientific Literature Review and Experimental Methodology}\par\vspace{1.0cm}
+{\Large\bfseries Development and Evaluation of a Low-Cost Reference-Aware UV Fluorescence Inspection Architecture for PCB Conformal Coating}\par\vspace{0.9cm}
+{\normalsize Research working manuscript --- version 1.0, 23 October 2026}\par\vspace{0.5cm}
+{\small Scope: nominal 70 $\times$ 70 mm PCB; academic research and possible industrial validation}\par
+\end{center}
+\vspace{1.0cm}
+\noindent\textbf{Document status.} Evidence-grounded literature synthesis and proposed methodology. This manuscript does \emph{not} present acquired UV coating images, trained models or independently measured inspection results. Bibliographic identities were checked through public publisher/standard/vendor/dataset records; comprehensive systematic full-text appraisal remains in progress. Numeric claims from manufacturer brochures are labelled accordingly.\par
+\vspace{0.3cm}
+\noindent\textbf{Data confidentiality.} No employer source code, proprietary PCB images or production process parameters are included. Any eventual publication requires review of intellectual property and information-release permissions.\par
+\clearpage
+\begin{abstract}
+Inspection of transparent conformal coating is a physically constrained machine-vision problem: UV excitation can reveal fluorescent coating, but visible brightness is also affected by excitation irradiance, camera response, optical filtering, material composition, geometry and shadows. Research already demonstrates ultraviolet bubble detection with CNN and transfer learning, automated UV illumination suitability selection, and CNN-based inspection of dewetting and capillary defects. Commercial coating inspection systems combine UV lighting, reference images, CAD coating plans, additional camera angles and optional independent thickness metrology. Thus, applying a neural network to UV-coated PCBs is not in itself novel. This study develops a traceable synthesis of directly relevant evidence, transferable computer-vision methods and standards, then proposes an evaluable low-cost architecture for fixed 70~mm square printed circuit board assemblies. It combines radiometric correction, geometry registration, a probabilistic coating representation, a manufacturing reference map, morphological defect characterization and risk-sensitive PCB-level decisions. A prospective experimental design compares classical, standalone learned and hybrid approaches on physical-board- and lot-disjoint test groups, with explicit independent ground truth, defect-specific sensitivity, false acceptance, uncertainty, robustness and whole-cycle CPU timing. The report also identifies the gap between fluorescence coverage and quantitative coating thickness, the restricted relevance of popular PCB defect datasets, and the limits of current source access. The output is an experimentally actionable research protocol and preliminary academic literature review, not a validated production inspection system.
+\end{abstract}
+\tableofcontents
+\clearpage
+\input{research/uv_cci_2026/chapters/01_research_scope}
+\input{research/uv_cci_2026/chapters/02_literature_method}
+\input{research/uv_cci_2026/chapters/03_coating_optics}
+\input{research/uv_cci_2026/chapters/04_prior_work}
+\input{research/uv_cci_2026/chapters/05_ai_datasets}
+\input{research/uv_cci_2026/chapters/06_architecture}
+\input{research/uv_cci_2026/chapters/07_experimental_method}
+\input{research/uv_cci_2026/chapters/08_statistics_deployment}
+\input{research/uv_cci_2026/chapters/09_conclusions}
+\appendix
+\input{research/uv_cci_2026/chapters/10_appendix}
+\clearpage
+\phantomsection\addcontentsline{toc}{section}{References}
+\bibliography{research/uv_cci_2026/references}
+\end{document}

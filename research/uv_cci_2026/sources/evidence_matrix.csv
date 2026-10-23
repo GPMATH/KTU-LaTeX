@@ -1,0 +1,59 @@
+citation_key,source_verification,full_text_examined,target,excitation_nm,emission_filter,camera,independent_boards,batches,defect_classes,dataset_access,ground_truth_method,split_method,reported_metric,reported_metric_definition,runtime_hardware,limitations,notes
+lee2021cnn,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,UV-image brightness candidates + CNN; reported precision 0.805 recall 0.763 F1 0.767; check full-text metrics carefully
+lee2021transfer,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,transfer learning VGG-style CNN; abstract reports F1 0.9044
+zouhri2021faster,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"2021 International Conference on Microelectronics (ICM) pp 276-279; bibliographic link to original in 2024 journal references, DOI not confirmed"
+zouhri2024ai,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,journal discussion of AI bubble inspection; inspect methods carefully before using numeric performance
+choi2024uv,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"Mahalanobis brightness/hue suitability plus YOLOv8 tiling, KCI English abstract"
+wang2025bubble,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,institution record says bubbles during PCB coating; claimed 12% improvement in small-bubble detection vs baseline
+patel2026coverage,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"capillary/dewetting, abstract reports recalls 98.53% and 95.49%; do not generalize"
+pidurkar2026hybrid,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,excess coating HSV ratio plus other component faults; verify sample and evaluation definitions
+shao2019oct,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"OCT metrology, not UV fluorescence thickness proof"
+lf2023oct,publisher full-text HTML,YES,,,,,,,,,,,,,,,PCB ROI 4x5 mm; coating thickness map demonstrates alternative depth measurement
+han2025coating,publisher full-text HTML,YES,,,,,,,,,,,,,,,"fuel injector nozzles, NOT PCBs, open full text; reported <=6 px interface error over 95% and 7.18 images/s"
+zi2026coating,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,review non-PCB-specific
+hara1988fluorescent,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,fluorescent SUBSTRATE for copper fault detection; NOT fluorescent conformal coating
+crowther2022filters,publisher full-text HTML,YES,,,,,,,,,,,,,,,filter selection and UV leakage; directly transferable optics principles
+zeissfluorescence,official vendor or standard summary,NO,,,,,,,,,,,,,,,technical note on excitation/emission filters; year approximate from source record
+viscomcci,official vendor or standard summary,NO,,,,,,,,,,,,,,,manufacturer discussion of coverage vs separate thickness measurement
+goepelcci,official vendor or standard summary,NO,,,,,,,,,,,,,,,"9/17 micrometre image resolution advertised; top/side UV, painting plan/CAD and optional thickness"
+nordsoncci,official vendor or standard summary,NO,,,,,,,,,,,,,,,"5MP and golden-board train, claims few seconds per board"
+mirteccci,official vendor or standard summary,NO,,,,,,,,,,,,,,,"50MP camera, 4 micron optics, vendor 30 micron bubble claim; independently unvalidated"
+ipchdbk830a,official vendor or standard summary,NO,,,,,,,,,,,,,,,public source is TOC only; must obtain full standard before citing detailed requirements
+ipca610j,official vendor or standard summary,NO,,,,,,,,,,,,,,,TOC section 10.8 coverage and thickness; acceptance details behind paywall
+ipccc830c,official vendor or standard summary,NO,,,,,,,,,,,,,,,material qualification not a direct machine-vision metric; TOC only
+ipc2024release,official vendor or standard summary,NO,,,,,,,,,,,,,,,mentions conformal-coating voiding/bubbles clarified and IPC-WP-028
+ebayyeh2020aoi,publisher full-text HTML,YES,,,,,,,,,,,,,,,"broad review of image sensors, light sources, algorithms"
+zhou2023pcb,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,review of conventional PCB visual defect inspection and datasets
+ieee2023pcb,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"review of general PCB defects, not coating"
+qub2025registration,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,RANSAC template alignment + U-Net across varying light; not coating
+guo2025cmunet,publisher full-text HTML,YES,,,,,,,,,,,,,,,"small defects and boundaries, PCB but not coating"
+u2d2pcb2024,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"normal-image training / synthetic defects, not coating"
+lim2023pcb,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,high mAP reported only for non-coated PCB dataset
+tang2019deeppcb,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"DeepPCB 1500 image pairs, 6 conventional defect categories"
+lv2024dspcb,publisher full-text HTML,YES,,,,,,,,,,,,,,,DsPCBSD+: 10259 images 20276 conventional surface defect boxes
+dspcbfigshare,dataset official repository record,NO,,,,,,,,,,,,,,,downloadable 122 MB CC-BY4; not coating
+jessurun2022fpic,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"FPIC optical PCB assurance, not UV coating, preprint identity"
+bergmann2019mvtec,publisher full-text HTML,YES,,,,,,,,,,,,,,,5354 images 15 categories not PCB coating
+mvtecdataset,dataset official repository record,NO,,,,,,,,,,,,,,,CC BY-NC-SA noncommercial license
+bergmann2022loco,dataset official repository record,NO,,,,,,,,,,,,,,,3644 images; structural and logical defects; non-commercial
+visa2022dataset,dataset official repository record,NO,,,,,,,,,,,,,,,"10821 images 12 categories, CC BY4; some circuit board objects, not UV coating"
+otsu1979,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,histogram segmentation
+fischler1981ransac,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,robust registration
+zhang2000calibration,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,camera model and distortion calibration
+zitova2003registration,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,area vs feature methods
+ronneberger2015unet,publisher page / abstract or indexed record,NO,,,,,,,,,,,,,,,"method only, no UV coating claims"
+chen2018deeplab,publisher full-text HTML,YES,,,,,,,,,,,,,,,DeepLabv3+ boundary-oriented baseline
+liu2021swin,publisher full-text HTML,YES,,,,,,,,,,,,,,,"general visual backbone, not coating"
+xie2021segformer,publisher full-text HTML,YES,,,,,,,,,,,,,,,"SegFormer B0 proposed comparator, not automatically faster on CPU"
+cheng2022mask2former,publisher full-text HTML,YES,,,,,,,,,,,,,,,large alternative not initial CPU choice
+howard2019mobile,publisher full-text HTML,YES,,,,,,,,,,,,,,,lightweight encoder LR-ASPP
+mehta2022mobilevit,publisher full-text HTML,YES,,,,,,,,,,,,,,,compact mobile transformer alternative
+roth2022patchcore,publisher full-text HTML,YES,,,,,,,,,,,,,,,"normal patch reference, benchmark 99.6 AUROC unrelated to coating"
+zavrtanik2021draem,publisher full-text HTML,YES,,,,,,,,,,,,,,,synthetic anomalies
+batzner2024efficientad,publisher full-text HTML,YES,,,,,,,,,,,,,,,GPU millisecond results; not low cost CPU performance
+iso12100,official vendor or standard summary,NO,,,,,,,,,,,,,,,standard summary only; full standard not examined
+iec62471,official vendor or standard summary,NO,,,,,,,,,,,,,,,"UV source hazard assessment, not sufficient alone for completed design"
+page2021prisma,publisher full-text HTML,YES,,,,,,,,,,,,,,,"reporting guideline, no claim this initial search is PRISMA-compliant"
+openvino2026,official vendor or standard summary,NO,,,,,,,,,,,,,,,official supported Intel CPU; actual speed requires benchmark
+onnxproviders,official vendor or standard summary,NO,,,,,,,,,,,,,,,deployment portability API guidance
+iso2859,official vendor or standard summary,NO,,,,,,,,,,,,,,,sampling plans; not substitute for per-board sensitivity study
