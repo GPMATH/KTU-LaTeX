@@ -4,7 +4,7 @@ on:
   push:
     branches: [research/uv-cci-comprehensive-study-2026]
     paths:
-      - 'research/uv_cci_2026/.staging/study_payload.tar.xz'
+      - 'research/uv_cci_2026/.staging/**'
       - '.github/workflows/uv-cci-study.yml'
   workflow_dispatch:
 
@@ -21,10 +21,11 @@ jobs:
       - name: Restore research source tree from bundle
         shell: bash
         run: |
-          if test -f research/uv_cci_2026/.staging/study_payload.tar.xz; then
-            tar -xJf research/uv_cci_2026/.staging/study_payload.tar.xz
-            rm research/uv_cci_2026/.staging/study_payload.tar.xz
-            rmdir research/uv_cci_2026/.staging || true
+          if compgen -G 'research/uv_cci_2026/.staging/part*.txt' > /dev/null; then
+            cat research/uv_cci_2026/.staging/part*.txt | base64 -d > /tmp/study_payload.tar.xz
+            echo "a02d01df330663a73e64109e57b1399fdcbf12e8726aeec504e6ce7e9588ae68  /tmp/study_payload.tar.xz" | sha256sum -c -
+            tar -xJf /tmp/study_payload.tar.xz
+            rm -r research/uv_cci_2026/.staging
           fi
       - name: Validate citations
         run: python3 research/uv_cci_2026/tools/check_study.py
