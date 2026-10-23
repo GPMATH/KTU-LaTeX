@@ -21,8 +21,8 @@ jobs:
       - name: Restore research source tree from bundle
         shell: bash
         run: |
-          if compgen -G 'research/uv_cci_2026/.staging/part*.txt' > /dev/null; then
-            cat research/uv_cci_2026/.staging/part*.txt | base64 -d > /tmp/study_payload.tar.xz
+          if test -f research/uv_cci_2026/.staging/study_payload_base64.txt; then
+            base64 -d research/uv_cci_2026/.staging/study_payload_base64.txt > /tmp/study_payload.tar.xz
             echo "a02d01df330663a73e64109e57b1399fdcbf12e8726aeec504e6ce7e9588ae68  /tmp/study_payload.tar.xz" | sha256sum -c -
             tar -xJf /tmp/study_payload.tar.xz
             rm -r research/uv_cci_2026/.staging
