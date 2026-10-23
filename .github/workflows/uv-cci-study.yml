@@ -1,0 +1,51 @@
+name: Bootstrap and compile UV coating study
+
+on:
+  push:
+    branches: [research/uv-cci-comprehensive-study-2026]
+    paths:
+      - 'research/uv_cci_2026/.staging/study_payload.tar.xz'
+      - '.github/workflows/uv-cci-study.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Restore research source tree from bundle
+        shell: bash
+        run: |
+          if test -f research/uv_cci_2026/.staging/study_payload.tar.xz; then
+            tar -xJf research/uv_cci_2026/.staging/study_payload.tar.xz
+            rm research/uv_cci_2026/.staging/study_payload.tar.xz
+            rmdir research/uv_cci_2026/.staging || true
+          fi
+      - name: Validate citations
+        run: python3 research/uv_cci_2026/tools/check_study.py
+      - name: Install TeX Live requirements
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended
+      - name: Compile KTU LaTeX PDF
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error research/uv_cci_2026/report.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uv-cci-ktu-review-pdf
+          path: report.pdf
+          if-no-files-found: error
+      - name: Commit and push extracted research sources
+        shell: bash
+        run: |
+          if [ -n "$(git status --porcelain -- research/uv_cci_2026)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research/uv_cci_2026
+            git commit -m "research: add complete UV CCI literature study LaTeX sources"
+            git push origin HEAD:research/uv-cci-comprehensive-study-2026
+          fi
