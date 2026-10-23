@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+% Compile from the repository root. Uses the existing KTU template style.
+\usepackage{ktu_thesis_style}
+\title{Development and Evaluation of a Low-Cost UV-Fluorescence Inspection Architecture for PCB Conformal Coating}
+\author{Research working draft}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This document defines the scope and experimental plan for a low-cost optical
+inspection system for conformal-coated printed circuit boards. It is a research
+protocol in progress, not a report of completed experiments.
+\end{abstract}
+\tableofcontents
+
+\input{research/conformal_coating/chapters/01_scope}
+\input{research/conformal_coating/chapters/02_literature_review}
+\input{research/conformal_coating/chapters/03_methodology}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliography{research/conformal_coating/references}
+\end{document}

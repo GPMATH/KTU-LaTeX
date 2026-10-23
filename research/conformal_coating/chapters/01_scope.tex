@@ -1,0 +1,33 @@
+\section{Introduction and research scope}
+
+The proposed system targets printed circuit boards approximately $70 \times 70$~mm.
+An initial imaging field of view of about $80 \times 80$~mm leaves positioning margin;
+this is a design hypothesis rather than a confirmed optical specification.
+
+The system will test controlled 365~nm UVA excitation with visible-band imaging
+of fluorescence, subject to verifying the spectral response of the actual conformal
+coating. It will assess missing coverage, excessive coverage, keep-out violations
+and other defect classes only when those categories can be labelled reproducibly.
+
+\subsection{Research questions}
+\begin{enumerate}
+\item Under what optical conditions does fluorescence-based image analysis
+provide repeatable coating-coverage evidence on the target board?
+\item How do classical image processing, learned segmentation, and a
+reference-aware hybrid differ in defect-level sensitivity and false acceptance?
+\item What image resolution, inference model and hardware are sufficient
+to meet the measured production inspection time, not just neural-network latency?
+\item How robust are the methods to new PCBs, production lots, lighting drift,
+geometric displacement, and coating variation?
+\end{enumerate}
+
+\subsection{Candidate contribution}
+A modular architecture incorporating flat-field correction, PCB registration,
+coating segmentation and required/forbidden-region comparisons will be tested
+against independent baselines. Novelty and improvement are \emph{hypotheses};
+both require literature verification and quantitative evidence.
+
+\subsection{Data governance}
+Only explicitly approved test imagery may be released. Industrial artwork,
+traceability data and coating specifications may be confidential. Publications
+must distinguish accessible publication/test-board data from restricted factory data.

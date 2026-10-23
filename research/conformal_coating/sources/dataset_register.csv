@@ -1,0 +1,1 @@
+specimen_id,lot_id,coating_material,acquisition_date_utc,image_id,illumination_setup,camera_id,exposure_ms,gain_db,ground_truth_source,defect_classes,split,release_approved,notes
