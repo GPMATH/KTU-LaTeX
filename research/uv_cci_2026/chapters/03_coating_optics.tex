@@ -1,0 +1,45 @@
+\section{Conformal coatings, defects and fluorescence optics}
+\subsection{Protection mechanisms and material variability}
+Conformal coating denotes a thin film that follows an electronic assembly's geometry. IPC-HDBK-830A documents acrylic, epoxy, silicone, polyurethane and parylene systems, along with application, curing, compatibility, coverage and thickness considerations \citep{ipchdbk830a}. These chemistry families differ in physical properties and processing requirements; even within a nominal material family, formulations, fluorescent tracer concentration and fluorescence spectra may vary. The production coating data sheet and qualification results are therefore indispensable experimental inputs. A coating that does not provide sufficient fluorescence under 365~nm irradiation invalidates the chosen imaging modality and must trigger a design review rather than post hoc enhancement of unreliable images.
+
+A workable inspection taxonomy must separate physical mechanism from image appearance. \textit{Missing coating} denotes uncovered required material. \textit{Overspray or keep-out violation} means a forbidden location shows coating evidence. \textit{Bubble} means trapped gas in or under a film; \textit{blister} may denote raised separation of coating from substrate. \textit{Dewetting} creates locally receded coating and boundaries; \textit{capillary pooling} accumulates film near leads and geometrical gaps. \textit{Cracks, wrinkles, scratches and contamination} require specific visible criteria and possibly alternate lighting. These classes should be treated as candidates for annotation, not guaranteed detectable classes. IPC-A-610J includes conformal-coating coverage and thickness categories, and IPC's 2024 release specifically noted revisions clarifying coating voiding/bubbles \citep{ipca610j,ipc2024release}. The applicable class, customer drawing, and actual acceptance language must be obtained by authorized access to the complete requirements.
+
+\subsection{Excitation, emission and optical contrast}
+A fluorescent indicator absorbs excitation radiation and emits longer-wavelength light. In a simple first-order model, the measured camera signal at board position $\mathbf{x}$ can be written
+\begin{equation}
+I(\mathbf{x}) \approx g\, t\, q(\mathbf{x})\,E_{365}(\mathbf{x})\,\eta(\mathbf{x}) + B(\mathbf{x}) + \epsilon(\mathbf{x}),
+\label{eq:fluorescence}
+\end{equation}
+where $g$ is camera/system gain, $t$ the exposure, $q$ the combined camera/lens/filter response, $E_{365}$ local excitation irradiance, $\eta$ an effective emission response of tracer and coating geometry, $B$ residual background/reflections and $\epsilon$ noise. Equation~\ref{eq:fluorescence} is an engineering abstraction, \emph{not} a calibrated film-thickness law. In particular, $\eta$ may depend nonlinearly on film thickness, concentration, photobleaching, shielding, topography and chemical condition. Brightness differences can therefore indicate suspicious coating variation but cannot, without independent characterization, prove an absolute thickness.
+
+The correct filter is determined by \emph{what the camera should measure}. The UV illumination excites the fluorescent coating, while the camera should ordinarily transmit the visible emission and suppress reflected 365~nm radiation. Crowther systematically examined excitation-light blocking and undesirable filter/lens fluorescence in UV photography \citep{crowther2022filters}. Fluorescence microscopy technical literature similarly distinguishes excitation and emission filtering \citep{zeissfluorescence}. A 365~nm passband filter mounted on the camera would pass excitation and could reject much of the fluorescence signal; it should not be selected automatically simply because the LEDs are 365~nm. The protocol must first measure the coating emission spectrum (or empirically compare candidate long-pass/band-pass emission filters) and image a bare PCB under identical illumination.
+
+\subsection{Field of view, physical sampling and resolution}
+With an 80~mm horizontal FOV and a 4000-pixel image width, image sampling is
+\begin{equation}
+s_x=\frac{80\,\mathrm{mm}}{4000}=0.020\,\mathrm{mm/pixel}=20\,\mu\mathrm{m/pixel}.
+\end{equation}
+A 0.20~mm geometric feature covers about 10 pixels horizontally in the ideal projected image. But actual resolvability is constrained by modulation transfer function, lens focus/aperture, spatial contrast, diffraction, motion blur, photon statistics, demosaicing and the segmentation threshold. Furthermore, a 0.20~mm \emph{uncoated region} and a 0.20~mm \emph{bubble embedded under a fluorescent layer} may have different visibility. The smallest reliably detectable defect must be measured across known-size references and background conditions. The board's 70~mm dimension does not imply that a 12~MP camera is necessarily required; 5, 8 and 12~MP alternatives should be compared against measured critical defect sizes and optical contrast.
+
+\begin{table}[htbp]\centering\small
+\caption{Approximate horizontal spatial sampling for an 80 mm field of view; not a claim of defect-detection capability.}
+\begin{tabular}{lrrr}\toprule
+Image width & Sampling ($\mu$m/px) & 0.10 mm feature (px) & 0.20 mm feature (px) \\\midrule
+1600 px & 50.0 & 2.0 & 4.0\\
+2448 px & 32.7 & 3.1 & 6.1\\
+3264 px & 24.5 & 4.1 & 8.2\\
+4000 px & 20.0 & 5.0 & 10.0\\
+\bottomrule\end{tabular}
+\label{tab:sampling}
+\end{table}
+
+\subsection{Lighting geometry and experimental controls}
+Component heights cause bright specular regions, self-shadowing and occlusion. A top-only flood source may illuminate unobstructed PCB areas consistently but miss coating on vertical component faces. Side UV sources can recover some information at the expense of exposure count or simultaneous irradiance complexity; commercial designs use both top and oblique views \citep{goepelcci,mirteccci}. The direct Choi et al. study is highly pertinent: it uses brightness/hue features, Mahalanobis distance and YOLOv8 tiling to evaluate appropriate UV intensity for bubble detection \citep{choi2024uv}. That prior work removes any basis for claiming UV exposure optimization in general as unprecedented.
+
+A reproducible optical study should acquire a dark frame and an image of a stable fluorescence reference at each lighting condition. Exposure/gain and lighting must be logged. Temperature and UV source warm-up should be controlled; repeated references can quantify drift. Four-source geometry should initially be treated as an experimental independent variable (left/right/top/bottom or quadrants) rather than as a fixed recommendation. A simple single UV exposure may outperform a multi-exposure fusion system in throughput, if its shadows are tolerable for the target defect classes.
+
+\subsection{Thickness versus fluorescence and independent validation}
+The ability to image coverage is not equivalent to measuring coating thickness. Shao et al. measured the interfaces of conformal coatings non-destructively using ultra-high-resolution optical coherence tomography \citep{shao2019oct}. A later low-cost line-field Fourier-domain OCT study demonstrated a three-dimensional measurement on a coated PCB and reported, for one illustrated sample, approximately 27.2~$\pm$~7~$\mu$m on resistors versus 82.9~$\pm$~13~$\mu$m on the solder mask \citep{lf2023oct}. Those are results of OCT measurements on specific samples, not expected thickness values for this project. OCT is a useful \emph{ground-truth or secondary metrology instrument}, particularly in zones where fluorescence cannot distinguish merely thin from absent coating. If access to OCT is unavailable, carefully calibrated microscopy or an appropriate coating-thickness gauge may serve as independent evidence on test coupons.
+
+\subsection{Safety constraints for optical development}
+365~nm UVA can present photobiological hazards to eyes and skin. IEC~62471 provides classification and measurement concepts for optical-radiation hazards from lamps including LEDs \citep{iec62471}; ISO~12100 sets out machine risk assessment and risk-reduction principles \citep{iso12100}. Neither a nominal LED optical wattage nor a wavelength alone determines safe exposure. The prototype shall use an opaque UV enclosure, interlocked access, power-off-on-fault behavior and documented verification of leakage and service states. This report provides research requirements, not certification of machine safety.

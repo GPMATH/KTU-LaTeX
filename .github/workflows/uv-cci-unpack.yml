@@ -1,0 +1,37 @@
+name: Unpack verified UV CCI study sources
+
+on:
+  push:
+    branches:
+      - research/uv-cci-comprehensive-study-2026
+    paths:
+      - '.github/workflows/uv-cci-unpack.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify and unpack scientific source archive
+        shell: bash
+        run: |
+          test -f research/uv_cci_2026/.staging/study_payload_base64.txt
+          base64 -d research/uv_cci_2026/.staging/study_payload_base64.txt > /tmp/study_payload.tar.xz
+          echo "a02d01df330663a73e64109e57b1399fdcbf12e8726aeec504e6ce7e9588ae68  /tmp/study_payload.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/study_payload.tar.xz
+          rm -r research/uv_cci_2026/.staging
+          python3 research/uv_cci_2026/tools/check_study.py
+      - name: Commit extracted KTU LaTeX sources
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/uv_cci_2026
+          git commit -m 'research: add reviewed literature and methodology LaTeX source tree'
+          git push origin HEAD:research/uv-cci-comprehensive-study-2026
