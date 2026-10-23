@@ -1,0 +1,50 @@
+\section{Proposed experimental methodology}
+
+\subsection{Optical system and characterization}
+Record camera model, lens, working distance, field of view, pixel size on the
+board, spectral filtering, exposure, gain, illumination wavelength, irradiance
+uniformity and board placement. Measure the coating's actual fluorescence response.
+Use an interlocked and UV-opaque enclosure.
+
+\subsection{Dataset and ground truth}
+Catalogue each \emph{physical PCB}, lot, coating process, inspection date,
+lighting setup and repeated capture in the dataset register. Obtain expert-labelled
+required coverage, forbidden regions and adjudicated defect polygons/masks. Keep
+test PCBs and, where feasible, production lots wholly separate from training.
+
+\subsection{Comparison methods}
+\begin{enumerate}
+\item \textbf{Classical}: correction, registration, threshold/morphology,
+connected components, reference-mask comparison.
+\item \textbf{Standalone learned}: an established lightweight segmentation
+model trained and evaluated without post hoc reference-specific tuning.
+\item \textbf{Hybrid}: learned coating probability, geometric registration,
+required/forbidden reference regions and transparent decision rules.
+\end{enumerate}
+
+\subsection{Ablations and robustness}
+Predefine tests for illumination angle/intensity, exposure, crop resolution,
+image normalization, registration accuracy, coating batches, PCB shifts,
+defect size and inference engine. Every candidate is evaluated on the same
+frozen specimens and annotation protocol.
+
+\subsection{Performance measures}
+Report pixel-level intersection-over-union and Dice score, defect-level precision
+and recall, sensitivity by defect size, PCB-level false acceptance and false
+rejection, uncertainty intervals, and latency distributions. Measure camera
+acquisition, transfers, preprocessing, inference, postprocessing and I/O
+separately, alongside total end-to-end cycle time.
+
+For binary defect decisions, report
+\begin{equation}
+\mathrm{Recall} = \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FN}}, \qquad
+\mathrm{Precision} = \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FP}}.
+\end{equation}
+Fix positive/negative definitions and the defect matching criterion before
+calculating these metrics. The acceptance threshold must be chosen using
+training/validation data, not the final test set.
+
+\subsection{Reporting gates}
+No accuracy, novelty, line-throughput or return-on-investment claim is considered
+validated until independent experimental data supports it. Log failed
+experiments as well as successful configurations.

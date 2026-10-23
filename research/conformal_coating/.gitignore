@@ -1,0 +1,19 @@
+# Local research exports and LaTeX build files; reference metadata in references.bib IS versioned.
+/build/
+/output/
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.pdf
+# Keep any restricted dataset and confidential material out of this public repository.
+/data_private/
+/company_data/
+/pdf_library/

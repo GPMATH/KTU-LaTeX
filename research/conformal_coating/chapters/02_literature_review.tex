@@ -1,0 +1,35 @@
+\section{Literature review: evidence framework}
+
+This section is a framework to be populated \emph{after} collecting and verifying
+primary sources. The companion \texttt{sources/evidence\_matrix.csv} records each
+source's link, modality, sample size, results, limitations, and verification level.
+
+\subsection{Conformal-coating process and acceptability}
+Review coating chemistries, fluorescent additives, defect mechanisms and applicable
+IPC standards. Separate an optical indication of coating from an independently
+validated thickness or functional reliability measurement.
+
+\subsection{Fluorescence optics and measurement}
+Examine excitation/emission spectra, UV blocking versus visible collection,
+illumination geometry, exposure linearity, shadows and flat-field calibration.
+
+\subsection{Classical inspection and geometric reference models}
+Compare image registration, thresholding, color segmentation, morphology,
+connected components and CAD/golden-board required/forbidden masks.
+
+\subsection{Learned segmentation and anomaly detection}
+U-Net introduced an encoder--decoder segmentation architecture
+\citep{ronneberger2015unet}. SegFormer is a transformer-based semantic
+segmentation architecture \citep{xie2021segformer}. PatchCore is a general
+industrial anomaly-detection approach \citep{roth2022patchcore}.
+These are \emph{method baselines}; the cited papers are not UV PCB coating
+validation studies.
+
+\subsection{Datasets, reproducibility and edge deployment}
+Search for accessible UV-coated-PCB data separately from conventional bare-PCB,
+solder or assembly-defect benchmarks. Review specimen-level data leakage,
+external validation, CPU deployment and end-to-end inspection timing.
+
+\subsection{Evidence gap ledger}
+Do not assert a novelty claim until a documented search of direct conformal
+coating, fluorescence imaging, industrial AOI and adjacent methods is complete.

@@ -1,0 +1,26 @@
+name: UV coating research reference checks
+
+on:
+  push:
+    branches:
+      - research/uv-conformal-coating-inspection
+    paths:
+      - 'research/conformal_coating/**'
+      - '.github/workflows/research-reference-check.yml'
+  pull_request:
+    paths:
+      - 'research/conformal_coating/**'
+      - '.github/workflows/research-reference-check.yml'
+  workflow_dispatch:
+
+jobs:
+  bibliography:
+    name: Check citation keys
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Run bibliography validation
+        run: python3 research/conformal_coating/scripts/check_references.py
