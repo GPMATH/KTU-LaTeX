@@ -28,13 +28,11 @@ for n,page in enumerate(original,1):
         else:
             overlap=None
         records.append((n,comment,remove,overlap))
-banned=["Vidas Raudonis","Valdas Grigali","complementary modality","Research gaps, recommended experiments and conclusions","Literature search strategy and evidence appraisal","Research working manuscript"]
-required=["Rytis Augustauskas","Supplementary research instruments and source audit"]
+banned=["Vidas Raudonis","Valdas Grigali","complementary modality","Research gaps, recommended experiments and conclusions","Literature search strategy and evidence appraisal","Research working manuscript","Supplementary research instruments and source audit","Companion structured files","Source access and interpretation notes","Search-log outline","Technical acceptance checklist","Auditable bibliography inventory","Initial source inventory"]
+required=["Rytis Augustauskas","Literature review","Mechanisms of protection and material variability"]
 checks={q:q.lower() in text.lower() for q in banned+required}
 catalog=ROOT/"research/uv_cci_2026/sources/source_catalog.csv"
 count=sum(1 for _ in csv.DictReader(catalog.open(encoding="utf-8-sig")))
-table=(ROOT/"research/uv_cci_2026/sources/source_index.tex").read_text()
-tablecount=table.count(r"\texttt{")
 removals=[r for r in records if r[2]]
 short=sum(r[3] is None for r in removals)
 overlap=[r for r in removals if r[3] is not None and r[3]>=.2]
@@ -44,7 +42,7 @@ f"- Original pages: {len(original)}; revised pages: {len(revised)}",
 f"- Annotation notes inspected: {len(records)}; removal notes: {len(removals)}",
 f"- Short/ambiguous removals requiring manual visual inspection: {short}",
 f"- Longer removals with potential text overlap requiring review: {len(overlap)}",
-f"- Source catalog rows: {count}; bibliography inventory rows: {tablecount}","","## Critical checks","",
+f"- Source catalog rows (retained as companion data, not printed): {count}","","## Critical checks","",
 "| Text check | Result |","|---|---|"]
 lines.extend(f"| Remove {q} | {'FAIL' if checks[q] else 'PASS'} |" for q in banned)
 lines.extend(f"| Keep {q} | {'PASS' if checks[q] else 'FAIL'} |" for q in required)
@@ -62,5 +60,9 @@ out.write_text("\n".join(lines)+"\n",encoding="utf-8")
 print(f"AUDIT: {len(records)} notes; {len(removals)} removals; {short} short; {len(overlap)} longer potential overlaps")
 if any(checks[q] for q in banned): raise SystemExit("Forbidden text remains")
 if any(not checks[q] for q in required): raise SystemExit("Required text missing")
-if count!=58 or tablecount!=58: raise SystemExit("Source index and catalog counts disagree")
+if count!=58: raise SystemExit("Source catalog count no longer matches original evidence register")
+if not any(re.search(r"2\.\s*Literature review\s+2\.1\.\s*Mechanisms of protection", p.get_text(sort=True), re.S) for p in list(revised)[6:]):
+    raise SystemExit("Literature review is blank, not section 2, or has no real subsection text")
 if len(records)<100: raise SystemExit("Annotation count unexpectedly low")
+if re.search(r"\bA\.\s*Supplementary research instruments", text):
+    raise SystemExit("Appendix A is still included in the final PDF")
