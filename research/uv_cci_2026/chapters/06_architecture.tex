@@ -33,7 +33,7 @@ Let $\mathbf{p}$ denote an image pixel and $\mathbf{q}$ its location in the coat
 Approved mask regions form a disjoint partition of the visible board: $R$ = must-coat, $K$ = must-not-coat, $A$ = optional/allowed, and $U$ = not reliably inspectable/occluded. Every pixel belongs to exactly one region after resolving drawing overlaps.
 
 \subsection{Segmentation output and interpretable indicators}
-Define $P(\mathbf{x})\in[0,1]$ as estimated probability or standardized evidence of coating, and $M_\tau(\mathbf{x})=\mathbb{1}[P(\mathbf{x})\geq\tau]$ as a binary mask chosen on validation data. Required-zone coverage and forbidden-zone contamination can be expressed as
+Define $P(\mathbf{x})\in[0,1]$ as estimated probability or standardized evidence of coating, and $M_\tau(\mathbf{x})=\mathbb{1}[P(\mathbf{x})\geq\tau]$ as a binary mask chosen on validation data.
 \begin{equation}
 C_R=\frac{|M_\tau\cap R|}{|R|},\qquad
 C_K=\frac{|M_\tau\cap K|}{|K|}.
