@@ -2,11 +2,11 @@
 
 Compiled final PDF compared with source PDF annotations. This is an automated text check, not a substitute for visual inspection of short selected phrases.
 
-- Original pages: 42; revised pages: 29
+- Original pages: 42; revised pages: 24
 - Annotation notes inspected: 114; removal notes: 108
 - Short/ambiguous removals requiring manual visual inspection: 21
 - Longer removals with potential text overlap requiring review: 10
-- Source catalog rows: 58; bibliography inventory rows: 58
+- Source catalog rows (retained as companion data, not printed): 58
 
 ## Critical checks
 
@@ -18,8 +18,16 @@ Compiled final PDF compared with source PDF annotations. This is an automated te
 | Remove Research gaps, recommended experiments and conclusions | PASS |
 | Remove Literature search strategy and evidence appraisal | PASS |
 | Remove Research working manuscript | PASS |
+| Remove Supplementary research instruments and source audit | PASS |
+| Remove Companion structured files | PASS |
+| Remove Source access and interpretation notes | PASS |
+| Remove Search-log outline | PASS |
+| Remove Technical acceptance checklist | PASS |
+| Remove Auditable bibliography inventory | PASS |
+| Remove Initial source inventory | PASS |
 | Keep Rytis Augustauskas | PASS |
-| Keep Supplementary research instruments and source audit | PASS |
+| Keep Literature review | PASS |
+| Keep Mechanisms of protection and material variability | PASS |
 
 ## Reviewer annotation audit
 
