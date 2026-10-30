@@ -1,0 +1,55 @@
+name: Compile and audit UV coating thesis PDF
+
+on:
+  push:
+    branches: [research/uv-cci-comprehensive-study-2026]
+    paths:
+      - 'main.tex'
+      - 'variables.tex'
+      - 'TitlePage.tex'
+      - 'research/uv_cci_2026/chapters/**'
+      - 'research/uv_cci_2026/sources/source_index.tex'
+      - 'research/uv_cci_2026/tools/audit_review.py'
+      - '.github/workflows/uv-cci-study.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Validate bibliography and citations
+        run: python3 research/uv_cci_2026/tools/check_study.py
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended
+      - name: Compile final main.pdf
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+      - name: Audit compiled PDF against reviewer annotations
+        run: |
+          python3 -m pip install --break-system-packages pymupdf
+          python3 research/uv_cci_2026/tools/audit_review.py
+      - name: Upload PDF and review audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf-with-review-audit
+          path: |
+            main.pdf
+            research/uv_cci_2026/REVIEW_AUDIT.md
+          if-no-files-found: error
+      - name: Commit regenerated main.pdf and audit report
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add main.pdf research/uv_cci_2026/REVIEW_AUDIT.md
+          if ! git diff --cached --quiet; then
+            git commit -m "build: publish audited main.pdf with supervisor and annotation corrections"
+            git push origin HEAD:research/uv-cci-comprehensive-study-2026
+          fi

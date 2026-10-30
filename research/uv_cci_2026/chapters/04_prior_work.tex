@@ -1,0 +1,32 @@
+\section{Direct prior art and industrial inspection systems}
+\subsection{Direct academic research on coated PCBs}
+The two 2021 Korean Journal of Broadcast Engineering papers by Lee et al. directly address conformal-coated PCB bubble inspection \citep{lee2021cnn,lee2021transfer}. In the earlier approach, UV images were processed to find dark-centre candidates, after which CNN-based verification rejected non-bubble lookalikes. The authors' abstract reports precision 0.805, recall 0.763 and F1 0.767. This discrepancy is precisely why the original evidence matters. In the later paper, VGG-style CNN transfer learning is reported to improve bubble detection to F1 0.9044.
+
+Zouhri and colleagues presented a Faster R-CNN assessment of coating bubbles at ICM 2021 \citep{zouhri2021faster}.
+
+In 2024, Choi et al. addressed UV irradiance selection for small conformal-coating bubbles, using image-level colour/brightness descriptors, feature-space distances, YOLOv8 and image tiling \citep{choi2024uv}. Wang et al. reported a YOLOv8-Nano variant with attention and feature fusion for PCB coating bubble detection, with a 12\% relative performance improvement for smaller bubbles in the institutional abstract \citep{wang2025bubble}.
+
+Patel et al. presented a customised Faster R-CNN with ResNet-152 and enhanced proposal mechanisms for capillary and dewetting patterns on conformal-coated PCBAs \citep{patel2026coverage}. The abstract reports recall of 98.53\% and 95.49\% for two defect categories, respectively.
+
+\subsection{Relevant work}
+General PCB AOI surveys discuss sensor/illumination choices, geometric comparison, segmentation, classification and manufacturing integration \citep{ebayyeh2020aoi,zhou2023pcb,ieee2023pcb}. The 1988 Hara et al. system exploited ultraviolet-excited \emph{PCB base-material fluorescence} to distinguish copper patterns \citep{hara1988fluorescent}.
+
+Outside electronics, Han et al. used autoencoders, self-labelling, and convolutional models to identify coating boundaries on fuel-injection nozzles \citep{han2025coating}. Their fully accessible paper reports over 95\% interface localization within $\pm 6$ pixels and 7.18 images per second.
+
+\subsection{Commercial conformal-coating AOI systems}
+\begin{table}[htbp]\centering\footnotesize
+\caption{Published manufacturer descriptions. Numeric specifications are vendor claims, not independent head-to-head benchmarks.}
+\begin{tabularx}{\textwidth}{p{23mm}X X}\toprule
+Supplier / product & Relevant published capabilities & Engineering implication \\\midrule
+Nordson FX-940UV \citep{nordsoncci} & 5 MP colour image, UV illumination, taught known-good coating/noncoating areas, optional oblique views; manufacturer describes inspection in a few seconds. & Golden reference plus rules are established practice; 5 MP can be commercially relevant for some configurations.\\
+G\"opel Multi Line CCI \citep{goepelcci} & Top and side UV, CAD/coating-plan regions, claimed 9/17 $\mu$m sampling, optional multiple oblique cameras and separate thickness measurement. & Region semantics and geometric coverage plans are established; complex 3D areas demand more than one view.\\
+MIRTEC GENESYS-CC \citep{mirteccci} & 50 MP camera, claimed 4 $\mu$m optics and 30 $\mu$m microbubble sensitivity; AI-based bubble assessment, additional UV and side camera geometry. & Defect size and inspection risk determine resolution; published claims need independent validation.\\
+Viscom CCI \citep{viscomcci} & UV-triggered fluorescence for coating presence/evenness; distinguishes optical inspection from spot thickness measurement. & Treat fluorescence intensity as a process signal, not calibrated thickness without metrology.\\
+\bottomrule\end{tabularx}
+\label{tab:commercial}
+\end{table}
+
+CAD-driven forbidden/required regions, UV illumination and multiple camera views cannot individually be claimed as new. Commercial product brochures rarely provide a publicly reproducible dataset with independent board counts and false-acceptance operating points.
+
+\subsection{Synthesis}
+The reviewed commercial pages demonstrate use of reference plans, but do not independently establish how much they improve each specific defect class.

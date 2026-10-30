@@ -1,0 +1,1 @@
+specimen_id,lot_id,pcb_revision,coating_batch,coating_type,cure_state,acquisition_utc,image_id,camera_id,lens_id,emission_filter,uv_source_configuration,exposure_ms,gain_db,temperature_C,fiducial_reprojection_px,annotator1,annotator2,adjudication,defect_class,defect_size_mm,criticality,image_hash,split,release_permission

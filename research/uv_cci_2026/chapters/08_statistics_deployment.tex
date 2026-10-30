@@ -1,0 +1,25 @@
+\section{Statistical analysis, reliability and production feasibility}
+\subsection{Primary and secondary outcomes}
+The proposed \emph{primary} outcome is board-level sensitivity for \emph{actionable} defects at a predeclared maximum false-reject rate on independent boards. For a binary decision, define defect-positive ground truth, true positives (TP), false negatives (FN), false positives (FP) and true negatives (TN) at the \emph{board level}. Then
+\begin{equation}
+\mathrm{Sensitivity}=\frac{TP}{TP+FN},\quad \mathrm{Specificity}=\frac{TN}{TN+FP},\quad
+\mathrm{Precision}=\frac{TP}{TP+FP},\quad \mathrm{FPR}=\frac{FP}{TN+FP}.
+\end{equation}
+\subsection{Failure-mode and risk analysis}
+\begin{table}[htbp]\centering\footnotesize
+\caption{Potential failure modes and the proposed monitoring response.}\label{tab:risk}
+\begin{tabularx}{\textwidth}{p{28mm}X p{35mm}}\toprule
+Failure & Consequence & Control / observable \\\midrule
+LED power or spectral drift & Weak fluorescence appears as missing coating & Stable reference target, drift alarm, locked settings\\
+Wrong/uncalibrated emission filter & Reflected UV dominates signal & Spectral check, reference subtraction, qualification records\\
+Board misregistration & False keep-out failures or masked true flaws & Fiducial residual threshold, manual review state\\
+Specular component/occlusion & Missing sidewall or dark inaccessible areas & Exclusion/occlusion map, optional side views\\
+Coating batch variation & Shift in nominal intensity and defect texture & Lot-stratified validation, recalibration, OOD alarm\\
+Model/rule mismatch & Silent false pass after PCB revision & Versioned CAD mask, software/configuration compatibility checks\\
+Dataset leakage & Inflated laboratory accuracy & Physical-board and lot keyed splits, audit script\\
+Camera/PC failure & Missing inspection or stale result reuse & Trigger sequence IDs, watchdog, fail-safe PLC handshake\\
+\bottomrule\end{tabularx}
+\end{table}
+
+\subsection{Standards and deployment validation}
+IPC material qualification (IPC-CC-830C), assembled-board acceptance (IPC-A-610J) and process guidance (IPC-HDBK-830A) play different roles \citep{ipccc830c,ipca610j,ipchdbk830a}. Optical and mechanical safety engineering should incorporate IEC~62471 and ISO~12100, with actual measurements and formal assessment \citep{iec62471,iso12100}. Attribute-based lot sampling concepts can support ongoing process monitoring (ISO~2859-1:2026), but must not be conflated with proving sensitivity of the automated 100\%-inspection device \citep{iso2859}.

@@ -6,23 +6,19 @@ This repository uses **BibTeX + natbib**, configured in `ktu_thesis_style.sty`, 
 
 1. Install [Zotero](https://www.zotero.org/download/) and Zotero Connector, and add your real, verified research papers.
 2. In Zotero, create one collection per project and deduplicate records before exporting.
-3. Right-click a collection → **Export Collection…** → **BibTeX**; save the export in your project, e.g. `research/conformal_coating/references.bib`.
+3. Right-click a collection → **Export Collection…** → **BibTeX**; save the export in `research/uv_cci_2026/references.bib` for this study.
 4. For ongoing exports, Zotero's export dialog may support a "Keep updated" option in some versions; alternatively use Better BibTeX for Zotero for **stable citation keys** and automatic export (third-party extension). Verify that the extension is compatible with your Zotero version.
 5. Commit the exported `.bib` to GitHub. Cite its entries by citation key with `\\citep{key}` or `\\citet{key}`, and configure `\\bibliography{path/to/references}` (omit the `.bib` extension).
 
-## Existing template
+## Branch bibliography
 
 The root document `main.tex` already uses:
 
 ```tex
-\\bibliography{dummy-bib}
+\bibliography{research/uv_cci_2026/references}
 ```
 
-Keep the template unchanged until you're ready to use real references. To use a project-specific Zotero export in the root document, change only the bibliography path:
-
-```tex
-\\bibliography{research/conformal_coating/references}
-```
+Export updated records to this bibliography, preserving the citation keys used by the research chapters. The existing KTU style and BibTeX configuration remain in use.
 
 The bibliography formatting is currently provided by `\\bibliographystyle{unsrtnat}` in `ktu_thesis_style.sty`. It is numeric and ordered by citation appearance, but confirm that it satisfies your **specific KTU supervisor/journal's** citation requirements before submission. Do not add `biblatex`/Biber without also replacing the template's natbib/BibTeX configuration.
 

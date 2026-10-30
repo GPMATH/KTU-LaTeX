@@ -1,35 +1,38 @@
-# KTU LaTeX Thesis Template
+# UV PCB conformal-coating inspection
 
-**Unofficial** LaTeX template for Kaunas University of Technology (KTU) projects, theses, and other academic documents
+This branch contains a scientific literature review and proposed experimental methodology for PCB conformal-coating inspection using UV fluorescence, classical computer vision and AI. It uses the existing unofficial Kaunas University of Technology LaTeX template.
 
-Download generated
-[PDF example here](https://github.com/Dominyk4s/KTU-LaTeX/raw/main/main.pdf)
+[Open the generated document: main.pdf](main.pdf).
 
-## Repository Contents
+## Repository contents
 
-* `main.tex` - Main document file, containing the `\documentclass` and `\begin{document}` commands.
-* `ktu_thesis_style.sty` - Custom KTU LaTeX style file, including settings for spacing, section formatting, and more.
-* `TitlePage.tex` - Customizable title page template for your KTU document.
-* `PageSecond.tex` and `PageThird.tex` - Front-matter pages used in the default `main.tex` flow.
-* `PageSummaryLT.tex` and `PageSummaryEN.tex` - Summary pages used in the default `main.tex` flow.
-* `variables.tex` - Defines variables used to populate the main document pages.
+- `main.tex`: primary document entry point, including the KTU cover, manuscript status and abstract, contents, lists of figures and tables, research chapters, appendix and bibliography.
+- `variables.tex`: document title, author, supervisors and other cover metadata.
+- `TitlePage.tex` and `ktu_thesis_style.sty`: existing KTU title page and document formatting.
+- `PageSecond.tex` and `PageThird.tex`: optional reusable KTU front-matter templates.
+- `images/ktu-ikona.pdf`: KTU logo used on the cover.
+- `research/uv_cci_2026/chapters/`: the study's chapter sources.
+- `research/uv_cci_2026/references.bib`: the study bibliography.
+- `research/uv_cci_2026/sources/`: source catalog, evidence matrix, search log and research planning files.
 
-## Getting Started with KTU LaTeX Thesis Template
+See the [study guide](research/uv_cci_2026/README.md) for scope, source-access limitations and experimental plans. This is a research working manuscript; it does not report completed inspection experiments.
 
-1. Fork or clone the repository to your local machine.
-2. Customize the `variables.tex` file with your document's information.
-3. Edit `TitlePage.tex`, `PageSecond.tex`, `PageThird.tex`, `PageSummaryLT.tex`, and `PageSummaryEN.tex` as needed.
-4. Compile `main.tex` using your preferred LaTeX editor or command line tool.
+## Build main.pdf
 
+Run from the repository root with a LaTeX installation:
 
-## Contributing
+```bash
+python research/uv_cci_2026/tools/check_study.py
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+bibtex main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
 
-We welcome contributions and improvements to the template. Please submit a pull request or open an issue with your suggestions.
+Alternatively, run `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex`.
 
-## Keywords
+The output is `main.pdf` in the repository root. Temporary LaTeX files are ignored by Git. The document uses the existing `natbib` and `unsrtnat` bibliography setup.
 
-Kaunas Technology University, KTU, LaTeX, thesis template, project template, academic document, Kaunas, Lithuania
+## Reference management
 
-## Zotero reference management
-
-For Zotero → BibTeX export, citation-key management, LaTeX compilation, and source verification guidance, see [ZOTERO.md](ZOTERO.md). The existing `natbib`/BibTeX setup remains unchanged. Research-specific references belong on their project's branch or folder rather than replacing the reusable template bibliography.
+The study is self-contained and does not require a live Zotero connection. For optional Zotero exports and citation-key management, see [ZOTERO.md](ZOTERO.md). Export this study's references to `research/uv_cci_2026/references.bib`.

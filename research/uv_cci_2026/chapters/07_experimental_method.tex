@@ -1,0 +1,31 @@
+\section{Reproducible experimental methodology}
+\subsection{Specimen and lot sampling}
+Each physical PCB must have a unique immutable \texttt{specimen\_id}; each production/process batch has \texttt{lot\_id}. Every image receives an \texttt{image\_id} linking it to coating material, preparation, light arrangement, camera parameters and board orientation.
+
+An initial \emph{planning target} could be approximately 100--200 physical boards across at least three visually distinct collection sessions or lots.
+
+\subsection{Defect taxonomy and acceptance thresholds}
+\begin{table}[htbp]\centering\footnotesize
+\caption{Candidate annotation and decision ontology. Inspection feasibility and acceptance limits are to be established, not assumed.}\label{tab:ontology}
+\begin{tabularx}{\textwidth}{p{30mm}p{25mm}X}\toprule
+Class & Label representation & Independent confirmation / concern\\\midrule
+Missing coating & Pixel polygon or region instance & UV evidence plus expert/alternate inspection; distinguish intentional mask-out\\
+Excess coating / overspray & Pixel region crossing forbidden zone & Coating plan revision and expert confirmation\\
+Bubble / void & Instance region, size and location & Microscopy or expert adjudication; fluorescent dark spots are not all bubbles\\
+Dewetting & Boundary polygon, area and context & Process engineer confirmation; often resembles absence or capillary effect\\
+Capillary pooling & Region plus component proximity & Fluorescence intensity alone may not quantify thickness\\
+Crack / scratch & Instance or line segment & Alternate-angle white/UV imaging; distinguish surface artefacts\\
+Occluded / not observable & Exclusion mask & Must be handled as unknown, not labelled sound coating\\
+\bottomrule\end{tabularx}
+\end{table}
+
+A defect is \emph{actionable} only if a documented customer, internal drawing or authorized acceptance specification makes it rejectable under the applicable product class. Record minimum size, permitted locations, any exceptions for component leads and acceptable bubble conditions. The goal is traceable compliance with a validated inspection plan, not the maximum number of bright/dark pixels detected. The full IPC-A-610J and coating plan must be consulted by a suitably qualified person before production rules are finalized \citep{ipca610j,ipc2024release}.
+
+\subsection{Classical baseline A}
+Register the board geometry using fiducial-driven affine/projective fitting and fail closed on poor registration \citep{fischler1981ransac}.
+
+\subsection{Learned baseline B}
+Record fixed random seeds, model input resolution, weight initialization, class balance, augmentation, loss definition, optimizer, learning rate and early stopping.
+
+\subsection{Production timing and system verification}
+The complete cycle includes trigger-to-exposure, optional multiple exposures, camera transfer, acquisition validation, geometric registration, any inference tiling, defect aggregation, logging/database output, PLC result handshake and safety/fault reporting. Measure median, 95th and 99th percentile times across sustained runs, along with cold start, model reload, CPU load, RAM, thermal throttling and recovery after camera disconnection. A nominal inference-only speed on a GPU-equipped laptop cannot be copied to a used Intel office PC. The workstation's actual takt requirement must be supplied by production engineering and the system benchmarked against it \citep{onnxproviders,openvino2026}.

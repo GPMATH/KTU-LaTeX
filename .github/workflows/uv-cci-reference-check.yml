@@ -1,0 +1,24 @@
+name: UV CCI bibliography and source integrity
+
+on:
+  push:
+    branches: [research/uv-cci-comprehensive-study-2026]
+    paths:
+      - 'research/uv_cci_2026/**'
+      - '.github/workflows/uv-cci-reference-check.yml'
+  pull_request:
+    paths:
+      - 'research/uv_cci_2026/**'
+      - '.github/workflows/uv-cci-reference-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify bibliography, citations and evidence catalog
+        run: python3 research/uv_cci_2026/tools/check_study.py

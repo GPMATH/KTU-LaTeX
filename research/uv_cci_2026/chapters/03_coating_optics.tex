@@ -1,0 +1,38 @@
+\subsection{Mechanisms of protection and material variability}
+Conformal coating refers to a thin film that conforms to the geometry of the electronic assembly. IPC-HDBK-830A describes acrylic, epoxy, silicone, polyurethane, and parylene coating systems and related applications, curing, compatibility, coverage, and thickness \citep{ipchdbk830a}. These chemical systems vary in physical properties and processing requirements, even within a family. Formulations, fluorescent tracer amounts, and fluorescence spectra can also vary. It is crucial to include the production coating data sheet and qualification results as experimental inputs. A coating that does not produce adequate fluorescence upon 365~nm exposure disqualifies the chosen imaging method and should prompt a design review rather than attempts to improve unreliable images.
+
+A functional inspection taxonomy should distinguish between physical phenomena and image appearance. Missing coating refers to a lack of the required coating. Overspray or keep-out refers to the presence of coating in an unpermitted location. A bubble indicates trapped gas in or under the coating; a blister could refer to separation of the coating from the substrate. Dewetting results in local coating recession. Capillary pooling involves accumulation of coating around leads and geometrical features. Specific criteria for cracks, wrinkles, scratches, and contamination may need to be developed together with an alternative lighting approach. These classes are candidates for annotation rather than necessarily detectable classes. IPC-A-610J defines coverage and thickness classes for conformal coating and, in its 2024 version, made changes related to coating voids/bubbles \citep{ipca610j,ipc2024release}.
+
+\subsection{Excitation, emission and optical contrast}
+In a simple first-order model, the signal can be written
+\begin{equation}
+I(\mathbf{x}) \approx g\, t\, q(\mathbf{x})\,E_{365}(\mathbf{x})\,\eta(\mathbf{x}) + B(\mathbf{x}) + \epsilon(\mathbf{x}),
+\label{eq:fluorescence}
+\end{equation}
+where $g$ is camera/system gain, $t$ the exposure, $q$ the combined camera/lens/filter response, $E_{365}$ local excitation irradiance, $\eta$ an effective emission response of tracer and coating geometry, $B$ residual background/reflections and $\epsilon$ noise. Equation~\ref{eq:fluorescence} is an engineering abstraction. In particular, $\eta$ may depend nonlinearly on film thickness and concentration.
+
+\subsection{Field of view, physical sampling and resolution}
+With an 80~mm horizontal FOV and a 4000-pixel image width, image sampling equals
+\begin{equation}
+s_x=\frac{80\,\mathrm{mm}}{4000}=0.020\,\mathrm{mm/pixel}=20\,\mu\mathrm{m/pixel}.
+\end{equation}
+A 0.20~mm geometric feature covers about 10 pixels horizontally in the ideal projected image.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{lrrr}\toprule
+Image width & Sampling ($\mu$m/px) & 0.10 mm feature (px) & 0.20 mm feature (px) \\\midrule
+1600 px & 50.0 & 2.0 & 4.0\\
+2448 px & 32.7 & 3.1 & 6.1\\
+3264 px & 24.5 & 4.1 & 8.2\\
+4000 px & 20.0 & 5.0 & 10.0\\
+\bottomrule\end{tabular}
+\end{table}
+
+\subsection{Lighting geometry and experimental controls}
+Component heights cause bright specular regions, self-shadowing and occlusion. A top-only flood source may illuminate PCB areas, yet miss coating on vertical component faces. Side UV sources can recover some information; commercial designs use both top and oblique views \citep{goepelcci,mirteccci}. The direct Choi et al. study is pertinent: it uses brightness/hue features, Mahalanobis distance and YOLOv8 tiling to evaluate UV intensity for bubble detection \citep{choi2024uv}.
+
+\subsection{Thickness versus fluorescence and independent validation}
+Shao et al. measured the interfaces of conformal coatings non-destructively using ultra-high-resolution optical coherence tomography \citep{shao2019oct}.
+
+\subsection{Safety constraints for optical development}
+365~nm UVA can present photobiological hazards to eyes and skin. IEC~62471 provides classification and measurement concepts for optical-radiation hazards from lamps including LEDs \citep{iec62471}; ISO~12100 sets out machine risk assessment and risk-reduction principles \citep{iso12100}. Neither a nominal LED optical wattage nor a wavelength alone determines safe exposure.

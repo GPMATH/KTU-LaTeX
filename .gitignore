@@ -10,6 +10,19 @@ _config.yml
 .texpadtmp/main.toc
 .texpadtmp/main.toc
 .DS_Store
+
+# Generated LaTeX files; main.pdf is the document deliverable.
+/*.aux
+/*.bbl
+/*.blg
+/*.fdb_latexmk
+/*.fls
+/*.log
+/*.out
+/*.synctex.gz
+/*.toc
+/*.lof
+/*.lot
 .texpadtmp/main.toc
 .texpadtmp/main.toc
 .texpadtmp/main.toc
