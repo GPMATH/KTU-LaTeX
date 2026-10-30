@@ -11,7 +11,8 @@ bib = (p / 'references.bib').read_text(encoding='utf-8')
 keys = re.findall(r'@\w+\s*\{\s*([^,\s]+)\s*,', bib)
 counts = Counter(keys)
 duplicates = sorted(k for k,v in counts.items() if v > 1)
-inputs = [p/'report.tex', *sorted((p/'chapters').glob('*.tex'))]
+chapter_files = sorted((p/'chapters').glob('*.tex'))
+inputs = [p.parents[1]/'main.tex', p/'report.tex', *chapter_files]
 cited = set()
 for filepath in inputs:
     txt = filepath.read_text(encoding='utf-8')
@@ -30,5 +31,5 @@ if len(keys) < 30: problems.append('Unexpectedly small bibliography')
 if problems:
     print('\n'.join('ERROR: '+x for x in problems), file=sys.stderr)
     sys.exit(1)
-print(f'OK: {len(keys)} bibliography entries, {len(cited)} cited keys, {len(inputs)-1} chapter files')
+print(f'OK: {len(keys)} bibliography entries, {len(cited)} cited keys, {len(chapter_files)} chapter files')
 print('NOTE: Check primary-source bibliographic identity and evidence before submission.')

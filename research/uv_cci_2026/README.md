@@ -1,10 +1,10 @@
 # UV PCB conformal-coating inspection: KTU literature review and methodology
 
-**Status (2026-10-23):** Evidence-grounded research working manuscript, not a completed systematic full-text review or experimental validation. **No Zotero connection is required.** This self-contained project was created on branch `research/uv-cci-comprehensive-study-2026`, derived directly from `main`. The root KTU template remains intact.
+**Status (2026-10-23):** Evidence-grounded research working manuscript, not a completed systematic full-text review or experimental validation. **No Zotero connection is required.** This self-contained project was created on branch `research/uv-cci-comprehensive-study-2026`, derived directly from `main`. The root KTU entry point, `main.tex`, assembles this study using the existing KTU title page and style, producing `main.pdf`.
 
 ## Deliverable and scope
 
-- `report.tex`: LaTeX entry point including a KTU-compatible style (`ktu_thesis_style.sty` from the repository root).
+- [`../../main.tex`](../../main.tex): primary LaTeX entry point using the existing KTU cover, contents, lists of figures and tables, and document style. `report.tex` forwards to this same entry point for existing automation.
 - `chapters/`: nine research chapters, covering research questions, source methodology, coating/UV physics, prior work and systems, AI and datasets, original architecture, experimental design, statistics/deployment, and conclusions; appendix includes a complete source index.
 - `references.bib`: 58 externally verifiable source records from publisher, standards, industrial-vendor and official dataset pages. Refer to CSV source catalog for access status; some conference journal metadata and authors need further full-text bibliographic checking.
 - `sources/source_catalog.csv`: source IDs, publication links, direct/transfer classification, abstract/full-text/official source status and caveats.
@@ -25,12 +25,12 @@ From the **repository root**:
 
 ```bash
 python3 research/uv_cci_2026/tools/check_study.py
-latexmk -pdf -interaction=nonstopmode -halt-on-error research/uv_cci_2026/report.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-or run `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. Required TeX packages include `natbib`, `tikz`, `pgfplots`, `longtable`, `mfirstuc`, `tocloft`, `microtype`, `amssymb` and `pdflscape`. Run from the root to resolve `ktu_thesis_style.sty` and citation paths. The paper uses the repository's existing **natbib + unsrtnat** style; verify compliance with KTU supervisor's final citation specification.
+or run `pdflatex main.tex`, `bibtex main`, `pdflatex main.tex`, `pdflatex main.tex`. Required TeX packages include `natbib`, `tikz`, `pgfplots`, `longtable`, `mfirstuc`, `tocloft`, `microtype`, `amssymb` and `pdflscape`. Run from the root to resolve `ktu_thesis_style.sty` and citation paths. The paper uses the repository's existing **natbib + unsrtnat** style; verify compliance with KTU supervisor's final citation specification.
 
-Build output (`report.pdf`) is generated, not manually maintained in source control. GitHub Actions creates a PDF artifact.
+Build output (`main.pdf`) is generated in the repository root. The existing GitHub Actions workflow creates an artifact through the compatible `report.tex` entry point, using the same KTU structure and content.
 
 ## Scientific workflow and confidentiality
 

@@ -1,37 +1,57 @@
 \documentclass[12pt]{article}
-
+% KTU template's existing natbib / unsrtnat configuration is provided by this style.
+% Build from the repository root to generate main.pdf with the existing KTU cover.
 \usepackage{ktu_thesis_style}
-
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{etoolbox}
+\hypersetup{hidelinks,pdftitle={UV PCB Conformal Coating Inspection Literature Review and Methodology}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\newcommand{\ccl}{conformal coating}
+\newcommand{\systemname}{UV-CCI}
+\newcommand{\evidencenote}[1]{\textit{Evidence caveat: #1}}
+\setlength{\emergencystretch}{3em}
 \begin{document}
 \input{variables.tex}
-
 \input{TitlePage}
 
+\setcounter{page}{2} % Count the KTU cover; print page numbers from the contents.
+\thispagestyle{empty}
+\noindent\textbf{Data confidentiality.} The company retains proprietary ownership of PCB images and production process parameters.\par
+\begin{abstract}
+Conformal coating is the process of applying a coating to a PCB to protect it from natural elements. To ensure that this process has been carried out properly, machine vision and external UV fluorescent light at a certain wavelength can be used. However, several factors can affect the inspection outcome, including optical filtering, material composition, shadows, ultraviolet detection using CNNs or other models, illumination, and angles. Consequently, using a CNN model with a camera cannot be considered novel. Instead, this research aims to produce a synthesis of evidence and standards within a cost-effective architecture for a fixed 70~mm printed circuit board assembly. This will involve corrections, geometry input, probabilistic coating output scores, and morphological defects. Experiments will use classical, learned, and hybrid techniques, together with hardware on the actual board, as well as the creation of a private dataset containing all possible defects and defect-free examples; this is known as data annotation.
+\end{abstract}
 
-\setcounter{page}{2} % count from title page; print from TOC
+\clearpage
 \tableofcontents
 
-
-
 \clearpage
+\phantomsection
+\addcontentsline{toc}{section}{\listfigurename}
 \listoffigures
-\addcontentsline{toc}{section}{\listfigurename} % Adds "List of Figures" to the table of contents
 
 \clearpage
-\input{chapters/fnirs_literature_review.tex}
-
+\phantomsection
+\addcontentsline{toc}{section}{\listtablename}
+\listoftables
 
 \clearpage
-\input{chapters/conclusions.tex}
-
-
-
-\clearpage 
-\phantomsection 
-\addcontentsline{toc}{section}{References}
-\bibliography{dummy-bib} % And adding references itself
-
-% To know how many pages
+\input{research/uv_cci_2026/chapters/01_research_scope}
+\input{research/uv_cci_2026/chapters/02_literature_method}
+\input{research/uv_cci_2026/chapters/03_coating_optics}
+\input{research/uv_cci_2026/chapters/04_prior_work}
+\input{research/uv_cci_2026/chapters/05_ai_datasets}
+\input{research/uv_cci_2026/chapters/06_architecture}
+\input{research/uv_cci_2026/chapters/07_experimental_method}
+\input{research/uv_cci_2026/chapters/08_statistics_deployment}
+\appendix
+\input{research/uv_cci_2026/chapters/10_appendix}
 \clearpage
-\label{LastPage}
+\phantomsection\addcontentsline{toc}{section}{References}
+\bibliography{research/uv_cci_2026/references}
 \end{document}
